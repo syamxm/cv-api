@@ -1,0 +1,365 @@
+/* =============================================================================
+   CV Stylesheet — Clean Minimal
+   Design intent: high readability, ATS-safe structure, good on screen + print
+   ============================================================================= */
+
+/* --- Tokens ---------------------------------------------------------------- */
+:root {
+  --black:      #0f0f0f;
+  --dark:       #1a1a1a;
+  --mid:        #555555;
+  --light:      #888888;
+  --rule:       #dedede;
+  --bg:         #ffffff;
+  --accent:     #0f0f0f;    /* change this one value to re-theme the whole page */
+
+  --font-sans:  'DM Sans', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono:  'DM Mono', 'Courier New', monospace;
+
+  --page-width: 820px;
+  --gutter:     48px;
+}
+
+/* --- Reset ----------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 15px; }
+
+body {
+  font-family: var(--font-sans);
+  background: #f4f4f4;
+  color: var(--black);
+  line-height: 1.6;
+  padding: 40px 20px 80px;
+}
+
+/* --- Google Fonts ---------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+/* --- Toolbar (export button) ----------------------------------------------- */
+.toolbar {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  z-index: 100;
+}
+
+.toolbar button {
+  background: var(--black);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.toolbar button:hover { background: #333; }
+
+/* --- Loading state --------------------------------------------------------- */
+.loading {
+  text-align: center;
+  margin-top: 100px;
+  color: var(--light);
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+}
+
+/* --- CV wrapper ------------------------------------------------------------ */
+.cv {
+  max-width: var(--page-width);
+  margin: 0 auto;
+  background: var(--bg);
+  padding: var(--gutter) var(--gutter) 56px;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.07);
+}
+
+.hidden { display: none; }
+
+/* --- Header --------------------------------------------------------------- */
+.cv-header {
+  margin-bottom: 36px;
+  padding-bottom: 28px;
+  border-bottom: 2px solid var(--black);
+}
+
+.cv-header h1 {
+  font-size: 2.2rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--black);
+  margin-bottom: 4px;
+}
+
+.cv-title {
+  font-size: 0.9rem;
+  color: var(--mid);
+  font-weight: 400;
+  margin-bottom: 16px;
+  letter-spacing: 0.01em;
+}
+
+.cv-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 24px;
+  font-size: 0.82rem;
+  color: var(--mid);
+}
+
+.cv-contacts a {
+  color: var(--mid);
+  text-decoration: none;
+}
+
+.cv-contacts a:hover { color: var(--black); }
+
+/* --- Summary --------------------------------------------------------------- */
+.cv-summary {
+  margin-bottom: 36px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--rule);
+  font-size: 0.9rem;
+  color: var(--dark);
+  line-height: 1.75;
+  max-width: 680px;
+}
+
+/* --- Section layout -------------------------------------------------------- */
+.cv-section {
+  margin-bottom: 32px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.cv-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.cv-section h2 {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--light);
+  margin-bottom: 20px;
+}
+
+/* --- Experience & Education entries --------------------------------------- */
+.entry {
+  margin-bottom: 22px;
+}
+
+.entry:last-child { margin-bottom: 0; }
+
+.entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 2px;
+}
+
+.entry-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--black);
+}
+
+.entry-date {
+  font-size: 0.78rem;
+  color: var(--light);
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+
+.entry-sub {
+  font-size: 0.82rem;
+  color: var(--mid);
+  margin-bottom: 8px;
+}
+
+.entry-gpa {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  color: var(--mid);
+  background: #f5f5f5;
+  padding: 1px 7px;
+  border-radius: 2px;
+  margin-bottom: 8px;
+}
+
+.entry ul {
+  padding-left: 16px;
+  margin-top: 4px;
+}
+
+.entry ul li {
+  font-size: 0.85rem;
+  color: var(--dark);
+  line-height: 1.7;
+  margin-bottom: 2px;
+}
+
+/* --- Skills --------------------------------------------------------------- */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.skill-group h3 {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--mid);
+  margin-bottom: 8px;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.skill-tag {
+  font-size: 0.78rem;
+  color: var(--dark);
+  background: #f5f5f5;
+  padding: 3px 8px;
+  border-radius: 2px;
+  border: 1px solid var(--rule);
+}
+
+/* --- Projects ------------------------------------------------------------- */
+.project {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px dashed var(--rule);
+}
+
+.project:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.project-header {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+}
+
+.project-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--black);
+}
+
+/* Status badge colours */
+.status-badge {
+  font-size: 0.68rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 2px 7px;
+  border-radius: 2px;
+}
+
+.status-complete    { background: #e8f5e9; color: #2e7d32; }
+.status-development { background: #fff8e1; color: #f57f17; }
+.status-planned     { background: #f3f3f3; color: #888; }
+
+.project-stack {
+  font-size: 0.78rem;
+  color: var(--mid);
+  font-family: var(--font-mono);
+  margin-bottom: 5px;
+}
+
+.project-desc {
+  font-size: 0.85rem;
+  color: var(--dark);
+  line-height: 1.7;
+}
+
+.project-link {
+  font-size: 0.78rem;
+  color: var(--mid);
+  text-decoration: none;
+  margin-top: 4px;
+  display: inline-block;
+}
+
+.project-link:hover { color: var(--black); }
+
+/* --- Awards --------------------------------------------------------------- */
+.award {
+  margin-bottom: 10px;
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+}
+
+.award-dot {
+  width: 5px;
+  height: 5px;
+  background: var(--black);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+
+.award-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--black);
+}
+
+.award-desc {
+  font-size: 0.82rem;
+  color: var(--mid);
+}
+
+/* --- Languages ------------------------------------------------------------ */
+.languages-list {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.lang-item {
+  font-size: 0.85rem;
+  color: var(--dark);
+}
+
+.lang-level {
+  font-size: 0.75rem;
+  color: var(--light);
+  margin-left: 4px;
+}
+
+/* --- Print / PDF ---------------------------------------------------------- */
+@media print {
+  body {
+    background: white;
+    padding: 0;
+  }
+
+  .no-print { display: none !important; }
+
+  .cv {
+    box-shadow: none;
+    padding: 32px 40px;
+    max-width: 100%;
+  }
+}

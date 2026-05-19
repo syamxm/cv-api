@@ -1,0 +1,54 @@
+version: "3.9"
+
+services:
+
+  # --------------------------------------------------------------------------
+  # PostgreSQL database
+  # Stores all CV data — profile, experience, education, projects, etc.
+  # --------------------------------------------------------------------------
+  db:
+    image: postgres:16-alpine
+    container_name: cv_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      # Persist data across container restarts
+      - cv_db_data:/var/lib/postgresql/data
+      # Auto-run seed file on first start (only when volume is empty)
+      - ./sql/seed.sql:/docker-entrypoint-initdb.d/seed.sql
+    networks:
+      - cv_network
+
+  # --------------------------------------------------------------------------
+  # Express API
+  # Reads from PostgreSQL and serves CV data as JSON + static frontend
+  # --------------------------------------------------------------------------
+  api:
+    build: .
+    container_name: cv_api
+    restart: unless-stopped
+    depends_on:
+      - db
+    ports:
+      # Only bind to Tailscale IP — not 0.0.0.0 (public internet)
+      - "3001:3001"
+    environment:
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_HOST: db
+      DB_PORT: 5432
+      PORT: 3001
+    networks:
+      - cv_network
+
+# Named volume so Postgres data survives "docker compose down"
+volumes:
+  cv_db_data:
+
+networks:
+  cv_network:
+    driver: bridge

@@ -1,0 +1,287 @@
+/* =============================================================================
+   Resume Stylesheet — 1 Page, A4
+   Designed to fit exactly one A4 page on screen and in PDF export.
+   If content overflows: reduce font sizes slightly or trim project descriptions.
+   ============================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+/* --- Tokens ---------------------------------------------------------------- */
+:root {
+  --black:   #0f0f0f;
+  --dark:    #1a1a1a;
+  --mid:     #555;
+  --light:   #888;
+  --rule:    #e0e0e0;
+  --bg:      #ffffff;
+
+  --font:    'DM Sans', 'Helvetica Neue', Arial, sans-serif;
+  --mono:    'DM Mono', 'Courier New', monospace;
+
+  /* A4 dimensions */
+  --page-w:  210mm;
+  --page-h:  297mm;
+}
+
+/* --- Reset ----------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font);
+  background: #eee;
+  color: var(--black);
+  padding: 24px 16px 60px;
+}
+
+/* --- Toolbar --------------------------------------------------------------- */
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: var(--page-w);
+  margin: 0 auto 16px;
+}
+
+.back-link {
+  font-size: 0.8rem;
+  color: var(--mid);
+  text-decoration: none;
+}
+
+.back-link:hover { color: var(--black); }
+
+.toolbar button {
+  background: var(--black);
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  font-family: var(--font);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.toolbar button:hover { background: #333; }
+
+/* --- Page — exact A4 ------------------------------------------------------ */
+.page {
+  width: var(--page-w);
+  min-height: var(--page-h);
+  max-height: var(--page-h);
+  margin: 0 auto;
+  background: var(--bg);
+  padding: 14mm 14mm 12mm;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.1);
+  overflow: hidden;             /* hard stop — nothing bleeds past page */
+}
+
+/* --- Header --------------------------------------------------------------- */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--black);
+  margin-bottom: 8px;
+}
+
+.header h1 {
+  font-size: 1.7rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 3px;
+}
+
+.title {
+  font-size: 0.72rem;
+  color: var(--mid);
+  font-weight: 400;
+}
+
+.header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  font-size: 0.72rem;
+  color: var(--mid);
+}
+
+.header-right a {
+  color: var(--mid);
+  text-decoration: none;
+}
+
+.availability {
+  font-size: 0.68rem;
+  color: var(--black);
+  font-weight: 500;
+  margin-top: 2px;
+  font-style: italic;
+}
+
+/* --- Summary --------------------------------------------------------------- */
+.summary {
+  font-size: 0.75rem;
+  color: var(--dark);
+  line-height: 1.6;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* --- Two-column body ------------------------------------------------------- */
+.body {
+  display: grid;
+  grid-template-columns: 1.55fr 1fr;   /* left wider for projects + edu */
+  gap: 0 20px;
+}
+
+/* --- Sections -------------------------------------------------------------- */
+.section {
+  margin-bottom: 10px;
+}
+
+.section h2 {
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--light);
+  margin-bottom: 6px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* --- Projects -------------------------------------------------------------- */
+.project {
+  margin-bottom: 8px;
+}
+
+.project-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 1px;
+}
+
+.project-name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--black);
+}
+
+.badge {
+  font-size: 0.6rem;
+  font-family: var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 1px 5px;
+  border-radius: 2px;
+}
+
+.badge-dev      { background: #fff8e1; color: #f57f17; }
+.badge-complete { background: #e8f5e9; color: #2e7d32; }
+.badge-planned  { background: #f3f3f3; color: #888;    }
+
+.project-stack {
+  font-size: 0.68rem;
+  color: var(--light);
+  font-family: var(--mono);
+  margin-bottom: 2px;
+}
+
+.project-desc {
+  font-size: 0.72rem;
+  color: var(--dark);
+  line-height: 1.55;
+}
+
+/* --- Education ------------------------------------------------------------- */
+.edu-entry {
+  margin-bottom: 7px;
+}
+
+.edu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.edu-place {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--black);
+}
+
+.edu-date {
+  font-size: 0.65rem;
+  color: var(--light);
+  font-family: var(--mono);
+}
+
+.edu-degree {
+  font-size: 0.72rem;
+  color: var(--mid);
+  margin-bottom: 1px;
+}
+
+.edu-note {
+  font-size: 0.68rem;
+  color: var(--light);
+}
+
+/* --- Skills ---------------------------------------------------------------- */
+.skill-group {
+  margin-bottom: 6px;
+}
+
+.skill-group h3 {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--mid);
+  margin-bottom: 2px;
+}
+
+.skill-group p {
+  font-size: 0.72rem;
+  color: var(--dark);
+  line-height: 1.5;
+}
+
+/* --- Awards + Languages ---------------------------------------------------- */
+.awards-list {
+  list-style: none;
+  padding: 0;
+}
+
+.awards-list li {
+  font-size: 0.72rem;
+  color: var(--dark);
+  line-height: 1.7;
+  padding-left: 10px;
+  position: relative;
+}
+
+.awards-list li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  color: var(--light);
+}
+
+/* --- Print / PDF ----------------------------------------------------------- */
+@media print {
+  body { background: white; padding: 0; }
+  .no-print { display: none !important; }
+  .page {
+    box-shadow: none;
+    width: 210mm;
+    padding: 14mm;
+  }
+}
