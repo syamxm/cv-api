@@ -35,11 +35,12 @@ body {
 /* --- Google Fonts ---------------------------------------------------------- */
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
 
+/* --- Toolbar --------------------------------------------------------------- */
 .toolbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: var(--page-width);
+  max-width: var(--page-w);
   margin: 0 auto 16px;
 }
 
@@ -56,13 +57,12 @@ body {
   color: #fff;
   border: none;
   padding: 8px 18px;
-  font-family: var(--font-sans);
+  font-family: var(--font);
   font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: background 0.2s;
 }
 
 .toolbar button:hover { background: #333; }
