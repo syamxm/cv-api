@@ -35,21 +35,29 @@ body {
 /* --- Google Fonts ---------------------------------------------------------- */
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
 
-/* --- Toolbar (export button) ----------------------------------------------- */
 .toolbar {
-  position: fixed;
-  top: 20px;
-  right: 24px;
-  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: var(--page-width);
+  margin: 0 auto 16px;
 }
+
+.forward-link {
+  font-size: 0.8rem;
+  color: var(--mid);
+  text-decoration: none;
+}
+
+.forward-link:hover { color: var(--black); }
 
 .toolbar button {
   background: var(--black);
   color: #fff;
   border: none;
-  padding: 10px 20px;
+  padding: 8px 18px;
   font-family: var(--font-sans);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.04em;
   text-transform: uppercase;
