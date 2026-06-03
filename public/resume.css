@@ -33,6 +33,7 @@ body {
   background: var(--paper);
   color: var(--ink);
   padding: 48px 20px 96px;
+  overflow-x: hidden;
   position: relative;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -93,8 +94,8 @@ body > * { position: relative; z-index: 1; }
 /* --- Page — exact A4 ------------------------------------------------------ */
 .page {
   counter-reset: sec;
-  width: var(--page-w);
-  max-width: 100%;
+  width: 100%;
+  max-width: var(--page-w);
   min-height: var(--page-h);
   max-height: var(--page-h);
   margin: 0 auto;
@@ -145,6 +146,7 @@ body > * { position: relative; z-index: 1; }
   font-family: var(--mono);
   font-size: 0.68rem;
   color: var(--mid);
+  overflow-wrap: anywhere;
 }
 
 .header-right a { color: var(--mid); text-decoration: none; }
@@ -175,6 +177,9 @@ body > * { position: relative; z-index: 1; }
   grid-template-columns: 1.55fr 1fr;
   gap: 0 22px;
 }
+
+/* grid children may shrink below their content's intrinsic width */
+.body > * { min-width: 0; }
 
 /* --- Sections -------------------------------------------------------------- */
 .section { margin-bottom: 9px; }
@@ -229,6 +234,7 @@ body > * { position: relative; z-index: 1; }
   font-size: 0.66rem;
   color: var(--faint);
   margin-bottom: 2px;
+  overflow-wrap: anywhere;
 }
 
 .project-desc { font-size: 0.73rem; color: var(--mid); line-height: 1.55; }
