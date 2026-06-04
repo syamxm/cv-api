@@ -353,7 +353,8 @@ body > * { position: relative; z-index: 1; }
 .section:nth-of-type(3) { animation-delay: 0.34s; }
 
 /* --- Mobile — collapse to one column, read like the CV -------------------- */
-@media (max-width: 820px) {
+/* scoped to screen so print/PDF (A4 ≈ 793px) keeps the two-column layout */
+@media screen and (max-width: 820px) {
   html { font-size: 18px; }              /* scale compact A4 type up for phone reading */
 
   body { padding: 26px 14px 64px; }
@@ -387,15 +388,22 @@ body > * { position: relative; z-index: 1; }
   .project-desc, .skill-group p, .awards-list li { line-height: 1.65; }
 }
 
-/* --- Print / PDF ----------------------------------------------------------- */
+/* --- Print / PDF — native print to exactly one A4 -------------------------- */
+@page { size: A4; margin: 0; }
+
 @media print {
-  body { background: #fff; padding: 0; }
+  html, body { background: #fff; padding: 0; margin: 0; }
   body::before { display: none; }
   .no-print { display: none !important; }
   .page {
-    box-shadow: none;
     width: 210mm;
+    min-height: 297mm;
+    max-height: 297mm;
+    box-shadow: none;
     padding: 12mm 14mm;
+    overflow: hidden;            /* keep it to one page */
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;  /* render paper tone, badges, accent rule */
   }
   * { animation: none !important; }
 }

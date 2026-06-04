@@ -3,7 +3,7 @@
 //
 // 1. Fetches all CV data from the API in one request on page load
 // 2. Builds the page DOM from the returned JSON
-// 3. Handles PDF export via html2pdf.js
+// 3. Handles PDF export via the browser's native print (window.print)
 //
 // To update CV content: edit sql/seed.sql and re-seed the database.
 // No need to touch this file unless you're changing layout or structure.
@@ -219,28 +219,8 @@ function section(title, content) {
 }
 
 
-// --- PDF Export -------------------------------------------------------------
+// --- PDF Export — native print (styled by @media print + @page) --------------
 
 function exportPDF() {
-  const element = document.getElementById("cv");
-
-  const options = {
-    margin:      [10, 10, 10, 10],    // top, right, bottom, left (mm)
-    filename:    "Ahmad_Syamim_CV.pdf",
-    image:       { type: "jpeg", quality: 0.98 },
-    html2canvas: { scale: 2, useCORS: true },  // scale 2 = crisp on retina
-    jsPDF:       { unit: "mm", format: "a4", orientation: "portrait" },
-  };
-
-  // Briefly hide the toolbar so it doesn't appear in the PDF
-  document.querySelector(".toolbar").style.display = "none";
-
-  html2pdf()
-    .set(options)
-    .from(element)
-    .save()
-    .then(() => {
-      // Bring the toolbar back after export finishes
-      document.querySelector(".toolbar").style.display = "block";
-    });
+  window.print();
 }
