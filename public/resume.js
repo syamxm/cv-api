@@ -52,9 +52,9 @@ function buildResume(data) {
       <div class="col-left">
         ${buildExperience(data.experience)}
         ${buildProjects(data.projects)}
-        ${buildEducation(data.education)}
       </div>
       <div class="col-right">
+        ${buildEducation(data.education)}
         ${buildSkills(data.skills)}
         ${buildAwards(data.awards)}
         ${buildLanguages(data.languages)}

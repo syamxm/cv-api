@@ -173,6 +173,9 @@ INSERT INTO skills (category, name, sort_order) VALUES
 ('Tools & Platforms', 'Android (Kotlin + XML)', 6),
 ('Tools & Platforms', 'PostgreSQL',           7),
 ('Tools & Platforms', 'Express.js / Node.js', 8),
+('Tools & Platforms', 'MongoDB',              9),
+('Tools & Platforms', 'React',                10),
+('Tools & Platforms', 'Nginx',                11),
 
 -- Concepts and practices
 ('Concepts',          'Self-hosted Infrastructure',   1),
@@ -180,7 +183,9 @@ INSERT INTO skills (category, name, sort_order) VALUES
 ('Concepts',          'REST API Design',              3),
 ('Concepts',          'Version Control & Branching',  4),
 ('Concepts',          'Network Security (UFW, Fail2ban, Tailscale)', 5),
-('Concepts',          'NoSQL',                        6);
+('Concepts',          'NoSQL',                        6),
+('Concepts',          'MERN Stack',                   7),
+('Concepts',          'JWT Authentication',           8);
 
 
 -- -----------------------------------------------------------------------------
@@ -207,8 +212,8 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, sort_or
   'Maintained',
   'https://github.com/syamxm',
   1,
-  false,
-  NULL
+  true,
+  'Self-hosted Debian server: Docker, UFW, Fail2ban, Tailscale VPN mesh.'
 ),
 (
   'C-Aegis',
@@ -218,7 +223,7 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, sort_or
   NULL,
   2,
   true,
-  'Android child-safety app: real-time geofencing, location tracking, and digital-wellbeing tools.'
+  'Android child-safety app with geofencing and screen-time monitoring.'
 ),
 (
   'Family Monitor',
@@ -238,7 +243,7 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, sort_or
   'https://github.com/syamxm/student_reminder_system',
   4,
   true,
-  'Flutter timetable & deadline app; Android push, FastAPI + Redis backend, rate-limited login.'
+  'Flutter timetable app; FastAPI + Redis backend, Android push notifications.'
 ),
 (
   'TaskFlow',
@@ -248,7 +253,7 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, sort_or
   'https://github.com/syamxm/taskflow',
   5,
   true,
-  'Self-hosted MERN task manager with JWT auth and per-project Kanban boards, Dockerised behind Nginx.'
+  'Self-hosted MERN task manager with JWT auth and per-project Kanban boards.'
 ),
 (
   'cv-api',
@@ -257,8 +262,8 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, sort_or
   'In Development',
   NULL,
   6,
-  true,
-  'Data-driven CV and one-page resume served from a single PostgreSQL-backed REST API, Dockerised.'
+  false,
+  NULL
 ),
 (
   'VaultWarden',
@@ -267,8 +272,8 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, sort_or
   'Maintained',
   NULL,
   7,
-  true,
-  'Self-hosted Vaultwarden vault in Docker on a Debian homeserver, with browser and mobile clients.'
+  false,
+  NULL
 ),
 (
   'CoffeeBot',
@@ -277,8 +282,8 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, sort_or
   'Complete',
   'https://github.com/syamxm',
   8,
-  true,
-  'Web chatbot specialising in coffee knowledge. Deployed online, open source.'
+  false,
+  NULL
 ),
 (
   'Enigma-Java',
