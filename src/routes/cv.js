@@ -56,7 +56,7 @@ router.get("/resume", async (req, res) => {
         pool.query("SELECT * FROM skills ORDER BY category, sort_order ASC"),
         pool.query(
           "SELECT id, name, COALESCE(resume_description, description) AS description, " +
-          "tech_stack, status, github_url, sort_order " +
+          "tech_stack, status, github_url, demo_url, private_repo, sort_order " +
           "FROM projects WHERE in_resume = true ORDER BY sort_order ASC"
         ),
         pool.query("SELECT * FROM awards ORDER BY sort_order ASC"),

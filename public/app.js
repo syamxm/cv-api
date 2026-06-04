@@ -105,7 +105,7 @@ function buildEducation(items) {
     <div class="entry">
       <div class="entry-header">
         <span class="entry-title">${e.institution}</span>
-        <span class="entry-date">${e.start_date} – ${e.end_date || "Present"}</span>
+        <span class="entry-date">${e.start_date === e.end_date ? e.start_date : `${e.start_date} – ${e.end_date || "Present"}`}</span>
       </div>
       <div class="entry-sub">${e.degree}${e.field ? ` in ${e.field}` : ""}${e.location ? ` · ${e.location}` : ""}</div>
       ${e.gpa ? `<span class="entry-gpa">GPA ${e.gpa}</span>` : ""}
@@ -156,8 +156,14 @@ function buildProjects(items) {
       ? `<div class="project-stack">${p.tech_stack.join(" · ")}</div>`
       : "";
 
-    const link = p.github_url
+    const githubLink = p.github_url
       ? `<a class="project-link" href="${p.github_url}" target="_blank">↗ GitHub</a>`
+      : p.private_repo
+        ? `<span class="project-link project-private">Private repo</span>`
+        : "";
+
+    const demoLink = p.demo_url
+      ? `<a class="project-link" href="${p.demo_url}" target="_blank">↗ Live demo</a>`
       : "";
 
     return `
@@ -168,7 +174,8 @@ function buildProjects(items) {
         </div>
         ${stack}
         <p class="project-desc">${p.description}</p>
-        ${link}
+        ${githubLink}
+        ${demoLink}
       </div>
     `;
   }).join("");

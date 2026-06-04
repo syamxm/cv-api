@@ -30,7 +30,7 @@ INSERT INTO profile (name, title, location, email, github, summary) VALUES (
   'Shah Alam, Selangor, Malaysia',
   'ahmadsyamim200@gmail.com',
   'https://github.com/syamxm',
-  'Computer Science student at UiTM Shah Alam (graduating April 2027) with hands-on DevOps experience through a self-hosted production server running Docker, Tailscale, and automated security hardening. Builds open-source projects across Android, web, and backend. Dean''s List every semester. Fast learner who picks up new languages and tools on the job.'
+  'Computer Science student at UiTM Shah Alam (graduating April 2027) with hands-on DevOps experience through a self-hosted production server running Docker, Tailscale, and automated security hardening. Builds open-source projects across Android, web, and backend. Dean''s List every semester. Available for a 14-week internship from 7 September to 11 December 2026.'
 );
 
 
@@ -58,9 +58,8 @@ INSERT INTO experience (company, role, location, start_date, end_date, bullets, 
   '2025',
   '2025',
   ARRAY[
-    'Supervised and managed a test area for children during tuition assessments',
-    'Ensured an orderly, quiet examination environment, handling seating and materials',
-    'Provided paid support to a community tuition group, helping sessions run smoothly'
+    'Single-day paid engagement supervising an exam hall of 20+ students under minimal supervision',
+    'Managed seating, distributed materials, and kept the room orderly and silent throughout'
   ],
   1,
   true
@@ -72,9 +71,8 @@ INSERT INTO experience (company, role, location, start_date, end_date, bullets, 
   'March 2021',
   'July 2021',
   ARRAY[
-    'Maintained high service standards under pressure during peak hours',
-    'Coordinated with team members to ensure smooth daily operations',
-    'Balanced part-time work alongside full-time academic commitments'
+    'Balanced 15+ hours/week of part-time crew work alongside a full-time Foundation semester',
+    'Coordinated with team members to keep daily operations running during peak hours'
   ],
   2,
   true
@@ -103,12 +101,13 @@ INSERT INTO education (institution, degree, field, location, start_date, end_dat
   'Bachelor of Computer Science',
   'Computer Science',
   'Shah Alam, Selangor',
-  'May 2023',
+  'March 2023',
   'Expected April 2027',
   '3.5 – 3.7',
   ARRAY[
     'Dean''s List every semester',
-    'Consistent GPA range of 3.5 – 3.7 throughout degree'
+    'Consistent GPA range of 3.5 – 3.7 throughout degree',
+    'Final Year Project: C-Aegis — Android parental monitoring app (Kotlin + Firebase)'
   ],
   1
 ),
@@ -118,7 +117,7 @@ INSERT INTO education (institution, degree, field, location, start_date, end_dat
   'Engineering',
   'Dengkil, Selangor',
   'August 2021',
-  'February 2022',
+  'July 2022',
   NULL,
   ARRAY[
     'Top 10% of faculty cohort',
@@ -131,8 +130,8 @@ INSERT INTO education (institution, degree, field, location, start_date, end_dat
   'SPM (Malaysian Certificate of Education)',
   NULL,
   'Saujana Utama, Selangor',
-  'January 2020',
-  'January 2021',
+  '2020',
+  '2020',
   NULL,
   ARRAY[
     'Achieved 8A out of 9 subjects'
@@ -201,31 +200,37 @@ CREATE TABLE projects (
   tech_stack  TEXT[],               -- array of tech used
   status      TEXT DEFAULT 'Complete',
   github_url  TEXT,                 -- NULL if private or not on GitHub
+  demo_url    TEXT,                 -- live deployment URL, NULL if none
+  private_repo BOOLEAN DEFAULT false, -- show "Private repo" when no public github_url
   sort_order  INT DEFAULT 0,
   in_resume   BOOLEAN DEFAULT false, -- include on the compact resume
   resume_description TEXT            -- short one-line description for the resume
 );
 
-INSERT INTO projects (name, description, tech_stack, status, github_url, sort_order, in_resume, resume_description) VALUES
+INSERT INTO projects (name, description, tech_stack, status, github_url, demo_url, private_repo, sort_order, in_resume, resume_description) VALUES
 (
   'Debian Homeserver',
-  'Production homeserver built from scratch on a laptop running Debian Trixie. Includes Docker containerisation, UFW firewall hardening, Fail2ban and CrowdSec intrusion prevention, Tailscale VPN mesh networking, and automated unattended security upgrades. Foundation for all self-hosted projects.',
-  ARRAY['Debian Linux', 'Docker', 'UFW', 'Fail2ban', 'CrowdSec', 'Tailscale', 'Bash'],
+  'Built a production Debian homeserver running 5+ Dockerised services behind layered network security (UFW, Fail2ban, CrowdSec) with a Tailscale VPN for remote access — zero cloud cost. Hosts self-hosted tools including Vaultwarden for password management, kept current via automated unattended upgrades.',
+  ARRAY['Debian Linux', 'Docker', 'UFW', 'Fail2ban', 'CrowdSec', 'Tailscale', 'Vaultwarden', 'Bash'],
   'Maintained',
   'https://github.com/syamxm',
+  NULL,
+  false,
   1,
   true,
-  'Self-hosted Debian server: Docker, UFW, Fail2ban, CrowdSec, Tailscale VPN.'
+  'Production Debian homeserver: 5+ Dockerised services, layered security (UFW/Fail2ban/CrowdSec), Tailscale VPN — zero cloud cost.'
 ),
 (
   'C-Aegis',
-  'Final Year Project. Android application for child safety featuring real-time geofencing, location tracking, and digital wellbeing monitoring tools. Built for parents to set boundaries and monitor screen activity.',
+  'Built an Android parental monitoring app (Final Year Project) with a bilateral dashboard (parent and child views), real-time geofence alerts via the Radar API, and app-usage enforcement using the Device Admin API and AccessibilityService to resist tampering.',
   ARRAY['Kotlin', 'XML', 'Firebase', 'Google Maps API', 'Radar API'],
   'In Development',
   NULL,
+  NULL,
+  true,
   2,
   true,
-  'Android child-safety app with geofencing and screen-time monitoring.'
+  'Android parental monitoring app: parent/child dashboard, real-time geofence alerts (Radar API), tamper-resistant usage enforcement (Device Admin + AccessibilityService).'
 ),
 (
   'Family Monitor',
@@ -233,29 +238,35 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, sort_or
   ARRAY['Flutter', 'Dart', 'Debian Linux', 'virt-manager'],
   'In Development',
   NULL,
+  NULL,
+  false,
   3,
   false,
   NULL
 ),
 (
   'Student Reminder System',
-  'Mobile app helping UiTM students track their class timetable and deadlines with accurate Android push notifications. Pulls timetable data per campus and faculty through a FastAPI backend served over a CDN. The backend runs in Docker on a self-hosted Debian homeserver with Redis caching and request rate limiting; login is rate-limited to prevent brute-force attacks. Fully tested on Android.',
+  'Built a Flutter app that lets UiTM students manage class timetables and receive local push notifications for deadlines, backed by a FastAPI + Redis API with rate-limited login, deployed in Docker on a self-hosted Debian server and served over a CDN.',
   ARRAY['Flutter', 'Dart', 'Python', 'FastAPI', 'Redis', 'Docker'],
   'Maintained',
   'https://github.com/syamxm/student_reminder_system',
+  NULL,
+  false,
   4,
   true,
-  'Flutter timetable app; FastAPI + Redis backend, Android push notifications.'
+  'Flutter timetable + push-notification app for UiTM students; FastAPI + Redis backend, Dockerised on a self-hosted Debian server.'
 ),
 (
   'TaskFlow',
-  'Self-hosted project and task manager built on the MERN stack. Features JWT authentication, colour-coded projects, a per-project Kanban board (Todo / In Progress / Done), task priorities and due dates, overdue-task highlighting, and a progress bar per project. Containerised with Docker behind an Nginx reverse proxy.',
+  'Built a full-stack task manager with per-project Kanban boards (Todo / In Progress / Done), JWT authentication, priorities, due dates, and progress tracking. MERN stack with Vite + Tailwind on the frontend, fully Dockerised behind an Nginx reverse proxy and self-hosted.',
   ARRAY['MongoDB', 'Express', 'React', 'Node.js', 'Vite', 'Tailwind CSS', 'Nginx', 'JWT', 'Docker'],
   'Complete',
   'https://github.com/syamxm/taskflow',
+  NULL,
+  false,
   5,
   true,
-  'Self-hosted MERN task manager with JWT auth and per-project Kanban boards.'
+  'Full-stack MERN task manager: per-project Kanban, JWT auth, Nginx reverse proxy — Dockerised and self-hosted.'
 ),
 (
   'cv-api',
@@ -263,29 +274,11 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, sort_or
   ARRAY['Node.js', 'Express', 'PostgreSQL', 'Docker', 'JavaScript'],
   'In Development',
   NULL,
+  NULL,
+  false,
   6,
   false,
   NULL
-),
-(
-  'VaultWarden',
-  'Self-hosted Vaultwarden password manager running in Docker on a personal Debian homeserver. Secure encrypted vault with browser and mobile client integration.',
-  ARRAY['Vaultwarden', 'Docker', 'Debian Linux'],
-  'Maintained',
-  NULL,
-  7,
-  true,
-  'Self-hosted Vaultwarden vault in Docker on a Debian homeserver.'
-),
-(
-  'CoffeeBot',
-  'Web-based conversational chatbot specialising in coffee knowledge. Deployed online. Open source.',
-  ARRAY['HTML', 'CSS', 'JavaScript', 'Python'],
-  'Complete',
-  'https://github.com/syamxm',
-  8,
-  true,
-  'Web chatbot on coffee knowledge. Deployed online, open source.'
 ),
 (
   'Enigma-Java',
@@ -293,6 +286,8 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, sort_or
   ARRAY['Java'],
   'Complete',
   'https://github.com/syamxm',
+  NULL,
+  false,
   9,
   false,
   NULL

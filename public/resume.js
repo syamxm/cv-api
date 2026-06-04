@@ -77,7 +77,7 @@ function buildHeader(p) {
         <span>${p.location}</span>
         <a href="mailto:${p.email}">${p.email}</a>
         <a href="${p.github}" target="_blank">${p.github}</a>
-        <span class="availability">Open to internships &amp; junior roles</span>
+        <span class="availability">Available 7 Sep &ndash; 11 Dec 2026 (14-week internship)</span>
       </div>
     </header>
   `;
@@ -123,6 +123,10 @@ function buildProjects(items) {
       ? `<p class="project-stack">${p.tech_stack.join(" · ")}</p>`
       : "";
 
+    const privateTag = !p.github_url && p.private_repo
+      ? `<span class="project-private">Private repo</span>`
+      : "";
+
     return `
       <div class="project">
         <div class="project-header">
@@ -130,7 +134,7 @@ function buildProjects(items) {
           <span class="badge ${badgeClass}">${p.status}</span>
         </div>
         ${stack}
-        <p class="project-desc">${p.description}</p>
+        <p class="project-desc">${p.description}${privateTag ? ` ${privateTag}` : ""}</p>
       </div>
     `;
   }).join("");
@@ -151,7 +155,7 @@ function buildEducation(items) {
       <div class="edu-entry">
         <div class="edu-header">
           <span class="edu-place">${e.institution}</span>
-          <span class="edu-date">${e.start_date} – ${e.end_date || "Present"}</span>
+          <span class="edu-date">${e.start_date === e.end_date ? e.start_date : `${e.start_date} – ${e.end_date || "Present"}`}</span>
         </div>
         <p class="edu-degree">${e.degree}${e.location ? ` · ${e.location}` : ""}</p>
         ${note ? `<p class="edu-note">${note}</p>` : ""}
