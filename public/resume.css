@@ -324,6 +324,13 @@ body > * { position: relative; z-index: 1; }
 /* --- Awards + Languages ---------------------------------------------------- */
 .awards-list { list-style: none; padding: 0; }
 
+.lang-level {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  color: var(--faint);
+  margin-left: 4px;
+}
+
 .awards-list li {
   font-size: 0.73rem;
   color: var(--mid);
