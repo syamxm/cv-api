@@ -3,7 +3,7 @@
 //
 // 1. Fetches all CV data from the API in one request on page load
 // 2. Builds the compact 1-page A4 resume DOM from the returned JSON
-// 3. Handles PDF export via html2pdf.js
+// 3. Handles PDF export via the browser's native print (window.print)
 //
 // Data source: /api/cv/resume — the compact, curated subset (rows flagged
 // in_resume in sql/seed.sql, with short resume_description text). To change
@@ -217,26 +217,8 @@ function section(title, content) {
 }
 
 
-// --- PDF Export -------------------------------------------------------------
+// --- PDF Export — native print to A4 (styled by @media print + @page) --------
 
 function exportPDF() {
-  const element = document.getElementById("resume");
-
-  const options = {
-    margin:      0,
-    filename:    "Ahmad_Syamim_Resume.pdf",
-    image:       { type: "jpeg", quality: 0.98 },
-    html2canvas: { scale: 2, useCORS: true },
-    jsPDF:       { unit: "mm", format: "a4", orientation: "portrait" },
-  };
-
-  document.querySelector(".toolbar").style.display = "none";
-
-  html2pdf()
-    .set(options)
-    .from(element)
-    .save()
-    .then(() => {
-      document.querySelector(".toolbar").style.display = "flex";
-    });
+  window.print();
 }
