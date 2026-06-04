@@ -51,6 +51,19 @@ body::before {
 }
 body > * { position: relative; z-index: 1; }
 
+.hidden { display: none; }
+
+/* --- Loading state --------------------------------------------------------- */
+.loading {
+  text-align: center;
+  margin-top: 120px;
+  color: var(--faint);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
 /* --- Toolbar --------------------------------------------------------------- */
 .toolbar {
   display: flex;
@@ -238,6 +251,42 @@ body > * { position: relative; z-index: 1; }
 }
 
 .project-desc { font-size: 0.73rem; color: var(--mid); line-height: 1.55; }
+
+/* --- Experience ------------------------------------------------------------ */
+.entry { margin-bottom: 8px; }
+
+.entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.entry-role { font-size: 0.82rem; font-weight: 600; color: var(--ink); }
+
+.entry-date {
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  color: var(--faint);
+  white-space: nowrap;
+}
+
+.entry-sub { font-size: 0.73rem; color: var(--accent); font-weight: 500; margin-bottom: 2px; }
+
+.entry-bullets { list-style: none; padding: 0; }
+.entry-bullets li {
+  font-size: 0.73rem;
+  color: var(--mid);
+  line-height: 1.55;
+  padding-left: 12px;
+  position: relative;
+}
+.entry-bullets li::before {
+  content: "\2013";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
 
 /* --- Education ------------------------------------------------------------- */
 .edu-entry { margin-bottom: 7px; }
