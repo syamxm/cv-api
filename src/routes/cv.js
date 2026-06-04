@@ -44,6 +44,40 @@ router.get("/", async (req, res) => {
   }
 });
 
+// GET /api/cv/resume — curated, compact subset for the 1-page resume.
+// Same shape as /api/cv, but only in_resume rows and short project descriptions.
+router.get("/resume", async (req, res) => {
+  try {
+    const [profile, experience, education, skills, projects, awards, languages] =
+      await Promise.all([
+        pool.query("SELECT * FROM profile LIMIT 1"),
+        pool.query("SELECT * FROM experience WHERE in_resume = true ORDER BY sort_order ASC"),
+        pool.query("SELECT * FROM education ORDER BY sort_order ASC"),
+        pool.query("SELECT * FROM skills ORDER BY category, sort_order ASC"),
+        pool.query(
+          "SELECT id, name, COALESCE(resume_description, description) AS description, " +
+          "tech_stack, status, github_url, sort_order " +
+          "FROM projects WHERE in_resume = true ORDER BY sort_order ASC"
+        ),
+        pool.query("SELECT * FROM awards ORDER BY sort_order ASC"),
+        pool.query("SELECT * FROM languages ORDER BY id ASC"),
+      ]);
+
+    res.json({
+      profile: profile.rows[0],
+      experience: experience.rows,
+      education: education.rows,
+      skills: skills.rows,
+      projects: projects.rows,
+      awards: awards.rows,
+      languages: languages.rows,
+    });
+  } catch (err) {
+    console.error("DB query error:", err.message);
+    res.status(500).json({ error: "Database error" });
+  }
+});
+
 // Individual section endpoints — handy for partial updates later
 router.get("/profile",    (req, res) => query(res, "SELECT * FROM profile LIMIT 1"));
 router.get("/experience", (req, res) => query(res, "SELECT * FROM experience ORDER BY sort_order ASC"));
