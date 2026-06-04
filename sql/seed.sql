@@ -161,8 +161,9 @@ INSERT INTO skills (category, name, sort_order) VALUES
 ('Languages',         'PHP',          6),
 ('Languages',         'Dart',         7),
 ('Languages',         'Bash',         8),
-('Languages',         'HTML / CSS',   9),
-('Languages',         'SQL',          10),
+('Languages',         'Fish',         9),
+('Languages',         'HTML / CSS',   10),
+('Languages',         'SQL',          11),
 
 -- Tools, platforms, infra
 ('Tools & Platforms', 'Docker',               1),
@@ -176,13 +177,14 @@ INSERT INTO skills (category, name, sort_order) VALUES
 ('Tools & Platforms', 'MongoDB',              9),
 ('Tools & Platforms', 'React',                10),
 ('Tools & Platforms', 'Nginx',                11),
+('Tools & Platforms', 'Nmap',                 12),
 
 -- Concepts and practices
 ('Concepts',          'Self-hosted Infrastructure',   1),
 ('Concepts',          'DevOps Fundamentals',          2),
 ('Concepts',          'REST API Design',              3),
 ('Concepts',          'Version Control & Branching',  4),
-('Concepts',          'Network Security (UFW, Fail2ban, Tailscale)', 5),
+('Concepts',          'Network Security (UFW, Fail2ban, CrowdSec, Tailscale)', 5),
 ('Concepts',          'NoSQL',                        6),
 ('Concepts',          'MERN Stack',                   7),
 ('Concepts',          'JWT Authentication',           8);
@@ -207,13 +209,13 @@ CREATE TABLE projects (
 INSERT INTO projects (name, description, tech_stack, status, github_url, sort_order, in_resume, resume_description) VALUES
 (
   'Debian Homeserver',
-  'Production homeserver built from scratch on a laptop running Debian Trixie. Includes Docker containerisation, UFW firewall hardening, Fail2ban intrusion prevention, Tailscale VPN mesh networking, and automated unattended security upgrades. Foundation for all self-hosted projects.',
-  ARRAY['Debian Linux', 'Docker', 'UFW', 'Fail2ban', 'Tailscale', 'Bash'],
+  'Production homeserver built from scratch on a laptop running Debian Trixie. Includes Docker containerisation, UFW firewall hardening, Fail2ban and CrowdSec intrusion prevention, Tailscale VPN mesh networking, and automated unattended security upgrades. Foundation for all self-hosted projects.',
+  ARRAY['Debian Linux', 'Docker', 'UFW', 'Fail2ban', 'CrowdSec', 'Tailscale', 'Bash'],
   'Maintained',
   'https://github.com/syamxm',
   1,
   true,
-  'Self-hosted Debian server: Docker, UFW, Fail2ban, Tailscale VPN mesh.'
+  'Self-hosted Debian server: Docker, UFW, Fail2ban, CrowdSec, Tailscale VPN.'
 ),
 (
   'C-Aegis',
@@ -272,8 +274,8 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, sort_or
   'Maintained',
   NULL,
   7,
-  false,
-  NULL
+  true,
+  'Self-hosted Vaultwarden vault in Docker on a Debian homeserver.'
 ),
 (
   'CoffeeBot',
@@ -282,8 +284,8 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, sort_or
   'Complete',
   'https://github.com/syamxm',
   8,
-  false,
-  NULL
+  true,
+  'Web chatbot on coffee knowledge. Deployed online, open source.'
 ),
 (
   'Enigma-Java',
