@@ -114,13 +114,12 @@ body > * { position: relative; z-index: 1; }
   margin: 0 auto;
   background: var(--sheet);
   padding: 12mm 14mm 12mm;
-  border-top: 3px solid var(--accent);
   box-shadow: 0 1px 2px rgba(30,22,12,0.05), 0 24px 60px -24px rgba(30,22,12,0.25);
   overflow: hidden;             /* hard stop — nothing bleeds past page */
 }
 
 .page::before {
-  content: "R\00E9sum\00E9 \2014 2026";
+  content: "R\00E9sum\00E9 2026";
   display: block;
   font-family: var(--mono);
   font-size: 0.6rem;
@@ -182,6 +181,7 @@ body > * { position: relative; z-index: 1; }
   margin-bottom: 10px;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--rule);
+  text-align: justify;
 }
 
 /* --- Two-column body ------------------------------------------------------- */
@@ -251,7 +251,7 @@ body > * { position: relative; z-index: 1; }
   overflow-wrap: anywhere;
 }
 
-.project-desc { font-size: 0.73rem; color: var(--mid); line-height: 1.55; }
+.project-desc { font-size: 0.73rem; color: var(--mid); line-height: 1.55; text-align: justify; }
 
 /* --- Experience ------------------------------------------------------------ */
 .entry { margin-bottom: 8px; }
@@ -281,6 +281,7 @@ body > * { position: relative; z-index: 1; }
   line-height: 1.55;
   padding-left: 12px;
   position: relative;
+  text-align: justify;
 }
 .entry-bullets li::before {
   content: "\2013";

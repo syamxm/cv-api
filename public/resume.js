@@ -202,7 +202,7 @@ function buildLanguages(items) {
   if (!items.length) return "";
 
   const langs = items
-    .map(l => `<li>${l.name} — ${l.level}</li>`)
+    .map(l => `<li>${l.name}, ${l.level}</li>`)
     .join("");
 
   return section("Languages", `<ul class="awards-list">${langs}</ul>`);

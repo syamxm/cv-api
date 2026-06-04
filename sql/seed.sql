@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS languages, awards, projects, skills, education, experience,
 
 
 -- -----------------------------------------------------------------------------
--- PROFILE — one row, your identity at the top of the CV
+-- PROFILE, one row, your identity at the top of the CV
 -- -----------------------------------------------------------------------------
 CREATE TABLE profile (
   id        SERIAL PRIMARY KEY,
@@ -35,7 +35,7 @@ INSERT INTO profile (name, title, location, email, github, summary) VALUES (
 
 
 -- -----------------------------------------------------------------------------
--- EXPERIENCE — work history, newest first
+-- EXPERIENCE, work history, newest first
 -- sort_order controls display sequence
 -- -----------------------------------------------------------------------------
 CREATE TABLE experience (
@@ -80,7 +80,7 @@ INSERT INTO experience (company, role, location, start_date, end_date, bullets, 
 
 
 -- -----------------------------------------------------------------------------
--- EDUCATION — academic history, newest first
+-- EDUCATION, academic history, newest first
 -- -----------------------------------------------------------------------------
 CREATE TABLE education (
   id          SERIAL PRIMARY KEY,
@@ -107,7 +107,7 @@ INSERT INTO education (institution, degree, field, location, start_date, end_dat
   ARRAY[
     'Dean''s List every semester',
     'Consistent GPA range of 3.5 – 3.7 throughout degree',
-    'Final Year Project: C-Aegis — Android parental monitoring app (Kotlin + Firebase)'
+    'Final Year Project: C-Aegis, Android parental monitoring app (Kotlin + Firebase)'
   ],
   1
 ),
@@ -141,7 +141,7 @@ INSERT INTO education (institution, degree, field, location, start_date, end_dat
 
 
 -- -----------------------------------------------------------------------------
--- SKILLS — grouped by category for clean display
+-- SKILLS, grouped by category for clean display
 -- -----------------------------------------------------------------------------
 CREATE TABLE skills (
   id          SERIAL PRIMARY KEY,
@@ -191,7 +191,7 @@ INSERT INTO skills (category, name, sort_order) VALUES
 
 
 -- -----------------------------------------------------------------------------
--- PROJECTS — personal and academic work
+-- PROJECTS, personal and academic work
 -- status: "Complete" | "Maintained" | "In Development" | "Planned"
 -- -----------------------------------------------------------------------------
 CREATE TABLE projects (
@@ -211,7 +211,7 @@ CREATE TABLE projects (
 INSERT INTO projects (name, description, tech_stack, status, github_url, demo_url, private_repo, sort_order, in_resume, resume_description) VALUES
 (
   'Debian Homeserver',
-  'Built a production Debian homeserver running 5+ Dockerised services behind layered network security (UFW, Fail2ban, CrowdSec) with a Tailscale VPN for remote access — zero cloud cost. Hosts self-hosted tools including Vaultwarden for password management, kept current via automated unattended upgrades.',
+  'Built a production Debian homeserver running 5+ Dockerised services behind layered network security (UFW, Fail2ban, CrowdSec) with a Tailscale VPN for remote access, zero cloud cost. Hosts self-hosted tools including Vaultwarden for password management, kept current via automated unattended upgrades.',
   ARRAY['Debian Linux', 'Docker', 'UFW', 'Fail2ban', 'CrowdSec', 'Tailscale', 'Vaultwarden', 'Bash'],
   'Maintained',
   'https://github.com/syamxm',
@@ -219,7 +219,7 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
   false,
   1,
   true,
-  'Production Debian homeserver: 5+ Dockerised services, layered security (UFW/Fail2ban/CrowdSec), Tailscale VPN — zero cloud cost.'
+  'Production Debian homeserver: 5+ Dockerised services, layered security (UFW/Fail2ban/CrowdSec), Tailscale VPN, zero cloud cost.'
 ),
 (
   'Final Year Project - C-Aegis',
@@ -267,11 +267,11 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
   false,
   5,
   true,
-  'Full-stack MERN task manager: per-project Kanban, JWT auth, Nginx reverse proxy — Dockerised and self-hosted.'
+  'Full-stack MERN task manager: per-project Kanban, JWT auth, Nginx reverse proxy, Dockerised and self-hosted.'
 ),
 (
   'cv-api',
-  'Built a data-driven CV and one-page resume served from a single PostgreSQL-backed REST API (Node.js/Express), so a content update is just a SQL change. Set up a GitHub Actions CI/CD pipeline that auto-deploys on push to main — connecting to the homeserver over Tailscale and rebuilding the Docker stack via SSH. This site runs on it.',
+  'Built a data-driven CV and one-page resume served from a single PostgreSQL-backed REST API (Node.js/Express), so a content update is just a SQL change. Set up a GitHub Actions CI/CD pipeline that auto-deploys on push to main, connecting to the homeserver over Tailscale and rebuilding the Docker stack via SSH. This site runs on it.',
   ARRAY['Node.js', 'Express', 'PostgreSQL', 'Docker', 'GitHub Actions', 'Tailscale', 'CI/CD'],
   'Maintained',
   'https://github.com/syamxm/cv-api',
@@ -296,7 +296,7 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
 
 
 -- -----------------------------------------------------------------------------
--- AWARDS — achievements and recognition
+-- AWARDS, achievements and recognition
 -- -----------------------------------------------------------------------------
 CREATE TABLE awards (
   id          SERIAL PRIMARY KEY,
@@ -306,14 +306,14 @@ CREATE TABLE awards (
 );
 
 INSERT INTO awards (title, description, sort_order) VALUES
-('Dean''s List — Every Semester',       'Maintained a GPA of 3.5–3.7 every semester throughout Bachelor''s degree at UiTM Shah Alam.', 1),
-('SPM — 8A out of 9 Subjects',          'Achieved 8 distinctions in the Malaysian Certificate of Education (SPM).', 2),
-('Foundation Top 10% — UiTM Dengkil',   'Ranked in the top 10% of the Engineering faculty cohort.', 3),
-('Foundation 1st Place — 2nd Semester', 'Achieved 1st place in cohort rankings during the 2nd semester of Foundation in Engineering.', 4);
+('Dean''s List, Every Semester',       'Maintained a GPA of 3.5–3.7 every semester throughout Bachelor''s degree at UiTM Shah Alam.', 1),
+('SPM, 8A out of 9 Subjects',          'Achieved 8 distinctions in the Malaysian Certificate of Education (SPM).', 2),
+('Foundation Top 10%, UiTM Dengkil',   'Ranked in the top 10% of the Engineering faculty cohort.', 3),
+('Foundation 1st Place, 2nd Semester', 'Achieved 1st place in cohort rankings during the 2nd semester of Foundation in Engineering.', 4);
 
 
 -- -----------------------------------------------------------------------------
--- LANGUAGES — spoken/written languages
+-- LANGUAGES, spoken/written languages
 -- -----------------------------------------------------------------------------
 CREATE TABLE languages (
   id    SERIAL PRIMARY KEY,
