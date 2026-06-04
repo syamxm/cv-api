@@ -107,7 +107,6 @@ body > * { position: relative; z-index: 1; }
   margin: 0 auto;
   background: var(--sheet);
   padding: var(--gutter) var(--gutter) 56px;
-  border-top: 3px solid var(--accent);
   box-shadow: 0 1px 2px rgba(30,22,12,0.05), 0 24px 60px -24px rgba(30,22,12,0.25);
 }
 
@@ -178,6 +177,7 @@ body > * { position: relative; z-index: 1; }
   color: var(--ink);
   line-height: 1.75;
   max-width: 64ch;
+  text-align: justify;
 }
 
 /* --- Section layout -------------------------------------------------------- */
@@ -258,6 +258,7 @@ body > * { position: relative; z-index: 1; }
   color: var(--mid);
   line-height: 1.7;
   margin-bottom: 3px;
+  text-align: justify;
 }
 .entry ul li::marker { color: var(--accent); }
 
@@ -329,7 +330,7 @@ body > * { position: relative; z-index: 1; }
   margin-bottom: 6px;
 }
 
-.project-desc { font-size: 0.9rem; color: var(--mid); line-height: 1.7; }
+.project-desc { font-size: 0.9rem; color: var(--mid); line-height: 1.7; text-align: justify; }
 
 .project-link {
   font-family: var(--mono);
