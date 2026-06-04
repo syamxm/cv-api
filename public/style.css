@@ -318,6 +318,7 @@ body > * { position: relative; z-index: 1; }
   border-radius: 999px;
 }
 .status-complete    { background: #e7efe7; color: #3d6b46; }
+.status-maintained  { background: #e6eef5; color: #3a5f8a; }
 .status-development { background: var(--accent-soft); color: var(--accent); }
 .status-planned     { background: #efece4; color: var(--faint); }
 

@@ -49,7 +49,34 @@ CREATE TABLE experience (
   sort_order  INT DEFAULT 0
 );
 
-INSERT INTO experience (company, role, location, start_date, end_date, bullets, sort_order) VALUES (
+INSERT INTO experience (company, role, location, start_date, end_date, bullets, sort_order) VALUES
+(
+  'Private Engagement',
+  'Personal Driver',
+  'Selangor',
+  'January 2025',
+  'February 2025',
+  ARRAY[
+    'Provided reliable daily transport for a family member''s commute to and from the workplace over a one-month period',
+    'Maintained punctual scheduling and safe, dependable driving throughout the engagement',
+    'Adjusted routes and timing to meet changing daily requirements'
+  ],
+  1
+),
+(
+  'Community Tuition Group',
+  'Examination Area Coordinator',
+  'Selangor',
+  '2025',
+  '2025',
+  ARRAY[
+    'Supervised and managed a test area for children during tuition assessments',
+    'Ensured an orderly, quiet examination environment, handling seating and materials',
+    'Provided paid support to a community tuition group, helping sessions run smoothly'
+  ],
+  2
+),
+(
   'Subway',
   'Part-time Crew Member',
   'Eco Grandeur, Puncak Alam',
@@ -60,7 +87,7 @@ INSERT INTO experience (company, role, location, start_date, end_date, bullets, 
     'Coordinated with team members to ensure smooth daily operations',
     'Balanced part-time work alongside full-time academic commitments'
   ],
-  1
+  3
 );
 
 
@@ -168,7 +195,7 @@ INSERT INTO skills (category, name, sort_order) VALUES
 
 -- -----------------------------------------------------------------------------
 -- PROJECTS — personal and academic work
--- status: "Complete" | "In Development" | "Planned"
+-- status: "Complete" | "Maintained" | "In Development" | "Planned"
 -- -----------------------------------------------------------------------------
 CREATE TABLE projects (
   id          SERIAL PRIMARY KEY,
@@ -185,7 +212,7 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, sort_or
   'Debian Homeserver',
   'Production homeserver built from scratch on a laptop running Debian Trixie. Includes Docker containerisation, UFW firewall hardening, Fail2ban intrusion prevention, Tailscale VPN mesh networking, and automated unattended security upgrades. Foundation for all self-hosted projects.',
   ARRAY['Debian Linux', 'Docker', 'UFW', 'Fail2ban', 'Tailscale', 'Bash'],
-  'In Development',
+  'Maintained',
   'https://github.com/syamxm',
   1
 ),
@@ -198,20 +225,44 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, sort_or
   2
 ),
 (
-  'TaskFlow',
-  'Self-hosted project management tool designed to keep tasks and workflows clean and organised. RESTful API backend with a minimal frontend. Deployed on personal homeserver.',
-  ARRAY['Node.js', 'Express', 'PostgreSQL', 'Docker', 'JavaScript'],
+  'Family Monitor',
+  'Flutter app for monitoring family members'' app usage and browser search history, helping guardians keep an eye on digital activity. Currently supports Android devices and Chrome-based browsers. Backend runs on a Debian virtual machine managed through virt-manager.',
+  ARRAY['Flutter', 'Dart', 'Debian Linux', 'virt-manager'],
   'In Development',
-  'https://github.com/syamxm/taskflow',
+  NULL,
   3
 ),
 (
   'Student Reminder System',
-  'Mobile app to help university students manage their timetable and assignment deadlines. Features push reminders and a clean calendar interface.',
-  ARRAY['Flutter', 'Dart', 'Firebase'],
+  'Mobile app helping UiTM students track their class timetable and deadlines with accurate Android push notifications. Pulls timetable data per campus and faculty through a FastAPI backend served over a CDN. The backend runs in Docker on a self-hosted Debian homeserver with Redis caching and request rate limiting; login is rate-limited to prevent brute-force attacks. Fully tested on Android.',
+  ARRAY['Flutter', 'Dart', 'Python', 'FastAPI', 'Redis', 'Docker'],
+  'Maintained',
+  'https://github.com/syamxm/student_reminder_system',
+  4
+),
+(
+  'TaskFlow',
+  'Self-hosted project management tool designed to keep tasks and workflows clean and organised. RESTful API backend with a minimal frontend. Deployed on personal homeserver.',
+  ARRAY['Node.js', 'Express', 'PostgreSQL', 'Docker', 'JavaScript'],
+  'Complete',
+  'https://github.com/syamxm/taskflow',
+  5
+),
+(
+  'cv-api',
+  'Data-driven CV and resume served from a single PostgreSQL-backed REST API. A Node.js/Express backend exposes /api/cv; both the full CV and the one-page resume render entirely from the database, so a content update is just a SQL change. Containerised with Docker and deployed on a personal homeserver.',
+  ARRAY['Node.js', 'Express', 'PostgreSQL', 'Docker', 'JavaScript'],
   'In Development',
   NULL,
-  4
+  6
+),
+(
+  'Password Manager',
+  'Self-hosted Vaultwarden password manager running in Docker on a personal Debian homeserver. Secure encrypted vault with browser and mobile client integration.',
+  ARRAY['Vaultwarden', 'Docker', 'Debian Linux'],
+  'Maintained',
+  NULL,
+  7
 ),
 (
   'CoffeeBot',
@@ -219,7 +270,7 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, sort_or
   ARRAY['HTML', 'CSS', 'JavaScript', 'Python'],
   'Complete',
   'https://github.com/syamxm',
-  5
+  8
 ),
 (
   'Enigma-Java',
@@ -227,23 +278,7 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, sort_or
   ARRAY['Java'],
   'Complete',
   'https://github.com/syamxm',
-  6
-),
-(
-  'Debt Collector App',
-  'Mobile application for tracking shared expenses and personal debts between friends.',
-  ARRAY['TBD'],
-  'Planned',
-  NULL,
-  7
-),
-(
-  'Password Manager',
-  'Self-hosted personal password manager with secure vault and browser integration.',
-  ARRAY['TBD'],
-  'Planned',
-  NULL,
-  8
+  9
 );
 
 

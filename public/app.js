@@ -147,6 +147,7 @@ function buildProjects(items) {
     // Map status string to a CSS class
     const statusClass = {
       "Complete":       "status-complete",
+      "Maintained":     "status-maintained",
       "In Development": "status-development",
       "Planned":        "status-planned",
     }[p.status] || "status-planned";
