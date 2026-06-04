@@ -240,6 +240,7 @@ body > * { position: relative; z-index: 1; }
 }
 .badge-dev      { background: var(--accent-soft); color: var(--accent); }
 .badge-complete { background: #e7efe7; color: #3d6b46; }
+.badge-maintained { background: #e6eef5; color: #3a5f8a; }
 .badge-planned  { background: #efece4; color: var(--faint); }
 
 .project-stack {

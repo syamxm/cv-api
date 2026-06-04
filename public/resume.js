@@ -113,6 +113,7 @@ function buildProjects(items) {
   const projects = items.map(p => {
     const badgeClass = {
       "Complete":       "badge-complete",
+      "Maintained":     "badge-maintained",
       "In Development": "badge-dev",
       "Planned":        "badge-planned",
     }[p.status] || "badge-planned";
