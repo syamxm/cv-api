@@ -77,7 +77,7 @@ function buildHeader(p) {
         <span>${p.location}</span>
         <a href="mailto:${p.email}">${p.email}</a>
         <a href="${p.github}" target="_blank">${p.github}</a>
-        <span class="availability">Available 7 Sep &ndash; 11 Dec 2026 (14-week internship)</span>
+        <span class="availability">Available for 14-week internship</span>
       </div>
     </header>
   `;
@@ -113,10 +113,10 @@ function buildProjects(items) {
 
   const projects = items.map(p => {
     const badgeClass = {
-      "Complete":       "badge-complete",
-      "Maintained":     "badge-maintained",
+      "Complete": "badge-complete",
+      "Maintained": "badge-maintained",
       "In Development": "badge-dev",
-      "Planned":        "badge-planned",
+      "Planned": "badge-planned",
     }[p.status] || "badge-planned";
 
     const stack = p.tech_stack && p.tech_stack[0] !== "TBD"
@@ -202,7 +202,7 @@ function buildLanguages(items) {
   if (!items.length) return "";
 
   const langs = items
-    .map(l => `<li>${l.name}, ${l.level}</li>`)
+    .map(l => `<li>${l.name} <span class="lang-level">(${l.level})</span></li>`)
     .join("");
 
   return section("Languages", `<ul class="awards-list">${langs}</ul>`);
