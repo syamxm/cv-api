@@ -30,7 +30,7 @@ INSERT INTO profile (name, title, location, email, github, summary) VALUES (
   'Shah Alam, Selangor, Malaysia',
   'ahmadsyamim200@gmail.com',
   'https://github.com/syamxm',
-  'Computer Science student at UiTM Shah Alam (graduating April 2027) with hands-on DevOps experience through a self-hosted production server running Docker, Tailscale, and automated security hardening. Builds open-source projects across Android, web, and backend. Dean''s List every semester. Available for a 14-week internship from 7 September to 11 December 2026.'
+  'Computer Science student at UiTM Shah Alam with hands-on DevOps experience through a self-hosted production server running Docker, Tailscale, and automated security hardening. Builds open-source projects across Android, web, and backend. Dean''s List every semester. Available for a 14-week internship from 7th September to 11th December 2026.'
 );
 
 
@@ -55,8 +55,8 @@ INSERT INTO experience (company, role, location, start_date, end_date, bullets, 
   'Community Tuition Group',
   'Examination Area Coordinator',
   'Selangor',
-  '2025',
-  '2025',
+  'May 2025',
+  'May 2025',
   ARRAY[
     'Single-day paid engagement supervising an exam hall of 20+ students under minimal supervision',
     'Managed seating, distributed materials, and kept the room orderly and silent throughout'
@@ -68,7 +68,7 @@ INSERT INTO experience (company, role, location, start_date, end_date, bullets, 
   'Subway',
   'Part-time Crew Member',
   'Eco Grandeur, Puncak Alam',
-  'March 2021',
+  'April 2021',
   'July 2021',
   ARRAY[
     'Balanced 15+ hours/week of part-time crew work alongside a full-time Foundation semester',
@@ -102,7 +102,7 @@ INSERT INTO education (institution, degree, field, location, start_date, end_dat
   'Computer Science',
   'Shah Alam, Selangor',
   'March 2023',
-  'Expected April 2027',
+  null, -- ongoing
   '3.5 – 3.7',
   ARRAY[
     'Dean''s List every semester',
@@ -130,8 +130,8 @@ INSERT INTO education (institution, degree, field, location, start_date, end_dat
   'SPM (Malaysian Certificate of Education)',
   NULL,
   'Saujana Utama, Selangor',
-  '2020',
-  '2020',
+  'January 2020',
+  'March 2021',
   NULL,
   ARRAY[
     'Achieved 8A out of 9 subjects'
@@ -221,7 +221,7 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
   'Production Debian homeserver: 5+ Dockerised services, layered security (UFW/Fail2ban/CrowdSec), Tailscale VPN — zero cloud cost.'
 ),
 (
-  'C-Aegis',
+  'Final Year Project - C-Aegis',
   'Built an Android parental monitoring app (Final Year Project) with a bilateral dashboard (parent and child views), real-time geofence alerts via the Radar API, and app-usage enforcement using the Device Admin API and AccessibilityService to resist tampering.',
   ARRAY['Kotlin', 'XML', 'Firebase', 'Google Maps API', 'Radar API'],
   'In Development',
