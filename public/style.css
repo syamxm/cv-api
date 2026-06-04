@@ -352,7 +352,7 @@ body > * { position: relative; z-index: 1; }
   margin-top: 8px;
 }
 .award-title { font-size: 0.92rem; font-weight: 600; color: var(--ink); }
-.award-desc { font-size: 0.86rem; color: var(--mid); }
+.award-desc { font-size: 0.86rem; color: var(--mid); text-align: justify; }
 
 /* --- Languages ------------------------------------------------------------ */
 .languages-list { display: flex; gap: 18px; flex-wrap: wrap; }
