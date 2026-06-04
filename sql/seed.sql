@@ -46,23 +46,11 @@ CREATE TABLE experience (
   start_date  TEXT NOT NULL,        -- stored as readable string e.g. "March 2021"
   end_date    TEXT,                 -- NULL means current
   bullets     TEXT[],               -- array of bullet points describing responsibilities
-  sort_order  INT DEFAULT 0
+  sort_order  INT DEFAULT 0,
+  in_resume   BOOLEAN DEFAULT false -- include this entry on the compact resume
 );
 
-INSERT INTO experience (company, role, location, start_date, end_date, bullets, sort_order) VALUES
-(
-  'Private Engagement',
-  'Personal Driver',
-  'Selangor',
-  'January 2025',
-  'February 2025',
-  ARRAY[
-    'Provided reliable daily transport for a family member''s commute to and from the workplace over a one-month period',
-    'Maintained punctual scheduling and safe, dependable driving throughout the engagement',
-    'Adjusted routes and timing to meet changing daily requirements'
-  ],
-  1
-),
+INSERT INTO experience (company, role, location, start_date, end_date, bullets, sort_order, in_resume) VALUES
 (
   'Community Tuition Group',
   'Examination Area Coordinator',
@@ -74,7 +62,8 @@ INSERT INTO experience (company, role, location, start_date, end_date, bullets, 
     'Ensured an orderly, quiet examination environment, handling seating and materials',
     'Provided paid support to a community tuition group, helping sessions run smoothly'
   ],
-  2
+  1,
+  true
 ),
 (
   'Subway',
@@ -87,7 +76,8 @@ INSERT INTO experience (company, role, location, start_date, end_date, bullets, 
     'Coordinated with team members to ensure smooth daily operations',
     'Balanced part-time work alongside full-time academic commitments'
   ],
-  3
+  2,
+  true
 );
 
 
@@ -200,21 +190,25 @@ INSERT INTO skills (category, name, sort_order) VALUES
 CREATE TABLE projects (
   id          SERIAL PRIMARY KEY,
   name        TEXT NOT NULL,
-  description TEXT NOT NULL,
+  description TEXT NOT NULL,         -- full description, shown on the CV
   tech_stack  TEXT[],               -- array of tech used
   status      TEXT DEFAULT 'Complete',
   github_url  TEXT,                 -- NULL if private or not on GitHub
-  sort_order  INT DEFAULT 0
+  sort_order  INT DEFAULT 0,
+  in_resume   BOOLEAN DEFAULT false, -- include on the compact resume
+  resume_description TEXT            -- short one-line description for the resume
 );
 
-INSERT INTO projects (name, description, tech_stack, status, github_url, sort_order) VALUES
+INSERT INTO projects (name, description, tech_stack, status, github_url, sort_order, in_resume, resume_description) VALUES
 (
   'Debian Homeserver',
   'Production homeserver built from scratch on a laptop running Debian Trixie. Includes Docker containerisation, UFW firewall hardening, Fail2ban intrusion prevention, Tailscale VPN mesh networking, and automated unattended security upgrades. Foundation for all self-hosted projects.',
   ARRAY['Debian Linux', 'Docker', 'UFW', 'Fail2ban', 'Tailscale', 'Bash'],
   'Maintained',
   'https://github.com/syamxm',
-  1
+  1,
+  false,
+  NULL
 ),
 (
   'C-Aegis',
@@ -222,7 +216,9 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, sort_or
   ARRAY['Kotlin', 'XML', 'Firebase', 'Google Maps API', 'Radar API'],
   'In Development',
   NULL,
-  2
+  2,
+  true,
+  'Android child-safety app: real-time geofencing, location tracking, and digital-wellbeing tools.'
 ),
 (
   'Family Monitor',
@@ -230,7 +226,9 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, sort_or
   ARRAY['Flutter', 'Dart', 'Debian Linux', 'virt-manager'],
   'In Development',
   NULL,
-  3
+  3,
+  false,
+  NULL
 ),
 (
   'Student Reminder System',
@@ -238,15 +236,19 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, sort_or
   ARRAY['Flutter', 'Dart', 'Python', 'FastAPI', 'Redis', 'Docker'],
   'Maintained',
   'https://github.com/syamxm/student_reminder_system',
-  4
+  4,
+  true,
+  'Flutter timetable & deadline app; Android push, FastAPI + Redis backend, rate-limited login.'
 ),
 (
   'TaskFlow',
-  'Self-hosted project management tool designed to keep tasks and workflows clean and organised. RESTful API backend with a minimal frontend. Deployed on personal homeserver.',
-  ARRAY['Node.js', 'Express', 'PostgreSQL', 'Docker', 'JavaScript'],
+  'Self-hosted project and task manager built on the MERN stack. Features JWT authentication, colour-coded projects, a per-project Kanban board (Todo / In Progress / Done), task priorities and due dates, overdue-task highlighting, and a progress bar per project. Containerised with Docker behind an Nginx reverse proxy.',
+  ARRAY['MongoDB', 'Express', 'React', 'Node.js', 'Vite', 'Tailwind CSS', 'Nginx', 'JWT', 'Docker'],
   'Complete',
   'https://github.com/syamxm/taskflow',
-  5
+  5,
+  true,
+  'Self-hosted MERN task manager with JWT auth and per-project Kanban boards, Dockerised behind Nginx.'
 ),
 (
   'cv-api',
@@ -254,15 +256,19 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, sort_or
   ARRAY['Node.js', 'Express', 'PostgreSQL', 'Docker', 'JavaScript'],
   'In Development',
   NULL,
-  6
+  6,
+  true,
+  'Data-driven CV and one-page resume served from a single PostgreSQL-backed REST API, Dockerised.'
 ),
 (
-  'Password Manager',
+  'VaultWarden',
   'Self-hosted Vaultwarden password manager running in Docker on a personal Debian homeserver. Secure encrypted vault with browser and mobile client integration.',
   ARRAY['Vaultwarden', 'Docker', 'Debian Linux'],
   'Maintained',
   NULL,
-  7
+  7,
+  true,
+  'Self-hosted Vaultwarden vault in Docker on a Debian homeserver, with browser and mobile clients.'
 ),
 (
   'CoffeeBot',
@@ -270,7 +276,9 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, sort_or
   ARRAY['HTML', 'CSS', 'JavaScript', 'Python'],
   'Complete',
   'https://github.com/syamxm',
-  8
+  8,
+  true,
+  'Web chatbot specialising in coffee knowledge. Deployed online, open source.'
 ),
 (
   'Enigma-Java',
@@ -278,7 +286,9 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, sort_or
   ARRAY['Java'],
   'Complete',
   'https://github.com/syamxm',
-  9
+  9,
+  false,
+  NULL
 );
 
 

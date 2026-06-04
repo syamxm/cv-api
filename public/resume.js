@@ -5,9 +5,10 @@
 // 2. Builds the compact 1-page A4 resume DOM from the returned JSON
 // 3. Handles PDF export via html2pdf.js
 //
-// Same data source as the CV (/api/cv). To update content: edit sql/seed.sql
-// and re-seed. The resume is tuned to one A4 page — trim DB content if it
-// overflows.
+// Data source: /api/cv/resume — the compact, curated subset (rows flagged
+// in_resume in sql/seed.sql, with short resume_description text). To change
+// what the resume shows: edit those flags/descriptions and re-seed. Tuned to
+// one A4 page — trim a project line if it overflows.
 // =============================================================================
 
 
@@ -20,7 +21,7 @@ document.addEventListener("DOMContentLoaded", loadResume);
 
 async function loadResume() {
   try {
-    const res = await fetch("/api/cv");
+    const res = await fetch("/api/cv/resume");
 
     if (!res.ok) throw new Error(`API returned ${res.status}`);
 
