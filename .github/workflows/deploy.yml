@@ -25,8 +25,8 @@ jobs:
           port: ${{ secrets.DEPLOY_PORT }}
           script: |
             cd ~/cv-api
-            # git fetch origin main
-            # git reset --hard origin/main
+            git fetch origin main
+            git reset --hard origin/main
             docker compose down
             docker compose up -d --build
             echo "Deploy complete at $(date)"
