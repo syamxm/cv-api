@@ -180,13 +180,14 @@ INSERT INTO skills (category, name, sort_order) VALUES
 
 -- Concepts and practices
 ('Concepts',          'Self-hosted Infrastructure',   1),
-('Concepts',          'DevOps Fundamentals',          2),
-('Concepts',          'REST API Design',              3),
-('Concepts',          'Version Control & Branching',  4),
-('Concepts',          'Network Security (UFW, Fail2ban, CrowdSec, Tailscale)', 5),
-('Concepts',          'NoSQL',                        6),
-('Concepts',          'MERN Stack',                   7),
-('Concepts',          'JWT Authentication',           8);
+('Concepts',          'CI/CD (GitHub Actions)',       2),
+('Concepts',          'DevOps Fundamentals',          3),
+('Concepts',          'REST API Design',              4),
+('Concepts',          'Version Control & Branching',  5),
+('Concepts',          'Network Security (UFW, Fail2ban, CrowdSec, Tailscale)', 6),
+('Concepts',          'NoSQL',                        7),
+('Concepts',          'MERN Stack',                   8),
+('Concepts',          'JWT Authentication',           9);
 
 
 -- -----------------------------------------------------------------------------
@@ -270,15 +271,15 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
 ),
 (
   'cv-api',
-  'Data-driven CV and resume served from a single PostgreSQL-backed REST API. A Node.js/Express backend exposes /api/cv; both the full CV and the one-page resume render entirely from the database, so a content update is just a SQL change. Containerised with Docker and deployed on a personal homeserver.',
-  ARRAY['Node.js', 'Express', 'PostgreSQL', 'Docker', 'JavaScript'],
-  'In Development',
-  NULL,
+  'Built a data-driven CV and one-page resume served from a single PostgreSQL-backed REST API (Node.js/Express), so a content update is just a SQL change. Set up a GitHub Actions CI/CD pipeline that auto-deploys on push to main — connecting to the homeserver over Tailscale and rebuilding the Docker stack via SSH. This site runs on it.',
+  ARRAY['Node.js', 'Express', 'PostgreSQL', 'Docker', 'GitHub Actions', 'Tailscale', 'CI/CD'],
+  'Maintained',
+  'https://github.com/syamxm/cv-api',
   NULL,
   false,
   6,
-  false,
-  NULL
+  true,
+  'Data-driven CV + resume from a PostgreSQL REST API (Node/Express); GitHub Actions CI/CD auto-deploys to a self-hosted Debian server over Tailscale + SSH.'
 ),
 (
   'Enigma-Java',
