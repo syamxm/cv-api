@@ -303,7 +303,7 @@ CREATE TABLE awards (
 );
 
 INSERT INTO awards (title, description, sort_order) VALUES
-('Dean''s List, Every Semester',       'Maintained a GPA of 3.6 every semester throughout Bachelor''s degree at UiTM Shah Alam.', 1),
+('Dean''s List, Every Semester',       'Maintained a CGPA of 3.6 every semester throughout Bachelor''s degree at UiTM Shah Alam.', 1),
 ('SPM, 8A out of 9 Subjects',          'Achieved 8 distinctions in the Malaysian Certificate of Education (SPM).', 2),
 ('Foundation Top 10%, UiTM Dengkil',   'Ranked in the top 10% of the Engineering faculty cohort.', 3),
 ('Foundation 1st Place, 2nd Semester', 'Achieved 1st place in cohort rankings during the 2nd semester of Foundation in Engineering.', 4);

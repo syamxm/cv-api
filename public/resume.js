@@ -129,6 +129,10 @@ function buildProjects(items) {
         ? `<span class="project-link project-private">Private repo</span>`
         : "";
 
+    const demoLink = p.demo_url
+      ? `<a class="project-link" href="${p.demo_url}" target="_blank">↗ Live demo</a>`
+      : "";
+
     return `
       <div class="project">
         <div class="project-header">
@@ -138,6 +142,7 @@ function buildProjects(items) {
         ${stack}
         <p class="project-desc">${p.description}</p>
         ${githubLink}
+        ${demoLink}
       </div>
     `;
   }).join("");
