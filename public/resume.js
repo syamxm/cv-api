@@ -126,7 +126,7 @@ function buildProjects(items) {
     const githubLink = p.github_url
       ? `<a class="project-link" href="${p.github_url}" target="_blank">↗ GitHub</a>`
       : p.private_repo
-        ? `<span class="project-private">Private repo</span>`
+        ? `<span class="project-link project-private">Private repo</span>`
         : "";
 
     return `
