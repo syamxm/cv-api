@@ -123,9 +123,11 @@ function buildProjects(items) {
       ? `<p class="project-stack">${p.tech_stack.join(" · ")}</p>`
       : "";
 
-    const privateTag = !p.github_url && p.private_repo
-      ? `<span class="project-private">Private repo</span>`
-      : "";
+    const githubLink = p.github_url
+      ? `<a class="project-link" href="${p.github_url}" target="_blank">↗ GitHub</a>`
+      : p.private_repo
+        ? `<span class="project-private">Private repo</span>`
+        : "";
 
     return `
       <div class="project">
@@ -134,7 +136,8 @@ function buildProjects(items) {
           <span class="badge ${badgeClass}">${p.status}</span>
         </div>
         ${stack}
-        <p class="project-desc">${p.description}${privateTag ? ` ${privateTag}` : ""}</p>
+        <p class="project-desc">${p.description}</p>
+        ${githubLink}
       </div>
     `;
   }).join("");
