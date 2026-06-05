@@ -390,13 +390,22 @@ body > * { position: relative; z-index: 1; }
 }
 
 /* --- Print / PDF ---------------------------------------------------------- */
-@page { size: A4; margin: 12mm; }
+@page { size: A4; margin: 12mm 14mm; }
 
 @media print {
-  html, body { background: #fff; padding: 0; margin: 0; }
+  /* cream set on html propagates to the whole sheet, @page margins included —
+     so the page fills edge-to-edge with no white frame, while the margins keep
+     text safely inset on every page (multi-page CV) */
+  html {
+    background: var(--sheet);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  body { background: transparent; padding: 0; margin: 0; }
   body::before { display: none; }
   .no-print { display: none !important; }
   .cv {
+    background: transparent;    /* cream now comes from html */
     box-shadow: none;
     max-width: 100%;
     padding: 0;
