@@ -253,6 +253,16 @@ body > * { position: relative; z-index: 1; }
 
 .project-desc { font-size: 0.73rem; color: var(--mid); line-height: 1.55; text-align: justify; }
 
+.project-link {
+  font-family: var(--mono);
+  font-size: 0.63rem;
+  color: var(--accent);
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 2px;
+}
+.project-link:hover { text-decoration: underline; }
+
 /* --- Experience ------------------------------------------------------------ */
 .entry { margin-bottom: 8px; }
 
