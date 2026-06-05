@@ -1,27 +1,27 @@
 -- =============================================================================
--- CV Database Schema + Seed Data
+-- CV database: schema + all the content for the site.
 -- Ahmad Syamim | ahmadsyamim200@gmail.com | github.com/syamxm
 --
--- To update any section: edit the INSERT values below and re-seed,
--- or run a direct UPDATE query against the running container.
+-- Want to change something? Edit the INSERTs below and re-seed,
+-- or just run an UPDATE straight against the running container.
 -- =============================================================================
 
 
--- Drop tables if re-seeding from scratch (safe on fresh volume)
+-- Start clean: drop these tables so a re-seed rebuilds them from scratch
 DROP TABLE IF EXISTS languages, awards, projects, skills, education, experience, profile CASCADE;
 
 
 -- -----------------------------------------------------------------------------
--- PROFILE, one row, your identity at the top of the CV
+-- PROFILE — just you. One row holding the name, headline and blurb up top.
 -- -----------------------------------------------------------------------------
 CREATE TABLE profile (
   id        SERIAL PRIMARY KEY,
   name      TEXT NOT NULL,
-  title     TEXT NOT NULL,         -- headline shown under your name
+  title     TEXT NOT NULL,         -- the line that sits under your name
   location  TEXT,
   email     TEXT,
   github    TEXT,
-  summary   TEXT                   -- 2-3 sentence pitch
+  summary   TEXT                   -- your short pitch, a sentence or two
 );
 
 INSERT INTO profile (name, title, location, email, github, summary) VALUES (
@@ -35,19 +35,19 @@ INSERT INTO profile (name, title, location, email, github, summary) VALUES (
 
 
 -- -----------------------------------------------------------------------------
--- EXPERIENCE, work history, newest first
--- sort_order controls display sequence
+-- EXPERIENCE — where you've worked, newest first.
+-- sort_order decides what shows up top
 -- -----------------------------------------------------------------------------
 CREATE TABLE experience (
   id          SERIAL PRIMARY KEY,
   company     TEXT NOT NULL,
   role        TEXT NOT NULL,
   location    TEXT,
-  start_date  TEXT NOT NULL,        -- stored as readable string e.g. "March 2021"
-  end_date    TEXT,                 -- NULL means current
-  bullets     TEXT[],               -- array of bullet points describing responsibilities
+  start_date  TEXT NOT NULL,        -- plain text so it reads nicely, e.g. "March 2021"
+  end_date    TEXT,                 -- leave NULL if you're still there
+  bullets     TEXT[],               -- the points listed under each role
   sort_order  INT DEFAULT 0,
-  in_resume   BOOLEAN DEFAULT false -- include this entry on the compact resume
+  in_resume   BOOLEAN DEFAULT false -- show this on the one-page resume
 );
 
 INSERT INTO experience (company, role, location, start_date, end_date, bullets, sort_order, in_resume) VALUES
@@ -80,7 +80,7 @@ INSERT INTO experience (company, role, location, start_date, end_date, bullets, 
 
 
 -- -----------------------------------------------------------------------------
--- EDUCATION, academic history, newest first
+-- EDUCATION — schools and degrees, newest first.
 -- -----------------------------------------------------------------------------
 CREATE TABLE education (
   id          SERIAL PRIMARY KEY,
@@ -89,8 +89,8 @@ CREATE TABLE education (
   field       TEXT,
   location    TEXT,
   start_date  TEXT NOT NULL,
-  end_date    TEXT,                 -- "Expected April 2027" for ongoing
-  gpa         TEXT,                 -- stored as text for flexibility e.g. "3.5 – 3.7"
+  end_date    TEXT,                 -- use "Expected ..." while it's still ongoing
+  gpa         TEXT,                 
   achievements TEXT[],
   sort_order  INT DEFAULT 0
 );
@@ -103,7 +103,7 @@ INSERT INTO education (institution, degree, field, location, start_date, end_dat
   'Shah Alam, Selangor',
   'March 2023',
   'Expected March 2027',
-  '3.5 – 3.7',
+  '3.6',
   ARRAY[
     'Dean''s List every semester',
     'Final Year Project: C-Aegis, Android parental monitoring app (Kotlin + Firebase)'
@@ -140,17 +140,17 @@ INSERT INTO education (institution, degree, field, location, start_date, end_dat
 
 
 -- -----------------------------------------------------------------------------
--- SKILLS, grouped by category for clean display
+-- SKILLS — grouped by category so they sit in neat columns.
 -- -----------------------------------------------------------------------------
 CREATE TABLE skills (
   id          SERIAL PRIMARY KEY,
-  category    TEXT NOT NULL,        -- e.g. "Languages", "Tools & Platforms"
+  category    TEXT NOT NULL,        -- the column header, e.g. "Languages" or "Tools & Platforms"
   name        TEXT NOT NULL,
   sort_order  INT DEFAULT 0
 );
 
 INSERT INTO skills (category, name, sort_order) VALUES
--- Programming Languages
+-- Languages you code in
 ('Languages',         'JavaScript',   1),
 ('Languages',         'Python',       2),
 ('Languages',         'Java',         3),
@@ -159,66 +159,64 @@ INSERT INTO skills (category, name, sort_order) VALUES
 ('Languages',         'PHP',          6),
 ('Languages',         'Dart',         7),
 ('Languages',         'Bash',         8),
-('Languages',         'Fish',         9),
-('Languages',         'HTML / CSS',   10),
-('Languages',         'SQL',          11),
+('Languages',         'HTML / CSS',   9),
+('Languages',         'SQL',          10),
 
--- Tools, platforms, infra
+-- Tooling, platforms and infra
 ('Tools & Platforms', 'Docker',               1),
 ('Tools & Platforms', 'Git / GitHub',          2),
-('Tools & Platforms', 'Linux (Debian, PopOS, CachyOS)', 3),
+('Tools & Platforms', 'Linux', 3),
 ('Tools & Platforms', 'Firebase',             4),
 ('Tools & Platforms', 'Flutter',              5),
-('Tools & Platforms', 'Android (Kotlin + XML)', 6),
+('Tools & Platforms', 'Android', 6),
 ('Tools & Platforms', 'PostgreSQL',           7),
 ('Tools & Platforms', 'Express.js / Node.js', 8),
 ('Tools & Platforms', 'MongoDB',              9),
 ('Tools & Platforms', 'React',                10),
 ('Tools & Platforms', 'Nginx',                11),
-('Tools & Platforms', 'Nmap',                 12),
+('Tools & Platforms', 'Cloudflare',                 12),
 
--- Concepts and practices
+-- Concepts and ways of working
 ('Concepts',          'Self-hosted Infrastructure',   1),
 ('Concepts',          'CI/CD (GitHub Actions)',       2),
 ('Concepts',          'DevOps Fundamentals',          3),
 ('Concepts',          'REST API Design',              4),
 ('Concepts',          'Version Control & Branching',  5),
 ('Concepts',          'Network Security (UFW, Fail2ban, CrowdSec, Tailscale)', 6),
-('Concepts',          'NoSQL',                        7),
-('Concepts',          'MERN Stack',                   8),
-('Concepts',          'JWT Authentication',           9);
+('Concepts',          'MERN Stack',                   7),
+('Concepts',          'JWT Authentication',           8);
 
 
 -- -----------------------------------------------------------------------------
--- PROJECTS, personal and academic work
+-- PROJECTS — the things you've built, personal and uni.
 -- status: "Complete" | "Maintained" | "In Development" | "Planned"
 -- -----------------------------------------------------------------------------
 CREATE TABLE projects (
   id          SERIAL PRIMARY KEY,
   name        TEXT NOT NULL,
-  description TEXT NOT NULL,         -- full description, shown on the CV
-  tech_stack  TEXT[],               -- array of tech used
+  description TEXT NOT NULL,         -- the full write-up shown on the CV
+  tech_stack  TEXT[],               -- what you built it with
   status      TEXT DEFAULT 'Complete',
-  github_url  TEXT,                 -- NULL if private or not on GitHub
-  demo_url    TEXT,                 -- live deployment URL, NULL if none
-  private_repo BOOLEAN DEFAULT false, -- show "Private repo" when no public github_url
+  github_url  TEXT,                 -- leave NULL if it's private or not on GitHub
+  demo_url    TEXT,                 -- live link, if it's deployed somewhere
+  private_repo BOOLEAN DEFAULT false, -- shows the "Private repo" tag when there's no public link
   sort_order  INT DEFAULT 0,
-  in_resume   BOOLEAN DEFAULT false, -- include on the compact resume
-  resume_description TEXT            -- short one-line description for the resume
+  in_resume   BOOLEAN DEFAULT false, -- show this on the one-page resume
+  resume_description TEXT            -- a tighter one-liner for the resume
 );
 
 INSERT INTO projects (name, description, tech_stack, status, github_url, demo_url, private_repo, sort_order, in_resume, resume_description) VALUES
 (
   'Debian Homeserver',
-  'Built a production Debian homeserver running 5+ Dockerised services behind layered network security (UFW, Fail2ban, CrowdSec) with a Tailscale VPN for remote access, zero cloud cost. Hosts self-hosted tools including Vaultwarden for password management, kept current via automated unattended upgrades.',
-  ARRAY['Debian Linux', 'Docker', 'UFW', 'Fail2ban', 'CrowdSec', 'Tailscale', 'Vaultwarden', 'Bash'],
+  'Built a self-hosted Debian homeserver running 5+ Dockerised services behind layered network security (UFW, Fail2ban, CrowdSec), with a Tailscale VPN for private remote access and a Cloudflare Tunnel publishing select services on a custom domain — zero open inbound ports, zero cloud cost. Hosts self-hosted tools including Vaultwarden for password management, kept current via automated unattended upgrades.',
+  ARRAY['Debian Linux', 'Docker', 'UFW', 'Fail2ban', 'CrowdSec', 'Tailscale', 'Cloudflare', 'Vaultwarden', 'Bash'],
   'Maintained',
   'https://github.com/syamxm',
   NULL,
   false,
   1,
   true,
-  'Production Debian homeserver: 5+ Dockerised services, layered security (UFW/Fail2ban/CrowdSec), Tailscale VPN, zero cloud cost.'
+  'Self-hosted Debian server: 5+ Dockerised services, layered security (UFW/Fail2ban/CrowdSec), Tailscale + Cloudflare Tunnel, zero cloud cost.'
 ),
 (
   'Final Year Project - C-Aegis',
@@ -262,7 +260,7 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
   ARRAY['MongoDB', 'Express', 'React', 'Node.js', 'Vite', 'Tailwind CSS', 'Nginx', 'JWT', 'Docker'],
   'Complete',
   'https://github.com/syamxm/taskflow',
-  NULL,
+  'https://taskflow.syamxm.com',
   false,
   5,
   true,
@@ -270,15 +268,15 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
 ),
 (
   'cv-api',
-  'Built a data-driven CV and one-page resume served from a single PostgreSQL-backed REST API (Node.js/Express), so a content update is just a SQL change. Set up a GitHub Actions CI/CD pipeline that auto-deploys on push to main, connecting to the homeserver over Tailscale and rebuilding the Docker stack via SSH. This site runs on it.',
-  ARRAY['Node.js', 'Express', 'PostgreSQL', 'Docker', 'GitHub Actions', 'Tailscale', 'CI/CD'],
+  'Built a data-driven CV and one-page resume served from a single PostgreSQL-backed REST API (Node.js/Express), so a content update is just a SQL change. Set up a GitHub Actions CI/CD pipeline that auto-deploys on push to main, connecting to the homeserver over Tailscale and rebuilding the Docker stack via SSH. Published on a custom domain (cv.syamxm.com) through a Cloudflare Tunnel, with no inbound ports opened on the server.',
+  ARRAY['Node.js', 'Express', 'PostgreSQL', 'Docker', 'GitHub Actions', 'Tailscale', 'Cloudflare', 'CI/CD'],
   'Maintained',
   'https://github.com/syamxm/cv-api',
-  NULL,
+  'https://cv.syamxm.com',
   false,
   6,
   true,
-  'Data-driven CV + resume from a PostgreSQL REST API (Node/Express); GitHub Actions CI/CD auto-deploys to a self-hosted Debian server over Tailscale + SSH.'
+  'Data-driven CV + resume from a PostgreSQL REST API (Node/Express); GitHub Actions CI/CD over Tailscale + SSH, public via a Cloudflare Tunnel.'
 ),
 (
   'Enigma-Java',
@@ -295,7 +293,7 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
 
 
 -- -----------------------------------------------------------------------------
--- AWARDS, achievements and recognition
+-- AWARDS — wins worth showing off.
 -- -----------------------------------------------------------------------------
 CREATE TABLE awards (
   id          SERIAL PRIMARY KEY,
@@ -305,14 +303,14 @@ CREATE TABLE awards (
 );
 
 INSERT INTO awards (title, description, sort_order) VALUES
-('Dean''s List, Every Semester',       'Maintained a GPA of 3.5–3.7 every semester throughout Bachelor''s degree at UiTM Shah Alam.', 1),
+('Dean''s List, Every Semester',       'Maintained a GPA of 3.6 every semester throughout Bachelor''s degree at UiTM Shah Alam.', 1),
 ('SPM, 8A out of 9 Subjects',          'Achieved 8 distinctions in the Malaysian Certificate of Education (SPM).', 2),
 ('Foundation Top 10%, UiTM Dengkil',   'Ranked in the top 10% of the Engineering faculty cohort.', 3),
 ('Foundation 1st Place, 2nd Semester', 'Achieved 1st place in cohort rankings during the 2nd semester of Foundation in Engineering.', 4);
 
 
 -- -----------------------------------------------------------------------------
--- LANGUAGES, spoken/written languages
+-- LANGUAGES — the ones you speak.
 -- -----------------------------------------------------------------------------
 CREATE TABLE languages (
   id    SERIAL PRIMARY KEY,

@@ -119,7 +119,7 @@ body > * { position: relative; z-index: 1; }
 }
 
 .page::before {
-  content: "R\00E9sum\00E9 2026";
+  content: "R\00E9sum\00E9";
   display: block;
   font-family: var(--mono);
   font-size: 0.6rem;
