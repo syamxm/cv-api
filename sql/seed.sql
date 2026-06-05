@@ -30,7 +30,7 @@ INSERT INTO profile (name, title, location, email, github, summary) VALUES (
   'Shah Alam, Selangor, Malaysia',
   'ahmadsyamim200@gmail.com',
   'https://github.com/syamxm',
-  'Computer Science student at UiTM Shah Alam with hands-on DevOps experience through a self-hosted production server running Docker, Tailscale, and automated security hardening. Builds open-source projects across Android, web, and backend. Dean''s List every semester. Available for a 14-week internship from 7th September to 11th December 2026.'
+  'Computer Science student at UiTM Shah Alam with hands-on DevOps experience through a self-hosted production server running Docker, Tailscale, and automated security hardening. Builds open-source projects across Android, web, and backend. Available for a 14-week internship from 7th September to 11th December 2026.'
 );
 
 
@@ -102,7 +102,7 @@ INSERT INTO education (institution, degree, field, location, start_date, end_dat
   'Computer Science',
   'Shah Alam, Selangor',
   'March 2023',
-  null, -- ongoing
+  'Expected March 2027',
   '3.5 – 3.7',
   ARRAY[
     'Dean''s List every semester',
@@ -130,8 +130,8 @@ INSERT INTO education (institution, degree, field, location, start_date, end_dat
   'SPM (Malaysian Certificate of Education)',
   NULL,
   'Saujana Utama, Selangor',
-  'January 2020',
-  'March 2021',
+  '2020',
+  '2020',
   NULL,
   ARRAY[
     'Achieved 8A out of 9 subjects'

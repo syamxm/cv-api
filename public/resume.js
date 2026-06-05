@@ -96,10 +96,10 @@ function buildExperience(items) {
   const entries = items.map(e => `
     <div class="entry">
       <div class="entry-header">
-        <span class="entry-role">${e.role}</span>
-        <span class="entry-date">${e.start_date} – ${e.end_date || "Present"}</span>
+        <span class="entry-role">${e.role} — ${e.company}</span>
+        <span class="entry-date">${e.start_date === e.end_date ? e.start_date : `${e.start_date} – ${e.end_date || "Present"}`}</span>
       </div>
-      <div class="entry-sub">${e.company}${e.location ? ` · ${e.location}` : ""}</div>
+      ${e.location ? `<div class="entry-sub">${e.location}</div>` : ""}
       ${e.bullets ? `<ul class="entry-bullets">${e.bullets.map(b => `<li>${b}</li>`).join("")}</ul>` : ""}
     </div>
   `).join("");
