@@ -98,15 +98,14 @@ CREATE TABLE education (
 INSERT INTO education (institution, degree, field, location, start_date, end_date, gpa, achievements, sort_order) VALUES
 (
   'Universiti Teknologi MARA (UiTM)',
-  'Bachelor of Computer Science',
-  'Computer Science',
+  'Bachelor of Computer Science (Honours)',
+  NULL,
   'Shah Alam, Selangor',
   'March 2023',
   'Expected March 2027',
   '3.5 – 3.7',
   ARRAY[
     'Dean''s List every semester',
-    'Consistent GPA range of 3.5 – 3.7 throughout degree',
     'Final Year Project: C-Aegis, Android parental monitoring app (Kotlin + Firebase)'
   ],
   1
@@ -114,7 +113,7 @@ INSERT INTO education (institution, degree, field, location, start_date, end_dat
 (
   'Universiti Teknologi MARA (UiTM)',
   'Foundation in Engineering',
-  'Engineering',
+  NULL,
   'Dengkil, Selangor',
   'August 2021',
   'July 2022',
@@ -223,7 +222,7 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
 ),
 (
   'Final Year Project - C-Aegis',
-  'Built an Android parental monitoring app (Final Year Project) with a bilateral dashboard (parent and child views), real-time geofence alerts via the Radar API, and app-usage enforcement using the Device Admin API and AccessibilityService to resist tampering.',
+  'Built an Android parental monitoring app (Final Year Project) focused on location and on-device control: a parent/child dashboard, real-time geofence alerts via the Radar API, and app-usage enforcement using the Device Admin API and AccessibilityService to resist tampering.',
   ARRAY['Kotlin', 'XML', 'Firebase', 'Google Maps API', 'Radar API'],
   'In Development',
   NULL,
@@ -235,12 +234,12 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
 ),
 (
   'Family Monitor',
-  'Flutter app for monitoring family members'' app usage and browser search history, helping guardians keep an eye on digital activity. Currently supports Android devices and Chrome-based browsers. Backend runs on a Debian virtual machine managed through virt-manager.',
+  'Flutter app that gives guardians visibility into family members'' web activity: browsing and search history across Chrome-based browsers. Backend runs on a self-hosted Debian virtual machine managed through virt-manager.',
   ARRAY['Flutter', 'Dart', 'Debian Linux', 'virt-manager'],
   'In Development',
   NULL,
   NULL,
-  false,
+  true,
   3,
   false,
   NULL
