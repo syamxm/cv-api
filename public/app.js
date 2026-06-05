@@ -87,7 +87,7 @@ function buildExperience(items) {
     <div class="entry">
       <div class="entry-header">
         <span class="entry-title">${e.role}</span>
-        <span class="entry-date">${e.start_date} – ${e.end_date || "Present"}</span>
+        <span class="entry-date">${e.start_date === e.end_date ? e.start_date : `${e.start_date} – ${e.end_date || "Present"}`}</span>
       </div>
       <div class="entry-sub">${e.company}${e.location ? ` · ${e.location}` : ""}</div>
       ${e.bullets ? `<ul>${e.bullets.map(b => `<li>${b}</li>`).join("")}</ul>` : ""}
