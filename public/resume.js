@@ -8,8 +8,8 @@ function buildResume(data) {
     ${buildSummary(data.profile)}
     <div class="body">
       <div class="col-left">
-        ${buildExperience(data.experience)}
         ${buildProjects(data.projects)}
+        ${buildExperience(data.experience)}
       </div>
       <div class="col-right">
         ${buildEducation(data.education)}

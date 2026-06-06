@@ -106,7 +106,7 @@ INSERT INTO education (institution, degree, field, location, start_date, end_dat
   '3.6',
   ARRAY[
     'Dean''s List every semester',
-    'Final Year Project: C-Aegis, Android parental monitoring app (Kotlin + Firebase)'
+    'Final Year Project: C-Aegis, Android parental monitoring app'
   ],
   1
 ),
@@ -143,48 +143,46 @@ INSERT INTO education (institution, degree, field, location, start_date, end_dat
 -- SKILLS — grouped by category so they sit in neat columns.
 -- -----------------------------------------------------------------------------
 CREATE TABLE skills (
-  id          SERIAL PRIMARY KEY,
-  category    TEXT NOT NULL,        -- the column header, e.g. "Languages" or "Tools & Platforms"
-  name        TEXT NOT NULL,
-  sort_order  INT DEFAULT 0
+  id             SERIAL PRIMARY KEY,
+  category       TEXT NOT NULL,        -- the column header, e.g. "Infrastructure & DevOps"
+  category_order INT DEFAULT 0,        -- which category column comes first
+  name           TEXT NOT NULL,
+  sort_order     INT DEFAULT 0         -- order within the category
 );
 
-INSERT INTO skills (category, name, sort_order) VALUES
--- Languages you code in
-('Languages',         'JavaScript',   1),
-('Languages',         'Python',       2),
-('Languages',         'Java',         3),
-('Languages',         'Kotlin',       4),
-('Languages',         'C / C++',      5),
-('Languages',         'PHP',          6),
-('Languages',         'Dart',         7),
-('Languages',         'Bash',         8),
-('Languages',         'HTML / CSS',   9),
-('Languages',         'SQL',          10),
+INSERT INTO skills (category, category_order, name, sort_order) VALUES
+-- Infrastructure & DevOps — deployable now, leads the section
+('Infrastructure & DevOps', 1, 'Docker',                                                1),
+('Infrastructure & DevOps', 1, 'Linux',                                                 2),
+('Infrastructure & DevOps', 1, 'CI/CD (GitHub Actions)',                                3),
+('Infrastructure & DevOps', 1, 'Self-hosted Infrastructure',                            4),
+('Infrastructure & DevOps', 1, 'Network Security (UFW, Fail2ban, CrowdSec, Tailscale)', 5),
+('Infrastructure & DevOps', 1, 'Nginx',                                                 6),
+('Infrastructure & DevOps', 1, 'Cloudflare',                                            7),
+('Infrastructure & DevOps', 1, 'Git / GitHub',                                          8),
 
--- Tooling, platforms and infra
-('Tools & Platforms', 'Docker',               1),
-('Tools & Platforms', 'Git / GitHub',          2),
-('Tools & Platforms', 'Linux', 3),
-('Tools & Platforms', 'Firebase',             4),
-('Tools & Platforms', 'Flutter',              5),
-('Tools & Platforms', 'Android', 6),
-('Tools & Platforms', 'PostgreSQL',           7),
-('Tools & Platforms', 'Express.js / Node.js', 8),
-('Tools & Platforms', 'MongoDB',              9),
-('Tools & Platforms', 'React',                10),
-('Tools & Platforms', 'Nginx',                11),
-('Tools & Platforms', 'Cloudflare',                 12),
+-- Frameworks & Tools
+('Frameworks & Tools', 2, 'Express.js / Node.js', 1),
+('Frameworks & Tools', 2, 'FastAPI',              2),
+('Frameworks & Tools', 2, 'React',                3),
+('Frameworks & Tools', 2, 'PostgreSQL',           4),
+('Frameworks & Tools', 2, 'MongoDB',              5),
+('Frameworks & Tools', 2, 'Flutter',              6),
+('Frameworks & Tools', 2, 'Android',              7),
+('Frameworks & Tools', 2, 'Firebase',             8),
+('Frameworks & Tools', 2, 'REST API Design',      9),
+('Frameworks & Tools', 2, 'JWT Authentication',  10),
+('Frameworks & Tools', 2, 'MERN Stack',          11),
 
--- Concepts and ways of working
-('Concepts',          'Self-hosted Infrastructure',   1),
-('Concepts',          'CI/CD (GitHub Actions)',       2),
-('Concepts',          'DevOps Fundamentals',          3),
-('Concepts',          'REST API Design',              4),
-('Concepts',          'Version Control & Branching',  5),
-('Concepts',          'Network Security (UFW, Fail2ban, CrowdSec, Tailscale)', 6),
-('Concepts',          'MERN Stack',                   7),
-('Concepts',          'JWT Authentication',           8);
+-- Languages
+('Languages', 3, 'JavaScript', 1),
+('Languages', 3, 'Python',     2),
+('Languages', 3, 'Java',       3),
+('Languages', 3, 'Kotlin',     4),
+('Languages', 3, 'Dart',       5),
+('Languages', 3, 'SQL',        6),
+('Languages', 3, 'Bash',       7),
+('Languages', 3, 'HTML / CSS', 8);
 
 
 -- -----------------------------------------------------------------------------

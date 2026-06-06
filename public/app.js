@@ -6,10 +6,10 @@ function buildCV(data) {
   document.getElementById("cv").innerHTML = `
     ${buildHeader(data.profile)}
     ${buildSummary(data.profile)}
+    ${buildProjects(data.projects)}
     ${buildExperience(data.experience)}
     ${buildEducation(data.education)}
     ${buildSkills(data.skills)}
-    ${buildProjects(data.projects)}
     ${buildAwards(data.awards)}
     ${buildLanguages(data.languages)}
   `;
