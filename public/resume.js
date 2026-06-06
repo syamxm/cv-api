@@ -1,51 +1,9 @@
-// =============================================================================
-// resume.js — Resume Frontend Logic
-//
-// 1. Fetches all CV data from the API in one request on page load
-// 2. Builds the compact 1-page A4 resume DOM from the returned JSON
-// 3. Handles PDF export via the browser's native print (window.print)
-//
-// Data source: /api/cv/resume — the compact, curated subset (rows flagged
-// in_resume in sql/seed.sql, with short resume_description text). To change
-// what the resume shows: edit those flags/descriptions and re-seed. Tuned to
-// one A4 page — trim a project line if it overflows.
-// =============================================================================
-
-
-// --- Entry point ------------------------------------------------------------
-
-document.addEventListener("DOMContentLoaded", loadResume);
-
-
-// --- Fetch + render ----------------------------------------------------------
-
-async function loadResume() {
-  try {
-    const res = await fetch("/api/cv/resume");
-
-    if (!res.ok) throw new Error(`API returned ${res.status}`);
-
-    const data = await res.json();
-
-    buildResume(data);
-
-    document.getElementById("loading").style.display = "none";
-    document.getElementById("resume").classList.remove("hidden");
-
-  } catch (err) {
-    document.getElementById("loading").textContent =
-      "Failed to load resume. Is the API running?";
-    console.error("Resume load error:", err);
-  }
-}
-
-
-// --- Build the resume DOM ---------------------------------------------------
+document.addEventListener("DOMContentLoaded", () =>
+  mountOnLoad("/api/cv/resume", "resume", buildResume, "Failed to load resume. Is the API running?")
+);
 
 function buildResume(data) {
-  const container = document.getElementById("resume");
-
-  container.innerHTML = `
+  document.getElementById("resume").innerHTML = `
     ${buildHeader(data.profile)}
     ${buildSummary(data.profile)}
     <div class="body">
@@ -62,9 +20,6 @@ function buildResume(data) {
     </div>
   `;
 }
-
-
-// --- Section builders -------------------------------------------------------
 
 function buildHeader(p) {
   return `
@@ -83,12 +38,10 @@ function buildHeader(p) {
   `;
 }
 
-
 function buildSummary(p) {
   if (!p.summary) return "";
   return `<section class="summary">${p.summary}</section>`;
 }
-
 
 function buildExperience(items) {
   if (!items.length) return "";
@@ -97,7 +50,7 @@ function buildExperience(items) {
     <div class="entry">
       <div class="entry-header">
         <span class="entry-role">${e.role} — ${e.company}</span>
-        <span class="entry-date">${e.start_date === e.end_date ? e.start_date : `${e.start_date} – ${e.end_date || "Present"}`}</span>
+        <span class="entry-date">${formatDateRange(e.start_date, e.end_date)}</span>
       </div>
       ${e.location ? `<div class="entry-sub">${e.location}</div>` : ""}
       ${e.bullets ? `<ul class="entry-bullets">${e.bullets.map(b => `<li>${b}</li>`).join("")}</ul>` : ""}
@@ -107,49 +60,36 @@ function buildExperience(items) {
   return section("Experience", entries);
 }
 
-
 function buildProjects(items) {
   if (!items.length) return "";
 
-  const projects = items.map(p => {
-    const badgeClass = {
-      "Complete": "badge-complete",
-      "Maintained": "badge-maintained",
-      "In Development": "badge-dev",
-      "Planned": "badge-planned",
-    }[p.status] || "badge-planned";
+  const badgeClass = {
+    "Complete":       "badge-complete",
+    "Maintained":     "badge-maintained",
+    "In Development": "badge-dev",
+    "Planned":        "badge-planned",
+  };
 
+  const projects = items.map(p => {
     const stack = p.tech_stack && p.tech_stack[0] !== "TBD"
       ? `<p class="project-stack">${p.tech_stack.join(" · ")}</p>`
-      : "";
-
-    const githubLink = p.github_url
-      ? `<a class="project-link" href="${p.github_url}" target="_blank">↗ GitHub</a>`
-      : p.private_repo
-        ? `<span class="project-link project-private">Private repo</span>`
-        : "";
-
-    const demoLink = p.demo_url
-      ? `<a class="project-link" href="${p.demo_url}" target="_blank">↗ Live demo</a>`
       : "";
 
     return `
       <div class="project">
         <div class="project-header">
           <span class="project-name">${p.name}</span>
-          <span class="badge ${badgeClass}">${p.status}</span>
+          <span class="badge ${badgeClass[p.status] || "badge-planned"}">${p.status}</span>
         </div>
         ${stack}
         <p class="project-desc">${p.description}</p>
-        ${githubLink}
-        ${demoLink}
+        ${projectLinks(p)}
       </div>
     `;
   }).join("");
 
   return section("Projects", projects);
 }
-
 
 function buildEducation(items) {
   if (!items.length) return "";
@@ -163,7 +103,7 @@ function buildEducation(items) {
       <div class="edu-entry">
         <div class="edu-header">
           <span class="edu-place">${e.institution}</span>
-          <span class="edu-date">${e.start_date === e.end_date ? e.start_date : `${e.start_date} – ${e.end_date || "Present"}`}</span>
+          <span class="edu-date">${formatDateRange(e.start_date, e.end_date)}</span>
         </div>
         <p class="edu-degree">${e.degree}${e.location ? ` · ${e.location}` : ""}</p>
         ${note ? `<p class="edu-note">${note}</p>` : ""}
@@ -174,17 +114,10 @@ function buildEducation(items) {
   return section("Education", entries);
 }
 
-
 function buildSkills(items) {
   if (!items.length) return "";
 
-  const grouped = items.reduce((acc, s) => {
-    if (!acc[s.category]) acc[s.category] = [];
-    acc[s.category].push(s.name);
-    return acc;
-  }, {});
-
-  const groups = Object.entries(grouped).map(([cat, names]) => `
+  const groups = Object.entries(groupByCategory(items)).map(([cat, names]) => `
     <div class="skill-group">
       <h3>${cat}</h3>
       <p>${names.join(", ")}</p>
@@ -194,17 +127,12 @@ function buildSkills(items) {
   return section("Skills", groups);
 }
 
-
 function buildAwards(items) {
   if (!items.length) return "";
 
-  const awards = items
-    .map(a => `<li>${a.title}</li>`)
-    .join("");
-
+  const awards = items.map(a => `<li>${a.title}</li>`).join("");
   return section("Awards", `<ul class="awards-list">${awards}</ul>`);
 }
-
 
 function buildLanguages(items) {
   if (!items.length) return "";
@@ -216,9 +144,6 @@ function buildLanguages(items) {
   return section("Languages", `<ul class="awards-list">${langs}</ul>`);
 }
 
-
-// --- Utility: wrap content in a labelled section ----------------------------
-
 function section(title, content) {
   return `
     <section class="section">
@@ -226,11 +151,4 @@ function section(title, content) {
       ${content}
     </section>
   `;
-}
-
-
-// --- PDF Export — native print to A4 (styled by @media print + @page) --------
-
-function exportPDF() {
-  window.print();
 }

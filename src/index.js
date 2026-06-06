@@ -12,19 +12,18 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json());
 
-// Serve the frontend — index.html, style.css, app.js live in /public
+// Serve static frontend assets from /public
 app.use(express.static(path.join(__dirname, "../public")));
 
-// All CV data lives under /api/cv
 app.use("/api/cv", cvRoutes);
 
 // Clean URL for the full CV (resume is the landing page at /)
-app.get("/cv", (req, res) => {
+app.get("/cv", (_req, res) => {
   res.sendFile(path.join(__dirname, "../public/cv.html"));
 });
 
-// Catch-all: any unknown route gets the frontend (single-page behaviour)
-app.get("*", (req, res) => {
+// Catch-all: unknown routes fall back to the resume landing page
+app.get("*", (_req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
