@@ -281,7 +281,7 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
   'CLI implementation of the World War II Enigma cipher machine in Java. Supports custom rotor and reflector configuration via external config files, allowing users to replicate historical encryption setups.',
   ARRAY['Java'],
   'Complete',
-  'https://github.com/syamxm',
+  'https://github.com/syamxm/enigma-java',
   NULL,
   false,
   9,
