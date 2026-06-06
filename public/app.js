@@ -1,50 +1,9 @@
-// =============================================================================
-// app.js — CV Frontend Logic
-//
-// 1. Fetches all CV data from the API in one request on page load
-// 2. Builds the page DOM from the returned JSON
-// 3. Handles PDF export via the browser's native print (window.print)
-//
-// To update CV content: edit sql/seed.sql and re-seed the database.
-// No need to touch this file unless you're changing layout or structure.
-// =============================================================================
-
-
-// --- Entry point ------------------------------------------------------------
-
-document.addEventListener("DOMContentLoaded", loadCV);
-
-
-// --- Fetch + render ----------------------------------------------------------
-
-async function loadCV() {
-  try {
-    const res = await fetch("/api/cv");
-
-    if (!res.ok) throw new Error(`API returned ${res.status}`);
-
-    const data = await res.json();
-
-    buildCV(data);
-
-    // Swap loading spinner for the real content
-    document.getElementById("loading").style.display = "none";
-    document.getElementById("cv").classList.remove("hidden");
-
-  } catch (err) {
-    document.getElementById("loading").textContent =
-      "Failed to load CV. Is the API running?";
-    console.error("CV load error:", err);
-  }
-}
-
-
-// --- Build the full CV DOM --------------------------------------------------
+document.addEventListener("DOMContentLoaded", () =>
+  mountOnLoad("/api/cv", "cv", buildCV, "Failed to load CV. Is the API running?")
+);
 
 function buildCV(data) {
-  const container = document.getElementById("cv");
-
-  container.innerHTML = `
+  document.getElementById("cv").innerHTML = `
     ${buildHeader(data.profile)}
     ${buildSummary(data.profile)}
     ${buildExperience(data.experience)}
@@ -55,9 +14,6 @@ function buildCV(data) {
     ${buildLanguages(data.languages)}
   `;
 }
-
-
-// --- Section builders -------------------------------------------------------
 
 function buildHeader(p) {
   return `
@@ -73,12 +29,10 @@ function buildHeader(p) {
   `;
 }
 
-
 function buildSummary(p) {
   if (!p.summary) return "";
   return `<p class="cv-summary">${p.summary}</p>`;
 }
-
 
 function buildExperience(items) {
   if (!items.length) return "";
@@ -87,7 +41,7 @@ function buildExperience(items) {
     <div class="entry">
       <div class="entry-header">
         <span class="entry-title">${e.role}</span>
-        <span class="entry-date">${e.start_date === e.end_date ? e.start_date : `${e.start_date} – ${e.end_date || "Present"}`}</span>
+        <span class="entry-date">${formatDateRange(e.start_date, e.end_date)}</span>
       </div>
       <div class="entry-sub">${e.company}${e.location ? ` · ${e.location}` : ""}</div>
       ${e.bullets ? `<ul>${e.bullets.map(b => `<li>${b}</li>`).join("")}</ul>` : ""}
@@ -97,7 +51,6 @@ function buildExperience(items) {
   return section("Experience", entries);
 }
 
-
 function buildEducation(items) {
   if (!items.length) return "";
 
@@ -105,7 +58,7 @@ function buildEducation(items) {
     <div class="entry">
       <div class="entry-header">
         <span class="entry-title">${e.institution}</span>
-        <span class="entry-date">${e.start_date === e.end_date ? e.start_date : `${e.start_date} – ${e.end_date || "Present"}`}</span>
+        <span class="entry-date">${formatDateRange(e.start_date, e.end_date)}</span>
       </div>
       <div class="entry-sub">${e.degree}${e.field ? ` in ${e.field}` : ""}${e.location ? ` · ${e.location}` : ""}</div>
       ${e.gpa ? `<span class="entry-gpa">GPA ${e.gpa}</span>` : ""}
@@ -116,18 +69,10 @@ function buildEducation(items) {
   return section("Education", entries);
 }
 
-
 function buildSkills(items) {
   if (!items.length) return "";
 
-  // Group skills by category
-  const grouped = items.reduce((acc, s) => {
-    if (!acc[s.category]) acc[s.category] = [];
-    acc[s.category].push(s.name);
-    return acc;
-  }, {});
-
-  const grid = Object.entries(grouped).map(([cat, names]) => `
+  const grid = Object.entries(groupByCategory(items)).map(([cat, names]) => `
     <div class="skill-group">
       <h3>${cat}</h3>
       <div class="skill-tags">
@@ -139,50 +84,36 @@ function buildSkills(items) {
   return section("Skills", `<div class="skills-grid">${grid}</div>`);
 }
 
-
 function buildProjects(items) {
   if (!items.length) return "";
 
-  const projects = items.map(p => {
-    // Map status string to a CSS class
-    const statusClass = {
-      "Complete":       "status-complete",
-      "Maintained":     "status-maintained",
-      "In Development": "status-development",
-      "Planned":        "status-planned",
-    }[p.status] || "status-planned";
+  const statusClass = {
+    "Complete":       "status-complete",
+    "Maintained":     "status-maintained",
+    "In Development": "status-development",
+    "Planned":        "status-planned",
+  };
 
+  const projects = items.map(p => {
     const stack = p.tech_stack && p.tech_stack[0] !== "TBD"
       ? `<div class="project-stack">${p.tech_stack.join(" · ")}</div>`
-      : "";
-
-    const githubLink = p.github_url
-      ? `<a class="project-link" href="${p.github_url}" target="_blank">↗ GitHub</a>`
-      : p.private_repo
-        ? `<span class="project-link project-private">Private repo</span>`
-        : "";
-
-    const demoLink = p.demo_url
-      ? `<a class="project-link" href="${p.demo_url}" target="_blank">↗ Live demo</a>`
       : "";
 
     return `
       <div class="project">
         <div class="project-header">
           <span class="project-name">${p.name}</span>
-          <span class="status-badge ${statusClass}">${p.status}</span>
+          <span class="status-badge ${statusClass[p.status] || "status-planned"}">${p.status}</span>
         </div>
         ${stack}
         <p class="project-desc">${p.description}</p>
-        ${githubLink}
-        ${demoLink}
+        ${projectLinks(p)}
       </div>
     `;
   }).join("");
 
   return section("Projects", projects);
 }
-
 
 function buildAwards(items) {
   if (!items.length) return "";
@@ -200,7 +131,6 @@ function buildAwards(items) {
   return section("Awards", awards);
 }
 
-
 function buildLanguages(items) {
   if (!items.length) return "";
 
@@ -213,9 +143,6 @@ function buildLanguages(items) {
   return section("Languages", `<div class="languages-list">${langs}</div>`);
 }
 
-
-// --- Utility: wrap content in a labelled section ----------------------------
-
 function section(title, content) {
   return `
     <section class="cv-section">
@@ -223,11 +150,4 @@ function section(title, content) {
       ${content}
     </section>
   `;
-}
-
-
-// --- PDF Export — native print (styled by @media print + @page) --------------
-
-function exportPDF() {
-  window.print();
 }

@@ -2,89 +2,62 @@ const express = require("express");
 const router = express.Router();
 const pool = require("../db");
 
-// Helper: runs a query and sends results as JSON.
-// Keeps each route clean — no repeated try/catch boilerplate.
-const query = async (res, sql, params = []) => {
+const send = async (res, run) => {
   try {
-    const result = await pool.query(sql, params);
-    res.json(result.rows);
+    res.json(await run());
   } catch (err) {
     console.error("DB query error:", err.message);
     res.status(500).json({ error: "Database error" });
   }
 };
 
-// GET /api/cv — full CV in one shot, useful for the frontend on load
-router.get("/", async (req, res) => {
-  try {
-    // Run all queries in parallel — faster than one by one
-    const [profile, experience, education, skills, projects, awards, languages] =
-      await Promise.all([
-        pool.query("SELECT * FROM profile LIMIT 1"),
-        pool.query("SELECT * FROM experience ORDER BY sort_order ASC"),
-        pool.query("SELECT * FROM education ORDER BY sort_order ASC"),
-        pool.query("SELECT * FROM skills ORDER BY category, sort_order ASC"),
-        pool.query("SELECT * FROM projects ORDER BY sort_order ASC"),
-        pool.query("SELECT * FROM awards ORDER BY sort_order ASC"),
-        pool.query("SELECT * FROM languages ORDER BY id ASC"),
-      ]);
+const rows = async (sql, params = []) => (await pool.query(sql, params)).rows;
 
-    res.json({
-      profile: profile.rows[0],
-      experience: experience.rows,
-      education: education.rows,
-      skills: skills.rows,
-      projects: projects.rows,
-      awards: awards.rows,
-      languages: languages.rows,
-    });
-  } catch (err) {
-    console.error("DB query error:", err.message);
-    res.status(500).json({ error: "Database error" });
-  }
-});
+// Full CV, or the curated subset for the 1-page resume (in_resume rows, short
+// project descriptions via COALESCE(resume_description, description)).
+const getCv = async (resumeOnly) => {
+  const experienceSql = resumeOnly
+    ? "SELECT * FROM experience WHERE in_resume = true ORDER BY sort_order ASC"
+    : "SELECT * FROM experience ORDER BY sort_order ASC";
 
-// GET /api/cv/resume — curated, compact subset for the 1-page resume.
-// Same shape as /api/cv, but only in_resume rows and short project descriptions.
-router.get("/resume", async (req, res) => {
-  try {
-    const [profile, experience, education, skills, projects, awards, languages] =
-      await Promise.all([
-        pool.query("SELECT * FROM profile LIMIT 1"),
-        pool.query("SELECT * FROM experience WHERE in_resume = true ORDER BY sort_order ASC"),
-        pool.query("SELECT * FROM education ORDER BY sort_order ASC"),
-        pool.query("SELECT * FROM skills ORDER BY category, sort_order ASC"),
-        pool.query(
-          "SELECT id, name, COALESCE(resume_description, description) AS description, " +
-          "tech_stack, status, github_url, demo_url, private_repo, sort_order " +
-          "FROM projects WHERE in_resume = true ORDER BY sort_order ASC"
-        ),
-        pool.query("SELECT * FROM awards ORDER BY sort_order ASC"),
-        pool.query("SELECT * FROM languages ORDER BY id ASC"),
-      ]);
+  const projectsSql = resumeOnly
+    ? "SELECT id, name, COALESCE(resume_description, description) AS description, " +
+      "tech_stack, status, github_url, demo_url, private_repo, sort_order " +
+      "FROM projects WHERE in_resume = true ORDER BY sort_order ASC"
+    : "SELECT * FROM projects ORDER BY sort_order ASC";
 
-    res.json({
-      profile: profile.rows[0],
-      experience: experience.rows,
-      education: education.rows,
-      skills: skills.rows,
-      projects: projects.rows,
-      awards: awards.rows,
-      languages: languages.rows,
-    });
-  } catch (err) {
-    console.error("DB query error:", err.message);
-    res.status(500).json({ error: "Database error" });
-  }
-});
+  const [profile, experience, education, skills, projects, awards, languages] =
+    await Promise.all([
+      rows("SELECT * FROM profile LIMIT 1"),
+      rows(experienceSql),
+      rows("SELECT * FROM education ORDER BY sort_order ASC"),
+      rows("SELECT * FROM skills ORDER BY category, sort_order ASC"),
+      rows(projectsSql),
+      rows("SELECT * FROM awards ORDER BY sort_order ASC"),
+      rows("SELECT * FROM languages ORDER BY id ASC"),
+    ]);
+
+  return {
+    profile: profile[0],
+    experience,
+    education,
+    skills,
+    projects,
+    awards,
+    languages,
+  };
+};
+
+router.get("/", (_req, res) => send(res, () => getCv(false)));
+router.get("/resume", (_req, res) => send(res, () => getCv(true)));
 
 // Individual section endpoints — handy for partial updates later
-router.get("/profile",    (req, res) => query(res, "SELECT * FROM profile LIMIT 1"));
-router.get("/experience", (req, res) => query(res, "SELECT * FROM experience ORDER BY sort_order ASC"));
-router.get("/education",  (req, res) => query(res, "SELECT * FROM education ORDER BY sort_order ASC"));
-router.get("/skills",     (req, res) => query(res, "SELECT * FROM skills ORDER BY category, sort_order ASC"));
-router.get("/projects",   (req, res) => query(res, "SELECT * FROM projects ORDER BY sort_order ASC"));
-router.get("/awards",     (req, res) => query(res, "SELECT * FROM awards ORDER BY sort_order ASC"));
-router.get("/languages",  (req, res) => query(res, "SELECT * FROM languages ORDER BY id ASC"));
+router.get("/profile",    (_req, res) => send(res, () => rows("SELECT * FROM profile LIMIT 1")));
+router.get("/experience", (_req, res) => send(res, () => rows("SELECT * FROM experience ORDER BY sort_order ASC")));
+router.get("/education",  (_req, res) => send(res, () => rows("SELECT * FROM education ORDER BY sort_order ASC")));
+router.get("/skills",     (_req, res) => send(res, () => rows("SELECT * FROM skills ORDER BY category, sort_order ASC")));
+router.get("/projects",   (_req, res) => send(res, () => rows("SELECT * FROM projects ORDER BY sort_order ASC")));
+router.get("/awards",     (_req, res) => send(res, () => rows("SELECT * FROM awards ORDER BY sort_order ASC")));
+router.get("/languages",  (_req, res) => send(res, () => rows("SELECT * FROM languages ORDER BY id ASC")));
 
 module.exports = router;
