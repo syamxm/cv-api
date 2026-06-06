@@ -61,7 +61,7 @@ function buildEducation(items) {
         <span class="entry-date">${formatDateRange(e.start_date, e.end_date)}</span>
       </div>
       <div class="entry-sub">${e.degree}${e.field ? ` in ${e.field}` : ""}${e.location ? ` · ${e.location}` : ""}</div>
-      ${e.gpa ? `<span class="entry-gpa">GPA ${e.gpa}</span>` : ""}
+      ${e.gpa ? `<span class="entry-gpa">CGPA ${e.gpa}</span>` : ""}
       ${e.achievements ? `<ul>${e.achievements.map(a => `<li>${a}</li>`).join("")}</ul>` : ""}
     </div>
   `).join("");

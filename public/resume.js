@@ -105,7 +105,7 @@ function buildEducation(items) {
           <span class="edu-place">${e.institution}</span>
           <span class="edu-date">${formatDateRange(e.start_date, e.end_date)}</span>
         </div>
-        <p class="edu-degree">${e.degree}${e.location ? ` · ${e.location}` : ""}</p>
+        <p class="edu-degree">${e.degree}${e.location ? ` · ${e.location}` : ""}${e.gpa ? ` · CGPA ${e.gpa}` : ""}</p>
         ${note ? `<p class="edu-note">${note}</p>` : ""}
       </div>
     `;
