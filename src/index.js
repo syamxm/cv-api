@@ -18,9 +18,9 @@ app.use(express.static(path.join(__dirname, "../public")));
 // All CV data lives under /api/cv
 app.use("/api/cv", cvRoutes);
 
-// Clean URL for the 1-page resume
-app.get("/resume", (req, res) => {
-  res.sendFile(path.join(__dirname, "../public/resume.html"));
+// Clean URL for the full CV (resume is the landing page at /)
+app.get("/cv", (req, res) => {
+  res.sendFile(path.join(__dirname, "../public/cv.html"));
 });
 
 // Catch-all: any unknown route gets the frontend (single-page behaviour)
