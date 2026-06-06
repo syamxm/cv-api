@@ -31,7 +31,7 @@ const getCv = async (resumeOnly) => {
       rows("SELECT * FROM profile LIMIT 1"),
       rows(experienceSql),
       rows("SELECT * FROM education ORDER BY sort_order ASC"),
-      rows("SELECT * FROM skills ORDER BY category, sort_order ASC"),
+      rows("SELECT * FROM skills ORDER BY category_order, sort_order ASC"),
       rows(projectsSql),
       rows("SELECT * FROM awards ORDER BY sort_order ASC"),
       rows("SELECT * FROM languages ORDER BY id ASC"),
@@ -55,7 +55,7 @@ router.get("/resume", (_req, res) => send(res, () => getCv(true)));
 router.get("/profile",    (_req, res) => send(res, () => rows("SELECT * FROM profile LIMIT 1")));
 router.get("/experience", (_req, res) => send(res, () => rows("SELECT * FROM experience ORDER BY sort_order ASC")));
 router.get("/education",  (_req, res) => send(res, () => rows("SELECT * FROM education ORDER BY sort_order ASC")));
-router.get("/skills",     (_req, res) => send(res, () => rows("SELECT * FROM skills ORDER BY category, sort_order ASC")));
+router.get("/skills",     (_req, res) => send(res, () => rows("SELECT * FROM skills ORDER BY category_order, sort_order ASC")));
 router.get("/projects",   (_req, res) => send(res, () => rows("SELECT * FROM projects ORDER BY sort_order ASC")));
 router.get("/awards",     (_req, res) => send(res, () => rows("SELECT * FROM awards ORDER BY sort_order ASC")));
 router.get("/languages",  (_req, res) => send(res, () => rows("SELECT * FROM languages ORDER BY id ASC")));
