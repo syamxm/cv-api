@@ -30,7 +30,7 @@ INSERT INTO profile (name, title, location, email, phone, github, summary) VALUE
   'Computer Science Student · Junior Developer · DevOps Enthusiast',
   'Shah Alam, Selangor, Malaysia',
   'ahmadsyamim200@gmail.com',
-  '+60 1X-XXXX XXXX',
+  '+60 0177967290',
   'https://github.com/syamxm',
   'Computer Science student at UiTM Shah Alam with hands-on DevOps experience through a self-hosted production server running Docker, Tailscale, and automated security hardening. Builds open-source projects across Android, web, and backend. Available for a 14-week internship from 7th September to 11th December 2026.'
 );
