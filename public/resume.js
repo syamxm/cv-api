@@ -30,6 +30,7 @@ function buildHeader(p) {
       </div>
       <div class="header-right">
         <span>${p.location}</span>
+        <a href="tel:${p.phone}">${p.phone}</a>
         <a href="mailto:${p.email}">${p.email}</a>
         <a href="${p.github}" target="_blank">${p.github}</a>
         <span class="availability">Available for 14-week internship</span>

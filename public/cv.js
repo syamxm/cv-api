@@ -22,6 +22,7 @@ function buildHeader(p) {
       <p class="cv-title">${p.title}</p>
       <div class="cv-contacts">
         <span>${p.location}</span>
+        <a href="tel:${p.phone}">${p.phone}</a>
         <a href="mailto:${p.email}">${p.email}</a>
         <a href="${p.github}" target="_blank">${p.github}</a>
       </div>

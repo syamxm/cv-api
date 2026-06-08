@@ -20,15 +20,17 @@ CREATE TABLE profile (
   title     TEXT NOT NULL,         -- the line that sits under your name
   location  TEXT,
   email     TEXT,
+  phone     TEXT,
   github    TEXT,
   summary   TEXT                   -- your short pitch, a sentence or two
 );
 
-INSERT INTO profile (name, title, location, email, github, summary) VALUES (
+INSERT INTO profile (name, title, location, email, phone, github, summary) VALUES (
   'Ahmad Syamim',
   'Computer Science Student · Junior Developer · DevOps Enthusiast',
   'Shah Alam, Selangor, Malaysia',
   'ahmadsyamim200@gmail.com',
+  '+60 1X-XXXX XXXX',
   'https://github.com/syamxm',
   'Computer Science student at UiTM Shah Alam with hands-on DevOps experience through a self-hosted production server running Docker, Tailscale, and automated security hardening. Builds open-source projects across Android, web, and backend. Available for a 14-week internship from 7th September to 11th December 2026.'
 );
