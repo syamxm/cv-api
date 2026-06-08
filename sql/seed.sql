@@ -73,7 +73,8 @@ INSERT INTO experience (company, role, location, start_date, end_date, bullets, 
   'April 2021',
   'July 2021',
   ARRAY[
-    'Balanced 15+ hours/week of part-time crew work alongside a full-time Foundation semester',
+    'Balanced 15+ hours/week of part-time crew work',
+    'Handled high-volume peak operations with a three-person team, supporting continuous customer service from early morning to late-night closing while maintaining order accuracy, speed, and professionalism.',
     'Coordinated with team members to keep daily operations running during peak hours'
   ],
   2,
