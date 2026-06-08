@@ -102,9 +102,9 @@ INSERT INTO education (institution, degree, field, location, start_date, end_dat
   'Bachelor of Computer Science (Honours)',
   NULL,
   'Shah Alam, Selangor',
-  'March 2023',
+  'October 2023',
   'Expected March 2027',
-  '3.6',
+  '3.66',
   ARRAY[
     'Dean''s List every semester',
     'Final Year Project: C-Aegis, Android parental monitoring app'
