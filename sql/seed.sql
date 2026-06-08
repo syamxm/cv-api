@@ -60,7 +60,7 @@ INSERT INTO experience (company, role, location, start_date, end_date, bullets, 
   'May 2025',
   'May 2025',
   ARRAY[
-    'Supervised an exam hall of 20+ students independently — managed seating, distributed materials, and maintained order throughout'
+    'Supervised an exam hall of 20+ students independently, managed seating, distributed materials, and maintained order throughout'
   ],
   1,
   true
