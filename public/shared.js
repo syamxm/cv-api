@@ -44,3 +44,30 @@ function projectLinks(p) {
 function exportPDF() {
   window.print();
 }
+
+// Secret theme: type "vibe-code" anywhere to toggle Catppuccin Mocha.
+(function secretTheme() {
+  const CODE = "vibe-code";
+  const KEY = "cv-theme";
+
+  function apply(on) {
+    document.body.classList.toggle("theme-mocha", on);
+  }
+
+  apply(localStorage.getItem(KEY) === "mocha");
+
+  let buffer = "";
+  document.addEventListener("keydown", e => {
+    const tag = document.activeElement?.tagName;
+    if (tag === "INPUT" || tag === "TEXTAREA") return;
+    if (e.key.length !== 1) return;
+
+    buffer = (buffer + e.key.toLowerCase()).slice(-CODE.length);
+    if (buffer === CODE) {
+      const on = !document.body.classList.contains("theme-mocha");
+      apply(on);
+      localStorage.setItem(KEY, on ? "mocha" : "light");
+      buffer = "";
+    }
+  });
+})();
