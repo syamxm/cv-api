@@ -18,6 +18,18 @@
   --gutter:     48px;
 }
 
+/* Secret "vibe-code" theme — Catppuccin Mocha */
+body.theme-mocha {
+  --paper:       #181825;   /* mantle — page ground */
+  --sheet:       #1e1e2e;   /* base — the card */
+  --ink:         #cdd6f4;   /* text */
+  --mid:         #a6adc8;   /* subtext0 */
+  --faint:       #6c7086;   /* overlay0 */
+  --rule:        #313244;   /* surface0 */
+  --accent:      #fab387;   /* peach */
+  --accent-soft: #45475a;   /* surface1 */
+}
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
