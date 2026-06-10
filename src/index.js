@@ -1,15 +1,13 @@
 require("dotenv").config();
 
 const express = require("express");
-const cors = require("cors");
 const path = require("path");
 const cvRoutes = require("./routes/cv");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Allow the frontend (served separately or from same origin) to call the API
-app.use(cors());
+app.disable("x-powered-by");
 app.use(express.json());
 
 // Serve static frontend assets from /public
