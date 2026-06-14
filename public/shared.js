@@ -45,6 +45,8 @@ function exportPDF() {
   window.print();
 }
 
+document.getElementById("export-btn")?.addEventListener("click", exportPDF);
+
 // Secret theme: type "vibe-code" anywhere to toggle Catppuccin Mocha.
 (function secretTheme() {
   const CODE = "vibe-code";

@@ -1,5 +1,5 @@
 /* Tuned to fit exactly one A4 page. If it overflows: trim a project line. */
-@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300..700;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('fonts.css');
 
 :root {
   --paper:       #efeae0;
