@@ -51,9 +51,10 @@ function buildExperience(items) {
     return `
       <div class="entry entry-compact">
         <div class="entry-header">
-          <span class="entry-role">${e.role} · ${e.company}</span>
+          <span class="entry-role">${e.role} — ${e.company}</span>
           <span class="entry-date">${formatDateRange(e.start_date, e.end_date)}</span>
         </div>
+        ${e.location ? `<div class="entry-sub">${e.location}</div>` : ""}
         ${bullet ? `<ul class="entry-bullets"><li>${bullet}</li></ul>` : ""}
       </div>
     `;
