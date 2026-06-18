@@ -128,7 +128,7 @@ function buildSkills(items, languages) {
 
   const langGroup = languages && languages.length
     ? `<div class="skill-group">
-         <h3>Languages</h3>
+         <h3>Spoken Languages</h3>
          <p>${languages.map(l => `${l.name} (${l.level})`).join(", ")}</p>
        </div>`
     : "";

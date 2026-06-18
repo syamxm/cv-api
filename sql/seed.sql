@@ -30,7 +30,7 @@ INSERT INTO profile (name, title, location, email, phone, github, summary) VALUE
   'Computer Science Student · DevSecOps & Infrastructure',
   'Shah Alam, Selangor, Malaysia',
   'ahmadsyamim200@gmail.com',
-  '+60 17 796 7290',
+  '+60177967290',
   'https://github.com/syamxm',
   'Computer Science (Hons) student at UiTM Shah Alam, focused on DevSecOps and self-hosted infrastructure. Available for a 14-week internship from 7 September to 11 December 2026.'
 );
@@ -121,7 +121,7 @@ INSERT INTO education (institution, degree, field, location, start_date, end_dat
   'Dengkil, Selangor',
   'August 2021',
   'July 2022',
-  NULL,
+  '3.81',
   ARRAY[
     'Top 10% of faculty cohort',
     'Ranked 1st in cohort during 2nd semester'
@@ -188,15 +188,15 @@ INSERT INTO skills (category, category_order, name, sort_order) VALUES
 ('Frameworks & Tools', 3, 'JWT Authentication',  10),
 ('Frameworks & Tools', 3, 'MERN Stack',          11),
 
--- Languages
-('Languages', 4, 'JavaScript', 1),
-('Languages', 4, 'Python',     2),
-('Languages', 4, 'Java',       3),
-('Languages', 4, 'Kotlin',     4),
-('Languages', 4, 'Dart',       5),
-('Languages', 4, 'SQL',        6),
-('Languages', 4, 'Bash',       7),
-('Languages', 4, 'HTML / CSS', 8);
+-- Programming Languages
+('Programming Languages', 4,'JavaScript', 1),
+('Programming Languages', 4,'Python',     2),
+('Programming Languages', 4,'Java',       3),
+('Programming Languages', 4,'Kotlin',     4),
+('Programming Languages', 4,'Dart',       5),
+('Programming Languages', 4,'SQL',        6),
+('Programming Languages', 4,'Bash',       7),
+('Programming Languages', 4,'HTML / CSS', 8);
 
 
 -- -----------------------------------------------------------------------------
