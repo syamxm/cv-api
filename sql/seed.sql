@@ -27,12 +27,12 @@ CREATE TABLE profile (
 
 INSERT INTO profile (name, title, location, email, phone, github, summary) VALUES (
   'Ahmad Syamim',
-  'Computer Science Student · Junior Developer · DevOps Enthusiast',
+  'Computer Science Student · DevSecOps & Infrastructure',
   'Shah Alam, Selangor, Malaysia',
   'ahmadsyamim200@gmail.com',
   '+60 0177967290',
   'https://github.com/syamxm',
-  'Computer Science student at UiTM Shah Alam with hands-on DevOps experience through a self-hosted production server running Docker, Tailscale, and automated security hardening. Builds open-source projects across Android, web, and backend. Available for a 14-week internship from 7th September to 11th December 2026.'
+  'Computer Science student at UiTM Shah Alam focused on DevSecOps and infrastructure. Runs a self-hosted production server on Docker, Tailscale, and layered network security, and builds projects with security-gated CI/CD pipelines, automated vulnerability scanning, and hardened containers. Available for a 14-week internship from 7 September to 11 December 2026.'
 );
 
 
@@ -162,28 +162,38 @@ INSERT INTO skills (category, category_order, name, sort_order) VALUES
 ('Infrastructure & DevOps', 1, 'Cloudflare',                                            7),
 ('Infrastructure & DevOps', 1, 'Git / GitHub',                                          8),
 
+-- Security & DevSecOps
+('Security & DevSecOps', 2, 'Nmap',                  1),
+('Security & DevSecOps', 2, 'SAST (Semgrep)',        2),
+('Security & DevSecOps', 2, 'DAST (OWASP ZAP)',      3),
+('Security & DevSecOps', 2, 'Trivy (SCA/Image/IaC)', 4),
+('Security & DevSecOps', 2, 'Gitleaks',              5),
+('Security & DevSecOps', 2, 'Hadolint',              6),
+('Security & DevSecOps', 2, 'SBOM (CycloneDX)',      7),
+('Security & DevSecOps', 2, 'Dependabot',            8),
+
 -- Frameworks & Tools
-('Frameworks & Tools', 2, 'Express.js / Node.js', 1),
-('Frameworks & Tools', 2, 'FastAPI',              2),
-('Frameworks & Tools', 2, 'React',                3),
-('Frameworks & Tools', 2, 'PostgreSQL',           4),
-('Frameworks & Tools', 2, 'MongoDB',              5),
-('Frameworks & Tools', 2, 'Flutter',              6),
-('Frameworks & Tools', 2, 'Android',              7),
-('Frameworks & Tools', 2, 'Firebase',             8),
-('Frameworks & Tools', 2, 'REST API Design',      9),
-('Frameworks & Tools', 2, 'JWT Authentication',  10),
-('Frameworks & Tools', 2, 'MERN Stack',          11),
+('Frameworks & Tools', 3, 'Express.js / Node.js', 1),
+('Frameworks & Tools', 3, 'FastAPI',              2),
+('Frameworks & Tools', 3, 'React',                3),
+('Frameworks & Tools', 3, 'PostgreSQL',           4),
+('Frameworks & Tools', 3, 'MongoDB',              5),
+('Frameworks & Tools', 3, 'Flutter',              6),
+('Frameworks & Tools', 3, 'Android',              7),
+('Frameworks & Tools', 3, 'Firebase',             8),
+('Frameworks & Tools', 3, 'REST API Design',      9),
+('Frameworks & Tools', 3, 'JWT Authentication',  10),
+('Frameworks & Tools', 3, 'MERN Stack',          11),
 
 -- Languages
-('Languages', 3, 'JavaScript', 1),
-('Languages', 3, 'Python',     2),
-('Languages', 3, 'Java',       3),
-('Languages', 3, 'Kotlin',     4),
-('Languages', 3, 'Dart',       5),
-('Languages', 3, 'SQL',        6),
-('Languages', 3, 'Bash',       7),
-('Languages', 3, 'HTML / CSS', 8);
+('Languages', 4, 'JavaScript', 1),
+('Languages', 4, 'Python',     2),
+('Languages', 4, 'Java',       3),
+('Languages', 4, 'Kotlin',     4),
+('Languages', 4, 'Dart',       5),
+('Languages', 4, 'SQL',        6),
+('Languages', 4, 'Bash',       7),
+('Languages', 4, 'HTML / CSS', 8);
 
 
 -- -----------------------------------------------------------------------------
@@ -207,15 +217,15 @@ CREATE TABLE projects (
 INSERT INTO projects (name, description, tech_stack, status, github_url, demo_url, private_repo, sort_order, in_resume, resume_description) VALUES
 (
   'Debian Homeserver',
-  'Built a self-hosted Debian homeserver running 5+ Dockerised services behind layered network security (UFW, Fail2ban, CrowdSec), with a Tailscale VPN for private remote access and a Cloudflare Tunnel publishing select services on a custom domain — zero open inbound ports, zero cloud cost. Hosts self-hosted tools including Vaultwarden for password management, kept current via automated unattended upgrades.',
-  ARRAY['Debian Linux', 'Docker', 'UFW', 'Fail2ban', 'CrowdSec', 'Tailscale', 'Cloudflare', 'Vaultwarden', 'Bash'],
+  'Self-hosted Debian homeserver running 8+ Dockerised services behind layered network security (UFW, Fail2ban, CrowdSec), a Tailscale VPN for private remote access, and a Cloudflare Tunnel publishing select services on a custom domain with zero open inbound ports. A hardened Nginx reverse proxy fronts every service with per-domain routing, security headers (HSTS, CSP, referrer and permissions policies), real-IP detection, and WebSocket support. Hosts tools including Vaultwarden for password management, kept current with automated unattended upgrades.',
+  ARRAY['Debian Linux', 'Docker', 'Nginx', 'UFW', 'Fail2ban', 'CrowdSec', 'Tailscale', 'Cloudflare', 'Vaultwarden', 'Bash'],
   'Maintained',
   'https://github.com/syamxm',
   NULL,
   false,
   1,
   true,
-  'Self-hosted Debian server: 5+ Dockerised services, layered security (UFW/Fail2ban/CrowdSec), Tailscale + Cloudflare Tunnel, zero cloud cost.'
+  'Self-hosted Debian server: 8+ Dockerised services behind a hardened Nginx reverse proxy (CSP, HSTS), layered network security (UFW, Fail2ban, CrowdSec), Tailscale and Cloudflare Tunnel, zero cloud cost.'
 ),
 (
   'Final Year Project - C-Aegis',
@@ -225,7 +235,7 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
   NULL,
   NULL,
   true,
-  2,
+  4,
   true,
   'Android parental monitoring app: parent/child dashboard, real-time geofence alerts (Radar API), tamper-resistant usage enforcement (Device Admin + AccessibilityService).'
 ),
@@ -237,7 +247,7 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
   NULL,
   NULL,
   true,
-  3,
+  6,
   false,
   NULL
 ),
@@ -249,21 +259,21 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
   'https://github.com/syamxm/student_reminder_system',
   NULL,
   false,
-  4,
+  5,
   true,
   'Flutter timetable + push-notification app for UiTM students; FastAPI + Redis backend, Dockerised on a self-hosted Debian server.'
 ),
 (
   'TaskFlow',
-  'Built a full-stack task manager with per-project Kanban boards (Todo / In Progress / Done), JWT authentication, priorities, due dates, and progress tracking. MERN stack with Vite + Tailwind on the frontend, fully Dockerised behind an Nginx reverse proxy and self-hosted.',
-  ARRAY['MongoDB', 'Express', 'React', 'Node.js', 'Vite', 'Tailwind CSS', 'Nginx', 'JWT', 'Docker'],
-  'Complete',
+  'Self-hosted MERN task manager with a security-gated CI/CD pipeline. Reusable GitHub Actions workflows run 8 automated scanners that block deploy on HIGH or CRITICAL findings: Gitleaks for secrets, Semgrep for SAST, npm audit and Trivy for dependencies, Hadolint and Trivy config for Dockerfiles and IaC, Trivy image scanning with CycloneDX SBOMs, and an OWASP ZAP DAST baseline. Application security covers JWT (HS256), httpOnly and SameSite cookies, bcrypt password hashing, AES-256-GCM encryption of GitHub tokens at rest, MongoDB-backed per-route rate limiting, input validation, and owner-scoped authorization. Containers run non-root on Alpine across isolated Docker networks behind a hardened Nginx reverse proxy, with Dependabot keeping dependencies and base images current. The app provides per-project Kanban boards, priorities, due dates, and GitHub repo integration.',
+  ARRAY['MongoDB', 'Express', 'React', 'Node.js', 'Docker', 'Nginx', 'GitHub Actions', 'Semgrep', 'Trivy', 'Gitleaks', 'Hadolint', 'OWASP ZAP', 'JWT', 'AES-256-GCM'],
+  'Maintained',
   'https://github.com/syamxm/taskflow',
   'https://taskflow.syamxm.com',
   false,
-  5,
+  2,
   true,
-  'Full-stack MERN task manager: per-project Kanban, JWT auth, Nginx reverse proxy, Dockerised and self-hosted.'
+  'MERN task manager with a security-gated CI/CD pipeline: 8 scanners (Gitleaks, Semgrep, Trivy, Hadolint, OWASP ZAP) block deploy on HIGH or CRITICAL findings. Non-root containers, per-route rate limiting, JWT auth.'
 ),
 (
   'cv-api',
@@ -273,7 +283,7 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
   'https://github.com/syamxm/cv-api',
   'https://cv.syamxm.com',
   false,
-  6,
+  3,
   true,
   'Data-driven CV + resume from a PostgreSQL REST API (Node/Express); GitHub Actions CI/CD over Tailscale + SSH, public via a Cloudflare Tunnel.'
 ),
@@ -285,7 +295,7 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
   'https://github.com/syamxm/enigma-java',
   NULL,
   false,
-  9,
+  7,
   false,
   NULL
 );
@@ -301,11 +311,9 @@ CREATE TABLE awards (
   sort_order  INT DEFAULT 0
 );
 
-INSERT INTO awards (title, description, sort_order) VALUES
-('Dean''s List, Every Semester',       'Maintained a CGPA of 3.6 every semester throughout Bachelor''s degree at UiTM Shah Alam.', 1),
-('SPM, 8A out of 9 Subjects',          'Achieved 8 distinctions in the Malaysian Certificate of Education (SPM).', 2),
-('Foundation Top 10%, UiTM Dengkil',   'Ranked in the top 10% of the Engineering faculty cohort.', 3),
-('Foundation 1st Place, 2nd Semester', 'Achieved 1st place in cohort rankings during the 2nd semester of Foundation in Engineering.', 4);
+-- Awards intentionally empty: these honors live under Education (with dates and
+-- context), so a separate Awards section would just repeat them. The resume and CV
+-- hide the section when there are no rows.
 
 
 -- -----------------------------------------------------------------------------
