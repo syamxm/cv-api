@@ -13,8 +13,9 @@ function buildResume(data) {
       </div>
       <div class="col-right">
         ${buildEducation(data.education)}
-        ${buildSkills(data.skills, data.languages)}
+        ${buildSkills(data.skills)}
         ${buildAwards(data.awards)}
+        ${buildSpokenLanguages(data.languages)}
       </div>
     </div>
   `;
@@ -115,7 +116,7 @@ function buildEducation(items) {
   return section("Education", entries);
 }
 
-function buildSkills(items, languages) {
+function buildSkills(items) {
   if (!items.length) return "";
 
   const groups = Object.entries(groupByCategory(items)).map(([cat, names]) => `
@@ -125,14 +126,17 @@ function buildSkills(items, languages) {
     </div>
   `).join("");
 
-  const langGroup = languages && languages.length
-    ? `<div class="skill-group">
-         <h3>Spoken Languages</h3>
-         <p>${languages.map(l => `${l.name} (${l.level})`).join(", ")}</p>
-       </div>`
-    : "";
+  return section("Skills", groups);
+}
 
-  return section("Skills", groups + langGroup);
+function buildSpokenLanguages(items) {
+  if (!items.length) return "";
+
+  const langs = items
+    .map(l => `<li>${l.name} <span class="lang-level">(${l.level})</span></li>`)
+    .join("");
+
+  return section("Spoken Languages", `<ul class="awards-list">${langs}</ul>`);
 }
 
 function buildAwards(items) {
