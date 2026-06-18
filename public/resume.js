@@ -32,7 +32,6 @@ function buildHeader(p) {
         <a href="tel:${p.phone}">${p.phone}</a>
         <a href="mailto:${p.email}">${p.email}</a>
         <a href="${p.github}" target="_blank">${p.github}</a>
-        <span class="availability">Available for 14-week internship</span>
       </div>
     </header>
   `;
@@ -128,7 +127,7 @@ function buildSkills(items, languages) {
 
   const langGroup = languages && languages.length
     ? `<div class="skill-group">
-         <h3>Languages</h3>
+         <h3>Spoken Languages</h3>
          <p>${languages.map(l => `${l.name} (${l.level})`).join(", ")}</p>
        </div>`
     : "";

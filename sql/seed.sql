@@ -1,28 +1,17 @@
--- =============================================================================
--- CV database: schema + all the content for the site.
--- Ahmad Syamim | ahmadsyamim200@gmail.com | github.com/syamxm
---
--- Want to change something? Edit the INSERTs below and re-seed,
--- or just run an UPDATE straight against the running container.
--- =============================================================================
+-- CV database: schema and seed data. Edit the INSERTs and re-seed.
 
-
--- Start clean: drop these tables so a re-seed rebuilds them from scratch
 DROP TABLE IF EXISTS languages, awards, projects, skills, education, experience, profile CASCADE;
 
 
--- -----------------------------------------------------------------------------
--- PROFILE — just you. One row holding the name, headline and blurb up top.
--- -----------------------------------------------------------------------------
 CREATE TABLE profile (
   id        SERIAL PRIMARY KEY,
   name      TEXT NOT NULL,
-  title     TEXT NOT NULL,         -- the line that sits under your name
+  title     TEXT NOT NULL,
   location  TEXT,
   email     TEXT,
   phone     TEXT,
   github    TEXT,
-  summary   TEXT                   -- your short pitch, a sentence or two
+  summary   TEXT
 );
 
 INSERT INTO profile (name, title, location, email, phone, github, summary) VALUES (
@@ -30,27 +19,23 @@ INSERT INTO profile (name, title, location, email, phone, github, summary) VALUE
   'Computer Science Student · DevSecOps & Infrastructure',
   'Shah Alam, Selangor, Malaysia',
   'ahmadsyamim200@gmail.com',
-  '+60 17 796 7290',
+  '+60177967290',
   'https://github.com/syamxm',
   'Computer Science (Hons) student at UiTM Shah Alam, focused on DevSecOps and self-hosted infrastructure. Available for a 14-week internship from 7 September to 11 December 2026.'
 );
 
 
--- -----------------------------------------------------------------------------
--- EXPERIENCE — where you've worked, newest first.
--- sort_order decides what shows up top
--- -----------------------------------------------------------------------------
 CREATE TABLE experience (
   id          SERIAL PRIMARY KEY,
   company     TEXT NOT NULL,
   role        TEXT NOT NULL,
   location    TEXT,
-  start_date  TEXT NOT NULL,        -- plain text so it reads nicely, e.g. "March 2021"
-  end_date    TEXT,                 -- leave NULL if you're still there
-  bullets     TEXT[],               -- the points listed under each role
-  resume_bullet TEXT,               -- one compressed bullet for the resume; falls back to bullets[0]
+  start_date  TEXT NOT NULL,
+  end_date    TEXT,
+  bullets     TEXT[],
+  resume_bullet TEXT,
   sort_order  INT DEFAULT 0,
-  in_resume   BOOLEAN DEFAULT false -- show this on the one-page resume
+  in_resume   BOOLEAN DEFAULT false
 );
 
 INSERT INTO experience (company, role, location, start_date, end_date, bullets, resume_bullet, sort_order, in_resume) VALUES
@@ -83,9 +68,6 @@ INSERT INTO experience (company, role, location, start_date, end_date, bullets, 
 );
 
 
--- -----------------------------------------------------------------------------
--- EDUCATION — schools and degrees, newest first.
--- -----------------------------------------------------------------------------
 CREATE TABLE education (
   id          SERIAL PRIMARY KEY,
   institution TEXT NOT NULL,
@@ -93,8 +75,8 @@ CREATE TABLE education (
   field       TEXT,
   location    TEXT,
   start_date  TEXT NOT NULL,
-  end_date    TEXT,                 -- use "Expected ..." while it's still ongoing
-  gpa         TEXT,                 
+  end_date    TEXT,
+  gpa         TEXT,
   achievements TEXT[],
   sort_order  INT DEFAULT 0
 );
@@ -121,7 +103,7 @@ INSERT INTO education (institution, degree, field, location, start_date, end_dat
   'Dengkil, Selangor',
   'August 2021',
   'July 2022',
-  NULL,
+  '3.81',
   ARRAY[
     'Top 10% of faculty cohort',
     'Ranked 1st in cohort during 2nd semester'
@@ -143,19 +125,15 @@ INSERT INTO education (institution, degree, field, location, start_date, end_dat
 );
 
 
--- -----------------------------------------------------------------------------
--- SKILLS — grouped by category so they sit in neat columns.
--- -----------------------------------------------------------------------------
 CREATE TABLE skills (
   id             SERIAL PRIMARY KEY,
-  category       TEXT NOT NULL,        -- the column header, e.g. "Infrastructure & DevOps"
-  category_order INT DEFAULT 0,        -- which category column comes first
+  category       TEXT NOT NULL,
+  category_order INT DEFAULT 0,
   name           TEXT NOT NULL,
-  sort_order     INT DEFAULT 0         -- order within the category
+  sort_order     INT DEFAULT 0
 );
 
 INSERT INTO skills (category, category_order, name, sort_order) VALUES
--- Infrastructure & DevOps — deployable now, leads the section
 ('Infrastructure & DevOps', 1, 'Docker',                                                1),
 ('Infrastructure & DevOps', 1, 'Linux',                                                 2),
 ('Infrastructure & DevOps', 1, 'CI/CD (GitHub Actions)',                                3),
@@ -165,7 +143,6 @@ INSERT INTO skills (category, category_order, name, sort_order) VALUES
 ('Infrastructure & DevOps', 1, 'Cloudflare',                                            7),
 ('Infrastructure & DevOps', 1, 'Git / GitHub',                                          8),
 
--- Security & DevSecOps
 ('Security & DevSecOps', 2, 'Nmap',                  1),
 ('Security & DevSecOps', 2, 'SAST (Semgrep)',        2),
 ('Security & DevSecOps', 2, 'DAST (OWASP ZAP)',      3),
@@ -175,7 +152,6 @@ INSERT INTO skills (category, category_order, name, sort_order) VALUES
 ('Security & DevSecOps', 2, 'SBOM (CycloneDX)',      7),
 ('Security & DevSecOps', 2, 'Dependabot',            8),
 
--- Frameworks & Tools
 ('Frameworks & Tools', 3, 'Express.js / Node.js', 1),
 ('Frameworks & Tools', 3, 'FastAPI',              2),
 ('Frameworks & Tools', 3, 'React',                3),
@@ -188,33 +164,28 @@ INSERT INTO skills (category, category_order, name, sort_order) VALUES
 ('Frameworks & Tools', 3, 'JWT Authentication',  10),
 ('Frameworks & Tools', 3, 'MERN Stack',          11),
 
--- Languages
-('Languages', 4, 'JavaScript', 1),
-('Languages', 4, 'Python',     2),
-('Languages', 4, 'Java',       3),
-('Languages', 4, 'Kotlin',     4),
-('Languages', 4, 'Dart',       5),
-('Languages', 4, 'SQL',        6),
-('Languages', 4, 'Bash',       7),
-('Languages', 4, 'HTML / CSS', 8);
+('Languages', 4,'JavaScript', 1),
+('Languages', 4,'Python',     2),
+('Languages', 4,'Java',       3),
+('Languages', 4,'Kotlin',     4),
+('Languages', 4,'Dart',       5),
+('Languages', 4,'SQL',        6),
+('Languages', 4,'Bash',       7),
+('Languages', 4,'HTML / CSS', 8);
 
 
--- -----------------------------------------------------------------------------
--- PROJECTS — the things you've built, personal and uni.
--- status: "Complete" | "Maintained" | "In Development" | "Planned"
--- -----------------------------------------------------------------------------
 CREATE TABLE projects (
   id          SERIAL PRIMARY KEY,
   name        TEXT NOT NULL,
-  description TEXT NOT NULL,         -- the full write-up shown on the CV
-  tech_stack  TEXT[],               -- what you built it with
+  description TEXT NOT NULL,
+  tech_stack  TEXT[],
   status      TEXT DEFAULT 'Complete',
-  github_url  TEXT,                 -- leave NULL if it's private or not on GitHub
-  demo_url    TEXT,                 -- live link, if it's deployed somewhere
-  private_repo BOOLEAN DEFAULT false, -- shows the "Private repo" tag when there's no public link
+  github_url  TEXT,
+  demo_url    TEXT,
+  private_repo BOOLEAN DEFAULT false,
   sort_order  INT DEFAULT 0,
-  in_resume   BOOLEAN DEFAULT false, -- show this on the one-page resume
-  resume_description TEXT            -- a tighter one-liner for the resume
+  in_resume   BOOLEAN DEFAULT false,
+  resume_description TEXT
 );
 
 INSERT INTO projects (name, description, tech_stack, status, github_url, demo_url, private_repo, sort_order, in_resume, resume_description) VALUES
@@ -304,9 +275,6 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
 );
 
 
--- -----------------------------------------------------------------------------
--- AWARDS — wins worth showing off.
--- -----------------------------------------------------------------------------
 CREATE TABLE awards (
   id          SERIAL PRIMARY KEY,
   title       TEXT NOT NULL,
@@ -314,14 +282,9 @@ CREATE TABLE awards (
   sort_order  INT DEFAULT 0
 );
 
--- Awards intentionally empty: these honors live under Education (with dates and
--- context), so a separate Awards section would just repeat them. The resume and CV
--- hide the section when there are no rows.
+-- no awards: honors are listed under education
 
 
--- -----------------------------------------------------------------------------
--- LANGUAGES — the ones you speak.
--- -----------------------------------------------------------------------------
 CREATE TABLE languages (
   id    SERIAL PRIMARY KEY,
   name  TEXT NOT NULL,
