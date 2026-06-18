@@ -46,14 +46,18 @@ function buildSummary(p) {
 function buildExperience(items) {
   if (!items.length) return "";
 
-  const entries = items.map(e => `
-    <div class="entry entry-compact">
-      <div class="entry-header">
-        <span class="entry-role">${e.role} · ${e.company}</span>
-        <span class="entry-date">${formatDateRange(e.start_date, e.end_date)}</span>
+  const entries = items.map(e => {
+    const bullet = e.resume_bullet || (e.bullets && e.bullets[0]);
+    return `
+      <div class="entry entry-compact">
+        <div class="entry-header">
+          <span class="entry-role">${e.role} · ${e.company}</span>
+          <span class="entry-date">${formatDateRange(e.start_date, e.end_date)}</span>
+        </div>
+        ${bullet ? `<ul class="entry-bullets"><li>${bullet}</li></ul>` : ""}
       </div>
-    </div>
-  `).join("");
+    `;
+  }).join("");
 
   return section("Experience", entries);
 }
