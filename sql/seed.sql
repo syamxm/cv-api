@@ -53,7 +53,7 @@ INSERT INTO experience (company, role, location, start_date, end_date, bullets, 
   ],
   NULL,
   1,
-  false
+  true
 ),
 (
   'Subway',
