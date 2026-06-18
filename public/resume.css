@@ -262,6 +262,7 @@ body > * { position: relative; z-index: 1; }
 .project-link:hover { text-decoration: underline; }
 
 .entry { margin-bottom: 8px; }
+.entry-compact { margin-bottom: 5px; }
 
 .entry-header {
   display: flex;

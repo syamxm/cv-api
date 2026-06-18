@@ -30,9 +30,9 @@ INSERT INTO profile (name, title, location, email, phone, github, summary) VALUE
   'Computer Science Student · DevSecOps & Infrastructure',
   'Shah Alam, Selangor, Malaysia',
   'ahmadsyamim200@gmail.com',
-  '+60 0177967290',
+  '+60 17 796 7290',
   'https://github.com/syamxm',
-  'Computer Science student at UiTM Shah Alam focused on DevSecOps and infrastructure. Runs a self-hosted production server on Docker, Tailscale, and layered network security, and builds projects with security-gated CI/CD pipelines, automated vulnerability scanning, and hardened containers. Available for a 14-week internship from 7 September to 11 December 2026.'
+  'Computer Science (Hons) student at UiTM Shah Alam, focused on DevSecOps and self-hosted infrastructure. Available for a 14-week internship from 7 September to 11 December 2026.'
 );
 
 
@@ -225,7 +225,7 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
   false,
   1,
   true,
-  'Self-hosted Debian server: 8+ Dockerised services behind a hardened Nginx reverse proxy (CSP, HSTS), layered network security (UFW, Fail2ban, CrowdSec), Tailscale and Cloudflare Tunnel, zero cloud cost.'
+  'Self-hosted Debian server running 8+ Dockerised services behind a hardened Nginx reverse proxy and layered network security, with private VPN access and a Cloudflare Tunnel exposing zero inbound ports.'
 ),
 (
   'Final Year Project - C-Aegis',
@@ -237,7 +237,7 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
   true,
   4,
   true,
-  'Android parental monitoring app: parent/child dashboard, real-time geofence alerts (Radar API), tamper-resistant usage enforcement (Device Admin + AccessibilityService).'
+  'Android parental monitoring app (Final Year Project): parent/child dashboard, real-time geofence alerts, and tamper-resistant app-usage enforcement.'
 ),
 (
   'Family Monitor',
@@ -261,7 +261,7 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
   false,
   5,
   true,
-  'Flutter timetable + push-notification app for UiTM students; FastAPI + Redis backend, Dockerised on a self-hosted Debian server.'
+  'Flutter timetable and push-notification app for UiTM students, backed by a Dockerised FastAPI service.'
 ),
 (
   'TaskFlow',
@@ -273,7 +273,7 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
   false,
   2,
   true,
-  'MERN task manager with a security-gated CI/CD pipeline: 8 scanners (Gitleaks, Semgrep, Trivy, Hadolint, OWASP ZAP) block deploy on HIGH or CRITICAL findings. Non-root containers, per-route rate limiting, JWT auth.'
+  'MERN task manager with a security-gated CI/CD pipeline: 8 automated scanners block deploy on HIGH or CRITICAL findings. Hardened non-root containers, per-route rate limiting, and JWT auth.'
 ),
 (
   'cv-api',
@@ -285,7 +285,7 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
   false,
   3,
   true,
-  'Data-driven CV + resume from a PostgreSQL REST API (Node/Express); GitHub Actions CI/CD over Tailscale + SSH, public via a Cloudflare Tunnel.'
+  'Data-driven CV and one-page resume served from a single REST API, auto-deployed by a GitHub Actions pipeline to a self-hosted server and published through a Cloudflare Tunnel.'
 ),
 (
   'Enigma-Java',

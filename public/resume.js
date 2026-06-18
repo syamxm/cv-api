@@ -13,9 +13,8 @@ function buildResume(data) {
       </div>
       <div class="col-right">
         ${buildEducation(data.education)}
-        ${buildSkills(data.skills)}
+        ${buildSkills(data.skills, data.languages)}
         ${buildAwards(data.awards)}
-        ${buildLanguages(data.languages)}
       </div>
     </div>
   `;
@@ -48,13 +47,11 @@ function buildExperience(items) {
   if (!items.length) return "";
 
   const entries = items.map(e => `
-    <div class="entry">
+    <div class="entry entry-compact">
       <div class="entry-header">
-        <span class="entry-role">${e.role} — ${e.company}</span>
+        <span class="entry-role">${e.role} · ${e.company}</span>
         <span class="entry-date">${formatDateRange(e.start_date, e.end_date)}</span>
       </div>
-      ${e.location ? `<div class="entry-sub">${e.location}</div>` : ""}
-      ${e.bullets ? `<ul class="entry-bullets">${e.bullets.map(b => `<li>${b}</li>`).join("")}</ul>` : ""}
     </div>
   `).join("");
 
@@ -115,7 +112,7 @@ function buildEducation(items) {
   return section("Education", entries);
 }
 
-function buildSkills(items) {
+function buildSkills(items, languages) {
   if (!items.length) return "";
 
   const groups = Object.entries(groupByCategory(items)).map(([cat, names]) => `
@@ -125,7 +122,14 @@ function buildSkills(items) {
     </div>
   `).join("");
 
-  return section("Skills", groups);
+  const langGroup = languages && languages.length
+    ? `<div class="skill-group">
+         <h3>Languages</h3>
+         <p>${languages.map(l => `${l.name} (${l.level})`).join(", ")}</p>
+       </div>`
+    : "";
+
+  return section("Skills", groups + langGroup);
 }
 
 function buildAwards(items) {
@@ -133,16 +137,6 @@ function buildAwards(items) {
 
   const awards = items.map(a => `<li>${a.title}</li>`).join("");
   return section("Awards", `<ul class="awards-list">${awards}</ul>`);
-}
-
-function buildLanguages(items) {
-  if (!items.length) return "";
-
-  const langs = items
-    .map(l => `<li>${l.name} <span class="lang-level">(${l.level})</span></li>`)
-    .join("");
-
-  return section("Languages", `<ul class="awards-list">${langs}</ul>`);
 }
 
 function section(title, content) {
