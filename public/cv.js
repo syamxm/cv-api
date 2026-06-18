@@ -141,7 +141,7 @@ function buildLanguages(items) {
     </span>
   `).join("");
 
-  return section("Languages", `<div class="languages-list">${langs}</div>`);
+  return section("Spoken Languages", `<div class="languages-list">${langs}</div>`);
 }
 
 function section(title, content) {
