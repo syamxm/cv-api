@@ -48,11 +48,12 @@ CREATE TABLE experience (
   start_date  TEXT NOT NULL,        -- plain text so it reads nicely, e.g. "March 2021"
   end_date    TEXT,                 -- leave NULL if you're still there
   bullets     TEXT[],               -- the points listed under each role
+  resume_bullet TEXT,               -- one compressed bullet for the resume; falls back to bullets[0]
   sort_order  INT DEFAULT 0,
   in_resume   BOOLEAN DEFAULT false -- show this on the one-page resume
 );
 
-INSERT INTO experience (company, role, location, start_date, end_date, bullets, sort_order, in_resume) VALUES
+INSERT INTO experience (company, role, location, start_date, end_date, bullets, resume_bullet, sort_order, in_resume) VALUES
 (
   'Community Tuition Group',
   'Examination Area Coordinator',
@@ -62,6 +63,7 @@ INSERT INTO experience (company, role, location, start_date, end_date, bullets, 
   ARRAY[
     'Supervised an exam hall of 20+ students independently, managed seating, distributed materials, and maintained order throughout'
   ],
+  NULL,
   1,
   true
 ),
@@ -75,6 +77,7 @@ INSERT INTO experience (company, role, location, start_date, end_date, bullets, 
     'Handled high-volume peak operations from opening to closing with consistent accuracy and speed',
     'Coordinated with team members to keep daily operations running during peak hours'
   ],
+  'Handled high-volume peak operations from open to close, coordinating with the team to keep service running.',
   2,
   true
 );
