@@ -11,17 +11,20 @@ CREATE TABLE profile (
   email     TEXT,
   phone     TEXT,
   github    TEXT,
+  linkedin  TEXT,
   summary   TEXT
 );
 
-INSERT INTO profile (name, title, location, email, phone, github, summary) VALUES (
+INSERT INTO profile (name, title, location, email, phone, github, linkedin, summary) VALUES (
   'Ahmad Syamim',
   'Computer Science Student · DevSecOps & Infrastructure',
   'Shah Alam, Selangor, Malaysia',
   'ahmadsyamim200@gmail.com',
   '+60177967290',
   'https://github.com/syamxm',
-  'Computer Science (Hons) student at UiTM Shah Alam, focused on DevSecOps and self-hosted infrastructure. Available for a 14-week internship from 7 September to 11 December 2026.'
+  'https://www.linkedin.com/in/syamxm',
+  'Final-year CS student at UiTM Shah Alam, specialising in DevSecOps. I build security-gated CI/CD pipelines integrating SAST, DAST, and container scanning, and run a self-hosted Debian server with 8+ Dockerised services behind a hardened Nginx stack and Cloudflare Tunnel. My work sits where software development meets infrastructure security.
+Available for a 14-week internship from September–December 2026. Feel free to reach out.'
 );
 
 
@@ -50,7 +53,7 @@ INSERT INTO experience (company, role, location, start_date, end_date, bullets, 
   ],
   NULL,
   1,
-  true
+  false
 ),
 (
   'Subway',
