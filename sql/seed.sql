@@ -253,7 +253,7 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
   'MERN task manager with a security-gated CI/CD pipeline: 8 automated scanners block deploy on HIGH or CRITICAL findings. Hardened non-root containers, per-route rate limiting, and JWT auth.'
 ),
 (
-  'cv-api',
+  'Portfolio Website',
   'Built a data-driven CV and one-page resume served from a single PostgreSQL-backed REST API (Node.js/Express), so a content update is just a SQL change. Set up a GitHub Actions CI/CD pipeline that auto-deploys on push to main, connecting to the homeserver over Tailscale and rebuilding the Docker stack via SSH. Published on a custom domain (cv.syamxm.com) through a Cloudflare Tunnel, with no inbound ports opened on the server.',
   ARRAY['Node.js', 'Express', 'PostgreSQL', 'Docker', 'GitHub Actions', 'Tailscale', 'Cloudflare', 'CI/CD'],
   'Maintained',
