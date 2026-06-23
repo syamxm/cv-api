@@ -24,7 +24,7 @@ INSERT INTO profile (name, title, location, email, phone, github, linkedin, summ
   'https://github.com/syamxm',
   'https://www.linkedin.com/in/syamxm',
   'Final-year CS student at UiTM Shah Alam, specialising in DevSecOps. I build security-gated CI/CD pipelines integrating SAST, DAST, and container scanning, and run a self-hosted Debian server with 8+ Dockerised services behind a hardened Nginx stack and Cloudflare Tunnel. My work sits where software development meets infrastructure security.
-Available for a 14-week internship from September–December 2026. Feel free to reach out.'
+Available for a 14-week internship from 7th September to 11th December 2026. Feel free to reach out.'
 );
 
 
