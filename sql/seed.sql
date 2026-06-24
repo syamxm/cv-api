@@ -23,7 +23,7 @@ INSERT INTO profile (name, title, location, email, phone, github, linkedin, summ
   '+60177967290',
   'https://github.com/syamxm',
   'https://www.linkedin.com/in/syamxm',
-  'Final-year CS student at UiTM Shah Alam specialising in DevSecOps. I build security-gated CI/CD pipelines (SAST, DAST, container scanning) and run a self-hosted Debian server with 8+ Dockerised services behind a hardened Nginx stack and Cloudflare Tunnel. Available for 14-week internship from 7th September to 11th December 2026.'
+  'Final-year CS student at UiTM Shah Alam specialising in DevSecOps. I build security-gated CI/CD pipelines (SAST, container scanning) and run a self-hosted Debian server with 8+ Dockerised services behind a hardened Nginx stack and Cloudflare Tunnel. Available for 14-week internship from 7th September to 11th December 2026.'
 );
 
 
@@ -150,7 +150,6 @@ INSERT INTO skills (category, category_order, name, sort_order) VALUES
 ('Security & DevSecOps', 2, 'SAST (Semgrep)',        2),
 ('Security & DevSecOps', 2, 'Trivy (SCA/Image/IaC)', 3),
 ('Security & DevSecOps', 2, 'Gitleaks',              4),
-('Security & DevSecOps', 2, 'Hadolint',              5),
 
 ('Frameworks & Tools', 3, 'Express.js / Node.js', 1),
 ('Frameworks & Tools', 3, 'FastAPI',              2),
