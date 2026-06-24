@@ -246,7 +246,7 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
   false,
   2,
   true,
-  'MERN task manager with a security-gated CI/CD pipeline: 7 automated scanners gate deploy on HIGH or CRITICAL findings, plus an advisory OWASP ZAP DAST baseline.'
+  'MERN task manager with a security-gated CI/CD pipeline: five scanners (Semgrep SAST, Gitleaks secrets, and Trivy across SCA, image, and IaC) block deploy on HIGH or CRITICAL findings.'
 ),
 (
   'Portfolio Website',
