@@ -410,12 +410,14 @@ body > * { position: relative; z-index: 1; }
     width: 210mm;
     min-height: 297mm;
     max-height: 297mm;
+    background: #fff;
     box-shadow: none;
     padding: 12mm 14mm;
     overflow: hidden;            /* keep it to one page */
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;  /* render paper tone, badges, accent rule */
   }
+  body.theme-mocha .page { background: var(--sheet); }
   * { animation: none !important; }
 }
 
