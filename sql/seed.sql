@@ -242,7 +242,7 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
 ),
 (
   'TaskFlow',
-  'Self-hosted MERN task manager with a security-gated CI/CD pipeline. Reusable GitHub Actions workflows run 8 automated scanners that block deploy on HIGH or CRITICAL findings: Gitleaks for secrets, Semgrep for SAST, npm audit and Trivy for dependencies, Hadolint and Trivy config for Dockerfiles and IaC, Trivy image scanning with CycloneDX SBOMs, and an OWASP ZAP DAST baseline. Application security covers JWT (HS256), httpOnly and SameSite cookies, bcrypt password hashing, AES-256-GCM encryption of GitHub tokens at rest, MongoDB-backed per-route rate limiting, input validation, and owner-scoped authorization. Containers run non-root on Alpine across isolated Docker networks behind a hardened Nginx reverse proxy, with Dependabot keeping dependencies and base images current. The app provides per-project Kanban boards, priorities, due dates, and GitHub repo integration.',
+  'Self-hosted MERN task manager with a security-gated CI/CD pipeline. Reusable GitHub Actions workflows run 7 automated scanners that gate every PR and deploy on HIGH or CRITICAL findings: Gitleaks for secrets, Semgrep for SAST, npm audit and Trivy for dependencies, Hadolint and Trivy config for Dockerfiles and IaC, and Trivy image scanning with CycloneDX SBOMs, plus an OWASP ZAP DAST baseline that runs as an advisory check on PRs. Application security covers JWT (HS256), httpOnly and SameSite cookies, bcrypt password hashing, AES-256-GCM encryption of GitHub tokens at rest, MongoDB-backed per-route rate limiting, input validation, and owner-scoped authorization. Containers run non-root on Alpine across isolated Docker networks behind a hardened Nginx reverse proxy, with Dependabot keeping dependencies and base images current. The app provides per-project Kanban boards, priorities, due dates, and GitHub repo integration.',
   ARRAY['MongoDB', 'Express', 'React', 'Node.js', 'Docker', 'Nginx', 'GitHub Actions', 'Semgrep', 'Trivy', 'Gitleaks', 'Hadolint', 'OWASP ZAP', 'JWT', 'AES-256-GCM'],
   'Maintained',
   'https://github.com/syamxm/taskflow',
@@ -250,7 +250,7 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
   false,
   2,
   true,
-  'MERN task manager with a security-gated CI/CD pipeline: 8 automated scanners block deploy on HIGH or CRITICAL findings. Hardened non-root containers, per-route rate limiting, and JWT auth.'
+  'MERN task manager with a security-gated CI/CD pipeline: 7 automated scanners gate deploy on HIGH or CRITICAL findings, plus an advisory OWASP ZAP DAST baseline. Hardened non-root containers, per-route rate limiting, and JWT auth.'
 ),
 (
   'Portfolio Website',
