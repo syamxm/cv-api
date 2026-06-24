@@ -148,12 +148,9 @@ INSERT INTO skills (category, category_order, name, sort_order) VALUES
 
 ('Security & DevSecOps', 2, 'Nmap',                  1),
 ('Security & DevSecOps', 2, 'SAST (Semgrep)',        2),
-('Security & DevSecOps', 2, 'DAST (OWASP ZAP)',      3),
-('Security & DevSecOps', 2, 'Trivy (SCA/Image/IaC)', 4),
-('Security & DevSecOps', 2, 'Gitleaks',              5),
-('Security & DevSecOps', 2, 'Hadolint',              6),
-('Security & DevSecOps', 2, 'SBOM (CycloneDX)',      7),
-('Security & DevSecOps', 2, 'Dependabot',            8),
+('Security & DevSecOps', 2, 'Trivy (SCA/Image/IaC)', 3),
+('Security & DevSecOps', 2, 'Gitleaks',              4),
+('Security & DevSecOps', 2, 'Hadolint',              5),
 
 ('Frameworks & Tools', 3, 'Express.js / Node.js', 1),
 ('Frameworks & Tools', 3, 'FastAPI',              2),
@@ -243,7 +240,7 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
 (
   'TaskFlow',
   'Self-hosted MERN task manager with a security-gated CI/CD pipeline. Reusable GitHub Actions workflows run 7 automated scanners that gate every PR and deploy on HIGH or CRITICAL findings: Gitleaks for secrets, Semgrep for SAST, npm audit and Trivy for dependencies, Hadolint and Trivy config for Dockerfiles and IaC, and Trivy image scanning with CycloneDX SBOMs, plus an OWASP ZAP DAST baseline that runs as an advisory check on PRs. Application security covers JWT (HS256), httpOnly and SameSite cookies, bcrypt password hashing, AES-256-GCM encryption of GitHub tokens at rest, MongoDB-backed per-route rate limiting, input validation, and owner-scoped authorization. Containers run non-root on Alpine across isolated Docker networks behind a hardened Nginx reverse proxy, with Dependabot keeping dependencies and base images current. The app provides per-project Kanban boards, priorities, due dates, and GitHub repo integration.',
-  ARRAY['MongoDB', 'Express', 'React', 'Node.js', 'Docker', 'Nginx', 'GitHub Actions', 'Semgrep', 'Trivy', 'Gitleaks', 'Hadolint', 'OWASP ZAP', 'JWT', 'AES-256-GCM'],
+  ARRAY['MongoDB', 'Express', 'React', 'Node.js', 'Docker', 'Nginx', 'GitHub Actions', 'Semgrep', 'Trivy', 'Gitleaks', 'JWT'],
   'Maintained',
   'https://github.com/syamxm/taskflow',
   'https://taskflow.syamxm.com',
