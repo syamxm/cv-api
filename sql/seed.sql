@@ -23,8 +23,7 @@ INSERT INTO profile (name, title, location, email, phone, github, linkedin, summ
   '+60177967290',
   'https://github.com/syamxm',
   'https://www.linkedin.com/in/syamxm',
-  'Final-year CS student at UiTM Shah Alam, specialising in DevSecOps. I build security-gated CI/CD pipelines integrating SAST, DAST, and container scanning, and run a self-hosted Debian server with 8+ Dockerised services behind a hardened Nginx stack and Cloudflare Tunnel. My work sits where software development meets infrastructure security.
-Available for a 14-week internship from 7th September to 11th December 2026. Feel free to reach out.'
+  'Final-year CS student at UiTM Shah Alam specialising in DevSecOps. I build security-gated CI/CD pipelines (SAST, DAST, container scanning) and run a self-hosted Debian server with 8+ Dockerised services behind a hardened Nginx stack and Cloudflare Tunnel. Available for 14 week internship from 7th September to 11th December 2026.'
 );
 
 
@@ -51,7 +50,7 @@ INSERT INTO experience (company, role, location, start_date, end_date, bullets, 
   ARRAY[
     'Supervised an exam hall of 20+ students independently, managed seating, distributed materials, and maintained order throughout'
   ],
-  NULL,
+  'Supervised an exam hall of 20+ students independently, managing seating and order throughout.',
   1,
   true
 ),
@@ -65,7 +64,7 @@ INSERT INTO experience (company, role, location, start_date, end_date, bullets, 
     'Handled high-volume peak operations from opening to closing with consistent accuracy and speed',
     'Coordinated with team members to keep daily operations running during peak hours'
   ],
-  'Handled high-volume peak operations from open to close, coordinating with the team to keep service running.',
+  'Handled high-volume peak operations from opening to closing.',
   2,
   true
 );
@@ -250,7 +249,7 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
   false,
   2,
   true,
-  'MERN task manager with a security-gated CI/CD pipeline: 7 automated scanners gate deploy on HIGH or CRITICAL findings, plus an advisory OWASP ZAP DAST baseline. Hardened non-root containers, per-route rate limiting, and JWT auth.'
+  'MERN task manager with a security-gated CI/CD pipeline: 7 automated scanners gate deploy on HIGH or CRITICAL findings, plus an advisory OWASP ZAP DAST baseline.'
 ),
 (
   'Portfolio Website',
