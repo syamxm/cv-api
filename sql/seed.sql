@@ -43,7 +43,7 @@ CREATE TABLE experience (
 INSERT INTO experience (company, role, location, start_date, end_date, bullets, resume_bullet, sort_order, in_resume) VALUES
 (
   'Community Tuition Group',
-  'Examination Area Coordinator',
+  'Exam Invigilator',
   'Selangor',
   'May 2025',
   'May 2025',
@@ -206,7 +206,7 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
 (
   'Final Year Project - C-Aegis',
   'Built an Android parental monitoring app (Final Year Project) focused on location and on-device control: a parent/child dashboard, real-time geofence alerts via the Radar API, and app-usage enforcement using the Device Admin API and AccessibilityService to resist tampering.',
-  ARRAY['Kotlin', 'XML', 'Firebase', 'Google Maps API', 'Radar API'],
+  ARRAY['Kotlin', 'XML', 'Firebase', 'Google Maps API'],
   'In Development',
   NULL,
   NULL,
