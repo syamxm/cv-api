@@ -144,6 +144,7 @@ INSERT INTO skills (category, category_order, name, sort_order) VALUES
 ('Infrastructure & DevOps', 1, 'Nginx',                                                 6),
 ('Infrastructure & DevOps', 1, 'Cloudflare',                                            7),
 ('Infrastructure & DevOps', 1, 'Git / GitHub',                                          8),
+('Infrastructure & DevOps', 1, 'Observability (Prometheus, Grafana, Loki)',             9),
 
 ('Security & DevSecOps', 2, 'Nmap',                  1),
 ('Security & DevSecOps', 2, 'SAST (Semgrep)',        2),
@@ -193,15 +194,15 @@ CREATE TABLE projects (
 INSERT INTO projects (name, description, tech_stack, status, github_url, demo_url, private_repo, sort_order, in_resume, resume_description) VALUES
 (
   'Debian Homeserver',
-  'Self-hosted Debian homeserver running 8+ Dockerised services behind layered network security (UFW, Fail2ban, CrowdSec), a Tailscale VPN for private remote access, and a Cloudflare Tunnel publishing select services on a custom domain with zero open inbound ports. A hardened Nginx reverse proxy fronts every service with per-domain routing, security headers (HSTS, CSP, referrer and permissions policies), real-IP detection, and WebSocket support. Hosts tools including Vaultwarden for password management, kept current with automated unattended upgrades.',
-  ARRAY['Debian Linux', 'Docker', 'Nginx', 'UFW', 'Fail2ban', 'CrowdSec', 'Tailscale', 'Cloudflare', 'Vaultwarden', 'Bash'],
+  'Self-hosted Debian homeserver running 8+ Dockerised services behind layered network security (UFW, Fail2ban, CrowdSec), a Tailscale VPN for private remote access, and a Cloudflare Tunnel publishing select services on a custom domain with zero open inbound ports. A hardened Nginx reverse proxy fronts every service with per-domain routing, security headers (HSTS, CSP, referrer and permissions policies), real-IP detection, and WebSocket support. Hosts tools including Vaultwarden for password management and a Prometheus, Grafana, and Loki observability stack, kept current with automated unattended upgrades.',
+  ARRAY['Debian Linux', 'Docker', 'Nginx', 'UFW', 'Fail2ban', 'CrowdSec', 'Tailscale', 'Cloudflare', 'Vaultwarden', 'Prometheus', 'Grafana', 'Loki', 'Umami', 'Bash'],
   'Maintained',
   'https://github.com/syamxm',
   NULL,
   false,
   1,
   true,
-  'Self-hosted Debian server running 8+ Dockerised services behind a hardened Nginx reverse proxy and layered network security, with private VPN access and a Cloudflare Tunnel exposing zero inbound ports.'
+  'Self-hosted Debian server running 8+ Dockerised services behind a hardened Nginx reverse proxy and layered network security, with private VPN access, observability via Prometheus, Grafana, and Loki, and a Cloudflare Tunnel exposing zero inbound ports.'
 ),
 (
   'Final Year Project - C-Aegis',
