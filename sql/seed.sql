@@ -58,8 +58,8 @@ INSERT INTO experience (company, role, location, start_date, end_date, bullets, 
   'Subway',
   'Part-time Crew Member',
   'Eco Grandeur, Puncak Alam',
-  'April 2021',
-  'July 2021',
+  'April 2022',
+  'July 2022',
   ARRAY[
     'Handled high-volume peak operations from opening to closing with consistent accuracy and speed',
     'Coordinated with team members to keep daily operations running during peak hours'
@@ -103,8 +103,8 @@ INSERT INTO education (institution, degree, field, location, start_date, end_dat
   'Foundation in Engineering',
   NULL,
   'Dengkil, Selangor',
-  'August 2021',
-  'July 2022',
+  'August 2022',
+  'June 2023',
   '3.81',
   ARRAY[
     'Top 10% of faculty cohort',
@@ -117,8 +117,8 @@ INSERT INTO education (institution, degree, field, location, start_date, end_dat
   'SPM (Malaysian Certificate of Education)',
   NULL,
   'Saujana Utama, Selangor',
-  '2020',
-  '2020',
+  '2022',
+  '2022',
   NULL,
   ARRAY[
     'Achieved 8A out of 9 subjects'
