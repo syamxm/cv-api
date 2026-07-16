@@ -209,8 +209,20 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
   NULL,
   true,
   4,
-  true,
+  false,
   'Android parental monitoring app (Final Year Project): parent/child dashboard, real-time geofence alerts, and tamper-resistant app-usage enforcement.'
+),
+(
+  'BeanThere',
+  'Built a coffee shop web app in plain PHP with online ordering, loyalty rewards, and an AI drink recommender, backed by a full DevSecOps pipeline: CI with linting, secret scanning, and static analysis, Dockerised deployment to a self-hosted server.',
+  ARRAY['PHP', 'MariaDB', 'TailwindCSS', 'Docker'],
+  'Maintained',
+  'https://github.com/syamxm/BeanThere',
+  'https://beanthere.syamxm.com',
+  false,
+  8,
+  true,
+  'Coffee shop web app: online ordering, loyalty rewards, AI drink recommender, and a full DevSecOps pipeline on a self-hosted server.'
 ),
 (
   'Family Monitor',
