@@ -7,7 +7,7 @@
     "email": "ahmadsyamim200@gmail.com",
     "github": "https://github.com/syamxm",
     "linkedin": "https://www.linkedin.com/in/syamxm",
-    "summary": "Final-year CS student at UiTM Shah Alam, specialising in DevSecOps. I build security-gated CI/CD pipelines integrating SAST, DAST, and container scanning, and run a self-hosted Debian server with 8+ Dockerised services behind a hardened Nginx stack and Cloudflare Tunnel. My work sits where software development meets infrastructure security. Available for a 14-week internship from 7th September to 11th December 2026. Feel free to reach out."
+    "summary": "Final-year CS student at UiTM Shah Alam, specialising in DevSecOps. I build security-gated CI/CD pipelines integrating SAST and container scanning, and run a self-hosted Debian server with 8+ Dockerised services behind a hardened Nginx stack and Cloudflare Tunnel. My work sits where software development meets infrastructure security. Available for a 14-week internship from 7th September to 11th December 2026. Feel free to reach out."
   },
   "projects": [
     {
@@ -22,8 +22,8 @@
     {
       "name": "TaskFlow",
       "status": "Maintained",
-      "stack": ["MongoDB", "Express", "React", "Node.js", "Docker", "Nginx", "GitHub Actions", "Semgrep", "Trivy", "Gitleaks", "Hadolint", "OWASP ZAP", "JWT", "AES-256-GCM"],
-      "description": "MERN task manager with a security-gated CI/CD pipeline: 7 automated scanners gate deploy on HIGH or CRITICAL findings, plus an advisory OWASP ZAP DAST baseline. Hardened non-root containers, per-route rate limiting, and JWT auth.",
+      "stack": ["MongoDB", "Express", "React", "Node.js", "Docker", "Nginx", "GitHub Actions", "Semgrep", "Trivy", "Gitleaks", "Hadolint", "JWT", "AES-256-GCM"],
+      "description": "MERN task manager with a security-gated CI/CD pipeline: five scanners (Semgrep SAST, Gitleaks secrets, and Trivy across SCA, image, and IaC) block deploy on HIGH or CRITICAL findings.",
       "github_url": "https://github.com/syamxm/taskflow",
       "demo_url": "https://taskflow.syamxm.com",
       "private_repo": false
@@ -109,7 +109,7 @@
     },
     {
       "group": "Security & DevSecOps",
-      "items": ["Nmap", "SAST (Semgrep)", "DAST (OWASP ZAP)", "Trivy (SCA/Image/IaC)", "Gitleaks", "Hadolint", "SBOM (CycloneDX)", "Dependabot"]
+      "items": ["Nmap", "SAST (Semgrep)", "Trivy (SCA/Image/IaC)", "Gitleaks", "Hadolint", "SBOM (CycloneDX)", "Dependabot"]
     },
     {
       "group": "Frameworks & Tools",
