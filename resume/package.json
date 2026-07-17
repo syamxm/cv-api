@@ -1,0 +1,13 @@
+{
+  "name": "resume-builder",
+  "private": true,
+  "description": "Builds both resume PDFs from data.json",
+  "scripts": {
+    "build": "npm run build:human && npm run build:ats",
+    "build:human": "node build.js",
+    "build:ats": "typst compile ats.typ Ahmad_Syamim_Resume_ATS.pdf"
+  },
+  "dependencies": {
+    "puppeteer": "^23.0.0"
+  }
+}
