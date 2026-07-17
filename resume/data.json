@@ -1,0 +1,127 @@
+{
+  "profile": {
+    "name": "Ahmad Syamim",
+    "title": "Computer Science Student · DevSecOps & Infrastructure",
+    "location": "Shah Alam, Selangor, Malaysia",
+    "phone": "+60177967290",
+    "email": "ahmadsyamim200@gmail.com",
+    "github": "https://github.com/syamxm",
+    "linkedin": "https://www.linkedin.com/in/syamxm",
+    "summary": "Final-year CS student at UiTM Shah Alam, specialising in DevSecOps. I build security-gated CI/CD pipelines integrating SAST, DAST, and container scanning, and run a self-hosted Debian server with 8+ Dockerised services behind a hardened Nginx stack and Cloudflare Tunnel. My work sits where software development meets infrastructure security. Available for a 14-week internship from 7th September to 11th December 2026. Feel free to reach out."
+  },
+  "projects": [
+    {
+      "name": "Debian Homeserver",
+      "status": "Maintained",
+      "stack": ["Debian Linux", "Docker", "Nginx", "UFW", "Fail2ban", "CrowdSec", "Tailscale", "Cloudflare", "Vaultwarden", "Bash"],
+      "description": "Self-hosted Debian server running 8+ Dockerised services behind a hardened Nginx reverse proxy and layered network security, with private VPN access and a Cloudflare Tunnel exposing zero inbound ports.",
+      "github_url": "https://github.com/syamxm",
+      "demo_url": null,
+      "private_repo": false
+    },
+    {
+      "name": "TaskFlow",
+      "status": "Maintained",
+      "stack": ["MongoDB", "Express", "React", "Node.js", "Docker", "Nginx", "GitHub Actions", "Semgrep", "Trivy", "Gitleaks", "Hadolint", "OWASP ZAP", "JWT", "AES-256-GCM"],
+      "description": "MERN task manager with a security-gated CI/CD pipeline: 7 automated scanners gate deploy on HIGH or CRITICAL findings, plus an advisory OWASP ZAP DAST baseline. Hardened non-root containers, per-route rate limiting, and JWT auth.",
+      "github_url": "https://github.com/syamxm/taskflow",
+      "demo_url": "https://taskflow.syamxm.com",
+      "private_repo": false
+    },
+    {
+      "name": "Portfolio Website",
+      "status": "Maintained",
+      "stack": ["Node.js", "Express", "PostgreSQL", "Docker", "GitHub Actions", "Tailscale", "Cloudflare", "CI/CD"],
+      "description": "Data-driven CV and one-page resume served from a single REST API, auto-deployed by a GitHub Actions pipeline to a self-hosted server and published through a Cloudflare Tunnel.",
+      "github_url": "https://github.com/syamxm/cv-api",
+      "demo_url": "https://cv.syamxm.com",
+      "private_repo": false
+    },
+    {
+      "name": "Final Year Project - C-Aegis",
+      "status": "In Development",
+      "stack": ["Kotlin", "XML", "Firebase", "Google Maps API", "Radar API"],
+      "description": "Android parental monitoring app (Final Year Project): parent/child dashboard, real-time geofence alerts, and tamper-resistant app-usage enforcement.",
+      "github_url": null,
+      "demo_url": null,
+      "private_repo": true
+    },
+    {
+      "name": "Student Reminder System",
+      "status": "Maintained",
+      "stack": ["Flutter", "Dart", "Python", "FastAPI", "Redis", "Docker"],
+      "description": "Flutter timetable and push-notification app for UiTM students, backed by a Dockerised FastAPI service.",
+      "github_url": "https://github.com/syamxm/student_reminder_system",
+      "demo_url": null,
+      "private_repo": false
+    }
+  ],
+  "experience": [
+    {
+      "role": "Examination Area Coordinator",
+      "company": "Community Tuition Group",
+      "location": "Selangor",
+      "dates": "May 2025",
+      "bullets": [
+        "Supervised an exam hall of 20+ students independently, managed seating, distributed materials, and maintained order throughout"
+      ]
+    },
+    {
+      "role": "Part-time Crew Member",
+      "company": "Subway",
+      "location": "Eco Grandeur, Puncak Alam",
+      "dates": "April 2021 – July 2021",
+      "bullets": [
+        "Handled high-volume peak operations from open to close, coordinating with the team to keep service running."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Universiti Teknologi MARA (UiTM)",
+      "dates": "October 2023 – Expected March 2027",
+      "degree": "Bachelor of Computer Science (Honours)",
+      "location": "Shah Alam, Selangor",
+      "gpa": "3.66",
+      "notes": ["Dean's List every semester", "Final Year Project: C-Aegis, Android parental monitoring app"]
+    },
+    {
+      "institution": "Universiti Teknologi MARA (UiTM)",
+      "dates": "August 2021 – July 2022",
+      "degree": "Foundation in Engineering",
+      "location": "Dengkil, Selangor",
+      "gpa": "3.81",
+      "notes": ["Top 10% of faculty cohort", "Ranked 1st in cohort during 2nd semester"]
+    },
+    {
+      "institution": "SMK Saujana Utama",
+      "dates": "2020",
+      "degree": "SPM (Malaysian Certificate of Education)",
+      "location": "Saujana Utama, Selangor",
+      "gpa": null,
+      "notes": ["Achieved 8A out of 9 subjects"]
+    }
+  ],
+  "skills": [
+    {
+      "group": "Infrastructure & DevOps",
+      "items": ["Docker", "Linux", "CI/CD (GitHub Actions)", "Self-hosted Infrastructure", "Network Security (UFW, Fail2ban, CrowdSec, Tailscale)", "Nginx", "Cloudflare", "Git / GitHub"]
+    },
+    {
+      "group": "Security & DevSecOps",
+      "items": ["Nmap", "SAST (Semgrep)", "DAST (OWASP ZAP)", "Trivy (SCA/Image/IaC)", "Gitleaks", "Hadolint", "SBOM (CycloneDX)", "Dependabot"]
+    },
+    {
+      "group": "Frameworks & Tools",
+      "items": ["Express.js / Node.js", "FastAPI", "React", "PostgreSQL", "MongoDB", "Flutter", "Android", "Firebase", "REST API Design", "JWT Authentication", "MERN Stack"]
+    },
+    {
+      "group": "Languages",
+      "items": ["JavaScript", "Python", "Java", "Kotlin", "Dart", "SQL", "Bash", "HTML / CSS"]
+    }
+  ],
+  "languages": [
+    { "name": "English", "level": "Fluent" },
+    { "name": "Malay", "level": "Native" }
+  ]
+}
