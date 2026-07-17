@@ -4,7 +4,7 @@
 
 #let data = json("data.json")
 
-#set page(paper: "a4", margin: (x: 2cm, y: 1.8cm))
+#set page(paper: "a4", margin: (x: 2cm, y: 1.6cm))
 #set text(font: "Libertinus Serif", size: 10.5pt, ligatures: false, lang: "en")
 #set par(justify: false, leading: 0.6em)
 
@@ -26,20 +26,31 @@
 
   #data.profile.title
 
-  #data.profile.location | #data.profile.phone | #data.profile.email
+  #data.profile.location | #data.profile.phone | #link("mailto:" + data.profile.email)[#data.profile.email]
 
-  #data.profile.github | #data.profile.linkedin
+  #link(data.profile.github)[#data.profile.github] | #link(data.profile.linkedin)[#data.profile.linkedin]
 ]
 
 // SUMMARY
 #sectionHeader("SUMMARY")
 #data.profile.summary
 
-// SKILLS
-#sectionHeader("SKILLS")
-#for group in data.skills [
-  #text(weight: "bold")[#group.group:] #group.items.join(", ")
-
+// PROJECTS
+#sectionHeader("PROJECTS")
+#for p in data.projects [
+  #text(weight: "bold")[#p.name] (#p.status) \
+  Technologies: #p.stack.join(", ")
+  #bullet(p.description)
+  #if p.github_url != none [
+    #bullet[GitHub: #link(p.github_url)[#p.github_url]]
+  ]
+  #if p.demo_url != none [
+    #bullet[Live demo: #link(p.demo_url)[#p.demo_url]]
+  ]
+  #if p.private_repo [
+    #bullet[Private repository]
+  ]
+  #v(0.5em)
 ]
 
 // EXPERIENCE
@@ -54,24 +65,6 @@
   #v(0.5em)
 ]
 
-// PROJECTS
-#sectionHeader("PROJECTS")
-#for p in data.projects [
-  #text(weight: "bold")[#p.name] (#p.status) \
-  Technologies: #p.stack.join(", ")
-  #bullet(p.description)
-  #if p.github_url != none [
-    #bullet[GitHub: #p.github_url]
-  ]
-  #if p.demo_url != none [
-    #bullet[Live demo: #p.demo_url]
-  ]
-  #if p.private_repo [
-    #bullet[Private repository]
-  ]
-  #v(0.5em)
-]
-
 // EDUCATION
 #sectionHeader("EDUCATION")
 #for e in data.education [
@@ -82,6 +75,13 @@
     #bullet(n)
   ]
   #v(0.5em)
+]
+
+// SKILLS
+#sectionHeader("SKILLS")
+#for group in data.skills [
+  #text(weight: "bold")[#group.group:] #group.items.join(", ")
+
 ]
 
 // LANGUAGES

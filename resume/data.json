@@ -38,21 +38,21 @@
       "private_repo": false
     },
     {
-      "name": "Final Year Project - C-Aegis",
-      "status": "In Development",
-      "stack": ["Kotlin", "XML", "Firebase", "Google Maps API", "Radar API"],
-      "description": "Android parental monitoring app (Final Year Project): parent/child dashboard, real-time geofence alerts, and tamper-resistant app-usage enforcement.",
-      "github_url": null,
-      "demo_url": null,
-      "private_repo": true
-    },
-    {
       "name": "Student Reminder System",
       "status": "Maintained",
       "stack": ["Flutter", "Dart", "Python", "FastAPI", "Redis", "Docker"],
       "description": "Flutter timetable and push-notification app for UiTM students, backed by a Dockerised FastAPI service.",
       "github_url": "https://github.com/syamxm/student_reminder_system",
       "demo_url": null,
+      "private_repo": false
+    },
+    {
+      "name": "BeanThere",
+      "status": "Maintained",
+      "stack": ["PHP", "MariaDB", "TailwindCSS", "Docker"],
+      "description": "Coffee shop web app: online ordering, loyalty rewards, AI drink recommender, and a full DevSecOps pipeline on a self-hosted server.",
+      "github_url": "https://github.com/syamxm/BeanThere",
+      "demo_url": "https://beanthere.syamxm.com",
       "private_repo": false
     }
   ],
