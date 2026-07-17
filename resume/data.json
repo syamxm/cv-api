@@ -7,7 +7,7 @@
     "email": "ahmadsyamim200@gmail.com",
     "github": "https://github.com/syamxm",
     "linkedin": "https://www.linkedin.com/in/syamxm",
-    "summary": "Final-year CS student at UiTM Shah Alam, specialising in DevSecOps. I build security-gated CI/CD pipelines integrating SAST and container scanning, and run a self-hosted Debian server with 8+ Dockerised services behind a hardened Nginx stack and Cloudflare Tunnel. My work sits where software development meets infrastructure security. Available for a 14-week internship from 7th September to 11th December 2026. Feel free to reach out."
+    "summary": "Final-year CS student at UiTM Shah Alam, specialising in DevSecOps. I build security-gated CI/CD pipelines integrating SAST and container scanning, and run a self-hosted Debian server with 8+ Dockerised services behind a hardened Nginx stack and Cloudflare Tunnel. My work sits where software development meets infrastructure security. Available for a 14-week internship from 7th September to 11th December 2026."
   },
   "projects": [
     {
@@ -105,11 +105,11 @@
   "skills": [
     {
       "group": "Infrastructure & DevOps",
-      "items": ["Docker", "Linux", "CI/CD (GitHub Actions)", "Self-hosted Infrastructure", "Network Security (UFW, Fail2ban, CrowdSec, Tailscale)", "Nginx", "Cloudflare", "Git / GitHub"]
+      "items": ["Docker", "Linux", "CI/CD (GitHub Actions)", "Self-hosted Infrastructure", "Network Security (UFW, Fail2ban, CrowdSec, Tailscale)", "Nginx", "Cloudflare", "Git / GitHub", "Observability (Prometheus, Grafana, Loki)"]
     },
     {
       "group": "Security & DevSecOps",
-      "items": ["Nmap", "SAST (Semgrep)", "Trivy (SCA/Image/IaC)", "Gitleaks", "Hadolint", "SBOM (CycloneDX)", "Dependabot"]
+      "items": ["Nmap", "SAST (Semgrep)", "Trivy (SCA/Image/IaC)", "Gitleaks"]
     },
     {
       "group": "Frameworks & Tools",
