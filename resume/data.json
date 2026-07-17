@@ -22,7 +22,7 @@
     {
       "name": "TaskFlow",
       "status": "Maintained",
-      "stack": ["MongoDB", "Express", "React", "Node.js", "Docker", "Nginx", "GitHub Actions", "Semgrep", "Trivy", "Gitleaks", "Hadolint", "JWT", "AES-256-GCM"],
+      "stack": ["MongoDB", "Express", "React", "Node.js", "Docker", "Nginx", "GitHub Actions", "Semgrep", "Trivy", "Gitleaks", "JWT"],
       "description": "MERN task manager with a security-gated CI/CD pipeline: five scanners (Semgrep SAST, Gitleaks secrets, and Trivy across SCA, image, and IaC) block deploy on HIGH or CRITICAL findings.",
       "github_url": "https://github.com/syamxm/taskflow",
       "demo_url": "https://taskflow.syamxm.com",
