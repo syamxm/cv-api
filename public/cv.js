@@ -12,21 +12,26 @@ function buildCV(data) {
     ${buildSkills(data.skills)}
     ${buildAwards(data.awards)}
     ${buildLanguages(data.languages)}
+    ${buildTraits(data.traits)}
   `;
 }
 
 function buildHeader(p) {
   return `
     <header class="cv-header">
-      <h1>${p.name}</h1>
-      <p class="cv-title">${p.title}</p>
-      <div class="cv-contacts">
-        <span>${p.location}</span>
-        <a href="tel:${p.phone}">${p.phone}</a>
-        <a href="mailto:${p.email}">${p.email}</a>
-        <a href="${p.github}" target="_blank">${p.github}</a>
-        ${p.linkedin ? `<a href="${p.linkedin}" target="_blank">${p.linkedin}</a>` : ""}
+      <div class="cv-header-main">
+        <h1>${p.name}</h1>
+        <p class="cv-title">${p.title}</p>
+        <div class="cv-contacts">
+          <span>${p.location}</span>
+          ${p.address ? `<span>${p.address}</span>` : ""}
+          <a href="tel:${p.phone}">${p.phone}</a>
+          <a href="mailto:${p.email}">${p.email}</a>
+          <a href="${p.github}" target="_blank">${p.github}</a>
+          ${p.linkedin ? `<a href="${p.linkedin}" target="_blank">${p.linkedin}</a>` : ""}
+        </div>
       </div>
+      <img class="cv-photo" src="photo.png" alt="Photograph of ${p.name}" />
     </header>
   `;
 }
@@ -142,7 +147,17 @@ function buildLanguages(items) {
     </span>
   `).join("");
 
-  return section("Spoken Languages", `<div class="languages-list">${langs}</div>`);
+  return section("Communication Languages", `<div class="languages-list">${langs}</div>`);
+}
+
+function buildTraits(items) {
+  if (!items || !items.length) return "";
+
+  const traits = items
+    .map(t => `<span class="lang-item">${t.name}</span>`)
+    .join("");
+
+  return section("Personal Attributes", `<div class="languages-list">${traits}</div>`);
 }
 
 function section(title, content) {

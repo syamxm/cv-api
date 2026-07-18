@@ -90,7 +90,7 @@ const skills = (groups) => section("Skills", groups.map(g => `
   </div>
 `).join(""));
 
-const languages = (items) => section("Spoken Languages", `
+const languages = (items) => section("Communication Languages", `
   <ul class="awards-list">
     ${items.map(l => `<li>${l.name} <span class="lang-level">(${l.level})</span></li>`).join("")}
   </ul>

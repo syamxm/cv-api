@@ -1,6 +1,6 @@
 -- CV database: schema and seed data. Edit the INSERTs and re-seed.
 
-DROP TABLE IF EXISTS languages, awards, projects, skills, education, experience, profile CASCADE;
+DROP TABLE IF EXISTS traits, languages, awards, projects, skills, education, experience, profile CASCADE;
 
 
 CREATE TABLE profile (
@@ -8,6 +8,7 @@ CREATE TABLE profile (
   name      TEXT NOT NULL,
   title     TEXT NOT NULL,
   location  TEXT,
+  address   TEXT,
   email     TEXT,
   phone     TEXT,
   github    TEXT,
@@ -15,10 +16,11 @@ CREATE TABLE profile (
   summary   TEXT
 );
 
-INSERT INTO profile (name, title, location, email, phone, github, linkedin, summary) VALUES (
-  'Ahmad Syamim',
+INSERT INTO profile (name, title, location, address, email, phone, github, linkedin, summary) VALUES (
+  'Ahmad Syamim bin Mohd Nizam',
   'Computer Science Student · DevSecOps & Infrastructure',
   'Shah Alam, Selangor, Malaysia',
+  'No 28 Jalan Palma 1/3 Bandar Hillpark',
   'ahmadsyamim200@gmail.com',
   '+60177967290',
   'https://github.com/syamxm',
@@ -305,3 +307,18 @@ CREATE TABLE languages (
 INSERT INTO languages (name, level) VALUES
 ('English', 'Fluent'),
 ('Malay',   'Native');
+
+
+CREATE TABLE traits (
+  id         SERIAL PRIMARY KEY,
+  name       TEXT NOT NULL,
+  sort_order INT DEFAULT 0
+);
+
+INSERT INTO traits (name, sort_order) VALUES
+('Willing to learn',    1),
+('Persistent',          2),
+('Easy going',          3),
+('Good listener',       4),
+('Multitasking',        5),
+('Has own transport',   6);

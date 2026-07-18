@@ -127,9 +127,23 @@ body > * { position: relative; z-index: 1; }
 .hidden { display: none; }
 
 .cv-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
   margin-bottom: 36px;
   padding-bottom: 28px;
   border-bottom: 1px solid var(--rule);
+}
+
+.cv-header-main { min-width: 0; }
+
+.cv-photo {
+  flex-shrink: 0;
+  width: 110px;
+  height: auto;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
 }
 
 .cv-header h1 {
