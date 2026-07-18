@@ -32,8 +32,8 @@ function buildHeader(p) {
         <span>${p.location}</span>
         <a href="tel:${p.phone}">${p.phone}</a>
         <a href="mailto:${p.email}">${p.email}</a>
-        <a href="${p.github}" target="_blank">${p.github}</a>
-        ${p.linkedin ? `<a href="${p.linkedin}" target="_blank">${p.linkedin}</a>` : ""}
+        <a href="${p.github}" target="_blank">${displayUrl(p.github)}</a>
+        ${p.linkedin ? `<a href="${p.linkedin}" target="_blank">${displayUrl(p.linkedin)}</a>` : ""}
       </div>
     </header>
   `;

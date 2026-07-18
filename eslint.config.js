@@ -26,6 +26,7 @@ module.exports = [
         localStorage: 'readonly',
         URLSearchParams: 'readonly',
         mountOnLoad: 'readonly',
+        displayUrl: 'readonly',
         formatDateRange: 'readonly',
         groupByCategory: 'readonly',
         projectLinks: 'readonly',

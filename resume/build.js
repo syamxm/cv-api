@@ -31,8 +31,8 @@ const header = (p) => `
       <span>${p.location}</span>
       <a href="tel:${p.phone}">${p.phone}</a>
       <a href="mailto:${p.email}">${p.email}</a>
-      <a href="${p.github}">${p.github}</a>
-      <a href="${p.linkedin}">${p.linkedin}</a>
+      <a href="${p.github}">${p.github.replace(/^https?:\/\/(www\.)?/, "")}</a>
+      <a href="${p.linkedin}">${p.linkedin.replace(/^https?:\/\/(www\.)?/, "")}</a>
     </div>
   </header>
 `;

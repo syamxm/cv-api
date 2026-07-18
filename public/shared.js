@@ -15,6 +15,10 @@ async function mountOnLoad(url, containerId, build, failMsg) {
   }
 }
 
+function displayUrl(url) {
+  return url.replace(/^https?:\/\/(www\.)?/, "");
+}
+
 function formatDateRange(start, end) {
   if (start === end) return start;
   return `${start} – ${end || "Present"}`;
