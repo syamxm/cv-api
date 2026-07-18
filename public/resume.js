@@ -15,7 +15,7 @@ function buildResume(data) {
         ${buildEducation(data.education)}
         ${buildSkills(data.skills)}
         ${buildAwards(data.awards)}
-        ${buildSpokenLanguages(data.languages)}
+        ${buildLanguages(data.languages)}
       </div>
     </div>
   `;
@@ -131,14 +131,14 @@ function buildSkills(items) {
   return section("Skills", groups);
 }
 
-function buildSpokenLanguages(items) {
+function buildLanguages(items) {
   if (!items.length) return "";
 
   const langs = items
     .map(l => `<li>${l.name} <span class="lang-level">(${l.level})</span></li>`)
     .join("");
 
-  return section("Spoken Languages", `<ul class="awards-list">${langs}</ul>`);
+  return section("Communication Languages", `<ul class="awards-list">${langs}</ul>`);
 }
 
 function buildAwards(items) {

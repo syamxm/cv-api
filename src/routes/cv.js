@@ -26,7 +26,7 @@ const getCv = async (resumeOnly) => {
       "FROM projects WHERE in_resume = true ORDER BY sort_order ASC"
     : "SELECT * FROM projects ORDER BY sort_order ASC";
 
-  const [profile, experience, education, skills, projects, awards, languages] =
+  const [profile, experience, education, skills, projects, awards, languages, traits] =
     await Promise.all([
       rows("SELECT * FROM profile LIMIT 1"),
       rows(experienceSql),
@@ -35,6 +35,7 @@ const getCv = async (resumeOnly) => {
       rows(projectsSql),
       rows("SELECT * FROM awards ORDER BY sort_order ASC"),
       rows("SELECT * FROM languages ORDER BY id ASC"),
+      resumeOnly ? [] : rows("SELECT * FROM traits ORDER BY sort_order ASC"),
     ]);
 
   return {
@@ -45,6 +46,7 @@ const getCv = async (resumeOnly) => {
     projects,
     awards,
     languages,
+    ...(resumeOnly ? {} : { traits }),
   };
 };
 
@@ -59,5 +61,6 @@ router.get("/skills",     (_req, res) => send(res, () => rows("SELECT * FROM ski
 router.get("/projects",   (_req, res) => send(res, () => rows("SELECT * FROM projects ORDER BY sort_order ASC")));
 router.get("/awards",     (_req, res) => send(res, () => rows("SELECT * FROM awards ORDER BY sort_order ASC")));
 router.get("/languages",  (_req, res) => send(res, () => rows("SELECT * FROM languages ORDER BY id ASC")));
+router.get("/traits",     (_req, res) => send(res, () => rows("SELECT * FROM traits ORDER BY sort_order ASC")));
 
 module.exports = router;
