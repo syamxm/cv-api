@@ -18,14 +18,14 @@ CREATE TABLE profile (
 
 INSERT INTO profile (name, title, location, address, email, phone, github, linkedin, summary) VALUES (
   'Ahmad Syamim bin Mohd Nizam',
-  'Computer Science Student · DevSecOps & Infrastructure',
+  'Computer Science Student · DevOps & Infrastructure',
   'Shah Alam, Selangor, Malaysia',
   'No 28 Jalan Palma 1/3 Bandar Hillpark',
   'ahmadsyamim200@gmail.com',
   '+60177967290',
   'https://github.com/syamxm',
   'https://www.linkedin.com/in/syamxm',
-  'Final-year CS student at UiTM Shah Alam specialising in DevSecOps. I build security-gated CI/CD pipelines (SAST, container scanning) and run a self-hosted Debian server with 8+ Dockerised services behind a hardened Nginx stack and Cloudflare Tunnel. Available for 14-week internship from 7th September to 11th December 2026.'
+  'Final-year CS student at UiTM Shah Alam specialising in DevOps. I build automated CI/CD pipelines and containerised deployments, and run a self-hosted Debian server with 8+ Dockerised services behind a hardened Nginx stack and Cloudflare Tunnel, monitored with Prometheus and Grafana. Strong security foundation: my pipelines integrate SAST and container scanning. Available for 14-week internship from 7th September to 11th December 2026.'
 );
 
 
@@ -148,10 +148,10 @@ INSERT INTO skills (category, category_order, name, sort_order) VALUES
 ('Infrastructure & DevOps', 1, 'Git / GitHub',                                          8),
 ('Infrastructure & DevOps', 1, 'Observability (Prometheus, Grafana, Loki)',             9),
 
-('Security & DevSecOps', 2, 'Nmap',                  1),
-('Security & DevSecOps', 2, 'SAST (Semgrep)',        2),
-('Security & DevSecOps', 2, 'Trivy (SCA/Image/IaC)', 3),
-('Security & DevSecOps', 2, 'Gitleaks',              4),
+('Security', 2,'Nmap',                  1),
+('Security', 2,'SAST (Semgrep)',        2),
+('Security', 2,'Trivy (SCA/Image/IaC)', 3),
+('Security', 2,'Gitleaks',              4),
 
 ('Frameworks & Tools', 3, 'Express.js / Node.js', 1),
 ('Frameworks & Tools', 3, 'FastAPI',              2),
@@ -216,7 +216,7 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
 ),
 (
   'BeanThere',
-  'Built a coffee shop web app in plain PHP with online ordering, loyalty rewards, and an AI drink recommender, backed by a full DevSecOps pipeline: CI with linting, secret scanning, and static analysis, Dockerised deployment to a self-hosted server.',
+  'Built a coffee shop web app in plain PHP with online ordering, loyalty rewards, and an AI drink recommender, backed by a full CI/CD pipeline: linting, secret scanning, and static analysis in CI, with Dockerised deployment to a self-hosted server.',
   ARRAY['PHP', 'MariaDB', 'TailwindCSS', 'Docker'],
   'Maintained',
   'https://github.com/syamxm/BeanThere',
@@ -224,7 +224,7 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
   false,
   8,
   true,
-  'Coffee shop web app: online ordering, loyalty rewards, AI drink recommender, and a full DevSecOps pipeline on a self-hosted server.'
+  'Coffee shop web app: online ordering, loyalty rewards, AI drink recommender, and a full CI/CD pipeline with security scanning on a self-hosted server.'
 ),
 (
   'Family Monitor',
