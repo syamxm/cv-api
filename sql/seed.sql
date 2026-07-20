@@ -25,7 +25,7 @@ INSERT INTO profile (name, title, location, address, email, phone, github, linke
   '+60177967290',
   'https://github.com/syamxm',
   'https://www.linkedin.com/in/syamxm',
-  'Final-year CS student at UiTM Shah Alam specialising in DevOps. I build automated CI/CD pipelines and containerised deployments, and run a self-hosted Debian server with 8+ Dockerised services behind a hardened Nginx stack and Cloudflare Tunnel, monitored with Prometheus and Grafana. Strong security foundation: my pipelines integrate SAST and container scanning. Available for 14-week internship from 7th September to 11th December 2026.'
+  'Final-year CS student at UiTM Shah Alam specialising in DevOps. I build automated CI/CD pipelines and containerised deployments, and run a self-hosted Debian server with 8+ Dockerised services behind a hardened Nginx stack and Cloudflare Tunnel, monitored with Prometheus and Grafana. Strong security foundation: my pipelines integrate SAST and container scanning. Available for 14-week internship from 7th September to 11th December 2026, extendable up to 6 months if required.'
 );
 
 
