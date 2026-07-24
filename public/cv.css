@@ -396,33 +396,58 @@ body > * { position: relative; z-index: 1; }
   .cv-header h1 { font-size: 2.7rem; }
 }
 
-/* Full-bleed cream: @page margin 0 lets the cream reach every page edge —
-   Chrome won't let page content paint a non-zero @page margin, so any margin
-   leaves a white frame. Safe text margins come from .cv padding instead.
-   Print with the browser's "Headers and footers" OFF: at margin 0 they would
-   overlap content on inner pages. */
-@page { size: A4; margin: 0; }
+/* Real @page margins so every page — not only the first and last — gets safe
+   space. The cream still reaches the paper edge because the root element's
+   background propagates to the page canvas, which covers the margin box too. */
+@page { size: A4; margin: 14mm 15mm; }
 
 @media print {
-  html, body {
+  html {
     background: var(--sheet);
-    padding: 0;
-    margin: 0;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
+  }
+  body {
+    background: transparent;
+    padding: 0;
+    margin: 0;
   }
   body::before { display: none; }
   .no-print { display: none !important; }
   .cv {
-    background: var(--sheet);
+    background: transparent;
     box-shadow: none;
     max-width: 100%;
-    padding: 12mm 14mm;         /* own safe margins — @page margin is 0 */
+    padding: 0;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;  /* render accent, skill tags, award dots */
   }
-  /* avoid splitting an entry/project across pages */
-  .cv-section, .entry, .project, .award { break-inside: avoid; }
+
+  /* Justified text opens rivers at this measure; ragged right reads cleaner. */
+  .cv-summary, .entry ul li, .project-desc, .award-desc { text-align: left; }
+
+  /* Keep the smallest meaningful units whole, but let long sections flow —
+     a section taller than a page must be breakable or it leaves a blank page. */
+  .entry, .award, .skill-group, .cv-header { break-inside: avoid; }
+  .cv-section, .project { break-inside: auto; }
+
+  /* Nothing gets stranded at a page foot: no lone heading, no orphaned link. */
+  .cv-section h2, .skill-group h3,
+  .entry-header, .entry-sub,
+  .project-header, .project-stack, .project-desc { break-after: avoid; }
+  .cv-summary, .project-desc, .award-desc, .entry ul li { orphans: 3; widows: 3; }
+
+  /* Tighter rhythm on paper: screen spacing spills a few lines onto an extra sheet. */
+  body { line-height: 1.5; }
+  .cv-header { margin-bottom: 26px; padding-bottom: 20px; }
+  .cv-summary { margin-bottom: 24px; padding-bottom: 20px; line-height: 1.6; }
+  .cv-section { padding-bottom: 16px; margin-bottom: 20px; }
+  .cv-section h2 { margin-bottom: 16px; }
+  .entry { margin-bottom: 16px; }
+  .entry ul li, .project-desc, .award-desc { line-height: 1.55; }
+  .project { margin-bottom: 16px; padding-bottom: 16px; }
+  .skills-grid { gap: 16px; }
+
   * { animation: none !important; }
 }
 
