@@ -252,7 +252,7 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
 ),
 (
   'TaskFlow',
-  'Self-hosted MERN task manager with a security-gated CI/CD pipeline. Reusable GitHub Actions workflows run 7 automated scanners that gate every PR and deploy on HIGH or CRITICAL findings: Gitleaks for secrets, Semgrep for SAST, npm audit and Trivy for dependencies, Hadolint and Trivy config for Dockerfiles and IaC, and Trivy image scanning with CycloneDX SBOMs. Application security covers JWT (HS256), httpOnly and SameSite cookies, bcrypt password hashing, AES-256-GCM encryption of GitHub tokens at rest, MongoDB-backed per-route rate limiting, input validation, and owner-scoped authorization. Containers run non-root on Alpine across isolated Docker networks behind a hardened Nginx reverse proxy, with Dependabot keeping dependencies and base images current. The app provides per-project Kanban boards, priorities, due dates, and GitHub repo integration.',
+  'Self-hosted MERN task manager with a security-gated CI/CD pipeline. Every push and pull request runs Gitleaks across the full git history, Semgrep SAST (OWASP Top Ten, JavaScript and Node rulesets), and Trivy over repo misconfiguration plus CVE scans of freshly built backend and frontend images; the deploy job only runs once all of them pass, over Tailscale to the homeserver. Application security covers JWT pinned to HS256 in httpOnly SameSite cookies, bcrypt hashing with per-account lockout after repeated failed logins, AES-256-GCM encryption of GitHub tokens at rest, MongoDB-backed per-route rate limiting, express-validator input validation, and membership-scoped authorization. Containers run non-root on Alpine across an internal Docker network with only a hardened Nginx reverse proxy exposed. The app provides per-project Kanban boards with priorities and due dates, shared projects with invites and task assignees, an admin role and console, and GitHub repo integration.',
   ARRAY['MongoDB', 'Express', 'React', 'Node.js', 'Docker', 'Nginx', 'GitHub Actions', 'Semgrep', 'Trivy', 'Gitleaks', 'JWT'],
   'Maintained',
   'https://github.com/syamxm/taskflow',
@@ -260,7 +260,7 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
   false,
   2,
   true,
-  'MERN task manager with a security-gated CI/CD pipeline: five scanners (Semgrep SAST, Gitleaks secrets, and Trivy across SCA, image, and IaC) block deploy on HIGH or CRITICAL findings.'
+  'MERN task manager with a security-gated CI/CD pipeline: Gitleaks secret scanning, Semgrep SAST, and Trivy misconfiguration and image CVE scans all block deploy on HIGH or CRITICAL findings.'
 ),
 (
   'Portfolio Website',
