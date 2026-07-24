@@ -227,18 +227,6 @@ INSERT INTO projects (name, description, tech_stack, status, github_url, demo_ur
   'Coffee shop web app: online ordering, loyalty rewards, AI drink recommender, and a full CI/CD pipeline with security scanning on a self-hosted server.'
 ),
 (
-  'Family Monitor',
-  'Flutter app that gives guardians visibility into family members'' web activity: browsing and search history across Chrome-based browsers. Backend runs on a self-hosted Debian virtual machine managed through virt-manager.',
-  ARRAY['Flutter', 'Dart', 'Debian Linux', 'virt-manager'],
-  'In Development',
-  NULL,
-  NULL,
-  true,
-  6,
-  false,
-  NULL
-),
-(
   'Student Reminder System',
   'Built a Flutter app that lets UiTM students manage class timetables and receive local push notifications for deadlines, backed by a FastAPI + Redis API with rate-limited login, deployed in Docker on a self-hosted Debian server and served over a CDN.',
   ARRAY['Flutter', 'Dart', 'Python', 'FastAPI', 'Redis', 'Docker'],
