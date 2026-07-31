@@ -30,7 +30,7 @@
     },
     {
       "name": "C-Aegis Mobile App",
-      "status": "In Development",
+      "status": "Maintained",
       "stack": ["Kotlin", "XML", "Firebase", "Google Maps API", "Radar API", "Android Device Admin API"],
       "description": "Android parental monitoring app (Final Year Project): parent and child dashboards, real-time geofence alerts via the Radar API, and tamper-resistant app-usage enforcement using the Device Admin API and AccessibilityService.",
       "github_url": null,
