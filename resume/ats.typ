@@ -1,8 +1,9 @@
 // ATS-friendly single-column resume.
-// Content comes from data.json — edit that file, not this template.
+// Content comes from a data JSON file — edit that file, not this template.
 // Build: typst compile ats.typ Ahmad_Syamim_Resume_ATS.pdf
+// Mobile version: typst compile --input data=data_mobile.json ats.typ Ahmad_Syamim_Resume_Mobile_ATS.pdf
 
-#let data = json("data.json")
+#let data = json(sys.inputs.at("data", default: "data.json"))
 
 #set page(paper: "a4", margin: (x: 2cm, y: 1.6cm))
 #set text(font: "Libertinus Serif", size: 10.5pt, ligatures: false, lang: "en")
